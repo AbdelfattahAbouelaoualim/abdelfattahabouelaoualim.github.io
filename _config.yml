@@ -1,0 +1,30 @@
+title: "mlexpert"
+
+#about: "Bootstrap theme for jekyll"
+markdown: kramdown
+url: ""
+baseurl: ""
+disqus_short_name: mlexpert-ml
+
+plugins: 
+  - jekyll-paginate
+  - jemoji
+  
+paginate_path: "/page:num/"
+
+paginate: 5
+
+main_toc:
+  - title: Home
+    url: ""
+  - title: About
+    url: "about"
+  - title: Author
+    url: "author"
+
+defaults:
+  -
+    scope:
+      path: "_posts"
+    values:
+      layout: "post"

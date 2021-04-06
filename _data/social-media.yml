@@ -1,0 +1,17 @@
+github:
+  id: 'AbdelfattahAbouelaoualim'
+  href: 'https://github.com/'
+  title: 'GitHub'
+  fa-icon: 'fa-github-square'
+
+linkedin:
+  id: 'ia-ds-bg'
+  href: 'https://www.linkedin.com/in/'
+  title: 'Linkedin'
+  fa-icon: 'fa-linkedin-square'
+
+email:
+  id: 'aa.mlexpert@gmail.com'
+  href: 'mailto:'
+  title: 'Email'
+  fa-icon: 'fab fa-envelope-square'
