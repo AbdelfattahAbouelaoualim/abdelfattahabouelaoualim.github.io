@@ -1,10 +1,10 @@
-title: "mlexpert"
+title: "thearchitect"
 
 #about: "Bootstrap theme for jekyll"
 markdown: kramdown
 url: ""
 baseurl: ""
-disqus_short_name: mlexpert-ml
+disqus_short_name: thearchitect-page
 
 plugins: 
   - jekyll-paginate
