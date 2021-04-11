@@ -13,3 +13,5 @@ gem "jekyll-paginate", "~> 1.1"
 gem "jekyll-feed", "~> 0.11.0"
 
 gem "jemoji", "~> 0.10.1"
+
+gem "kramdown-parser-gfm"
