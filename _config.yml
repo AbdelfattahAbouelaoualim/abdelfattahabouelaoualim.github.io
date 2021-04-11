@@ -4,7 +4,7 @@ title: "thearchitect"
 markdown: kramdown
 url: ""
 baseurl: ""
-disqus_short_name: thearchitect-page
+disqus_short_name: thearchitect-page.disqus.com
 
 plugins: 
   - jekyll-paginate
