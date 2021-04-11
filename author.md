@@ -39,9 +39,9 @@ I am also a fan of web technologies, scrapping, e-commerce and fintech. During m
 
 ##### Education
 
-- <i class="fas fa-graduation-cap"></i> I obtained the International Certificate in Corporate Finance from [<span style="color:blue">HEC Paris business school</span>](https://www.hec.edu/en). 
-- <i class="fas fa-graduation-cap"></i> I obtained a specialized Master's degree in "big data: management and analysis of massive data" from [<span style="color:blue">Télécom Paris</span>](https://www.telecom-paris.fr/en/home) ([<span style="color:blue">Polytechnic Institute of Paris</span>](https://www.ip-paris.fr/en/home-en/)), best engineering school in digital technologies in France.
-- <i class="fas fa-graduation-cap"></i> I obtained a Ph.D. in graph theory from the [<span style="color:blue">University of Paris-Saclay</span>](https://www.universite-paris-saclay.fr/en). My thesis subject was to explore algorithmically and topologically the existence of patterns in edge-colored graphs. 
-- <i class="fas fa-graduation-cap"></i> I also have a Master's degree in operational research, optimization and combinatorics from [<span style="color:blue">ENSIMAG</span>](http://ensimag.grenoble-inp.fr/en), one of the best engineering schools in computer science and applied mathematics in France.
+- <i class="fas fa-graduation-cap"></i> International Certificate in Corporate Finance from [<span style="color:blue">HEC Paris business school</span>](https://www.hec.edu/en). 
+- <i class="fas fa-graduation-cap"></i> Specialized Master's degree in "big data: management and analysis of massive data" from [<span style="color:blue">Télécom Paris</span>](https://www.telecom-paris.fr/en/home) ([<span style="color:blue">Polytechnic Institute of Paris</span>](https://www.ip-paris.fr/en/home-en/)), best engineering school in digital technologies in France.
+- <i class="fas fa-graduation-cap"></i> Ph.D. in graph theory from the [<span style="color:blue">University of Paris-Saclay</span>](https://www.universite-paris-saclay.fr/en). My thesis subject was to explore algorithmically and topologically the existence of patterns in edge-colored graphs. 
+- <i class="fas fa-graduation-cap"></i> Master's degree in operational research, optimization and combinatorics from [<span style="color:blue">ENSIMAG</span>](http://ensimag.grenoble-inp.fr/en), one of the best engineering schools in computer science and applied mathematics in France.
 
-On a personal note, I enjoy working in an international environment and staying up-to-date with developments in science and technology....!!!
+On a personal note, I enjoy working in an international environment and staying up-to-date with developments in science and technology.
