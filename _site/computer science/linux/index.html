@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
-
-  <title>The Architect | Introduction to Artificial Intelligence</title>
+  
+  <title> | Linux, the data scientist's best friend</title>
 
   <link href="/css/milo.css" rel="stylesheet">
   <link href="/fontawesome-free-5.12.1-web/css/all.css" rel="stylesheet"> <!--load all styles -->
@@ -43,7 +43,9 @@
 		  
         </div>
 
-        <a class="navbar-brand mx-auto order-1 order-md-3" href="">The Architect</a>
+        <a class="navbar-brand mx-auto order-1 order-md-3" href="">
+          <img src="/img/logo.png" alt="">
+        </a>
       </div>
     </nav>
   </header>
@@ -61,171 +63,74 @@
             <header class="card-header text-center">
 			
               <div class="card-meta">
-                <span>Published on 14 Mar 2020</time></span> in
+                <span>Published on 04 Mar 2020</time></span> in
                   
                   
-                  <a href="/categories/#Artificial Intelligence">Artificial Intelligence</a>
+                  <a href="/categories/#Computer Science">Computer Science</a>
                   
                   
               <div>
 			
-                <h1 class="card-title">Introduction to Artificial Intelligence</h1>
+                <h1 class="card-title">Linux, the data scientist's best friend</h1>
 
             </header>
 			
 			
             <a style="cursor:pointer;">
-              <img class="card-img" src="/img/AI.jpg" alt="" />
+              <img class="card-img" src="/img/linux.webp" alt="" />
             </a>
             
             
             <div class="card-body">
-			<p>Text can be <strong>bold</strong>, <em>italic</em>, <del>strikethrough</del> or <code class="language-plaintext highlighter-rouge">keyword</code></p>
+			<h3 id="some-simple-commands">Some simple commands</h3>
 
-<p><a href="./another-page.html">Link to another page</a>.</p>
+<p>The exact format of the date and time as printed by <strong>date</strong> varies from one system to another, but it displays what the system thinks is the current date and time (because it can be changed by the super-user).</p>
 
-<p>There should be whitespace between paragraphs.</p>
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span><span class="nb">date</span>
+<span class="go">mercredi 4 mars 2020, 23:13:50 (UTC+0100)
+</span></code></pre></div></div>
 
-<p>There should be whitespace between paragraphs. We recommend including a README, or a file with information about your project.</p>
+<p>Another simple one-word command tells you who is using the system.</p>
 
-<h1 id="header-1">Header 1</h1>
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span><span class="nb">who</span>
+<span class="go">me     :1           2020-03-04 20:54 (:1)
+</span></code></pre></div></div>
 
-<p>This is a normal paragraph following a header. GitHub is a code hosting platform for version control and collaboration. It lets you and others work together on projects from anywhere.</p>
+<p>A variation of the <strong>who</strong> command is <strong>whoami</strong>. Used to find out who opened the current terminal or session.</p>
 
-<h2 id="header-2">Header 2</h2>
+<p>The <strong>passwd</strong> command changes passwords for user accounts. A normal user may only change the password for his/her own account, while the superuser may change the password for any account.  passwd also changes the account or associated password validity period.</p>
 
-<blockquote>
-  <p>This is a blockquote following a header.</p>
-
-  <p>When something is important enough, you do it even if the odds are not in your favor.</p>
-</blockquote>
-
-<h3 id="header-3">Header 3</h3>
-
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Javascript code with syntax highlighting.</span>
-<span class="kd">var</span> <span class="nx">fun</span> <span class="o">=</span> <span class="kd">function</span> <span class="nx">lang</span><span class="p">(</span><span class="nx">l</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nx">dateformat</span><span class="p">.</span><span class="nx">i18n</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">./lang/</span><span class="dl">'</span> <span class="o">+</span> <span class="nx">l</span><span class="p">)</span>
-  <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
-<span class="p">}</span>
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>passwd
 </code></pre></div></div>
+<p>The <strong>rm</strong> (remove files) command is:</p>
 
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Ruby code with syntax highlighting</span>
-<span class="no">GitHubPages</span><span class="o">::</span><span class="no">Dependencies</span><span class="p">.</span><span class="nf">gems</span><span class="p">.</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">gem</span><span class="p">,</span> <span class="n">version</span><span class="o">|</span>
-  <span class="n">s</span><span class="p">.</span><span class="nf">add_dependency</span><span class="p">(</span><span class="n">gem</span><span class="p">,</span> <span class="s2">"= </span><span class="si">#{</span><span class="n">version</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-<span class="k">end</span>
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span><span class="nb">rm</span> <span class="o">[</span><span class="nt">-fri</span><span class="o">]</span> file ...
 </code></pre></div></div>
-
-<h4 id="header-4">Header 4</h4>
-
 <ul>
-  <li>This is an unordered list following a header.</li>
-  <li>This is an unordered list following a header.</li>
-  <li>This is an unordered list following a header.</li>
+  <li>-f ignore nonexistent files and arguments, never prompt</li>
+  <li>-i prompt before every removal</li>
+  <li>-r remove directories and their contents recursively</li>
 </ul>
 
-<h5 id="header-5">Header 5</h5>
+<p>The <strong>pwd</strong> command is a request to <strong>p</strong>rint the <strong>w</strong>orking <strong>d</strong>irectory.</p>
 
-<ol>
-  <li>This is an ordered list following a header.</li>
-  <li>This is an ordered list following a header.</li>
-  <li>This is an ordered list following a header.</li>
-</ol>
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span><span class="nb">pwd</span>
+<span class="go">/home/me
+</span></code></pre></div></div>
 
-<h6 id="header-6">Header 6</h6>
+<p>The <strong>ls</strong> command is a request to the system to <strong><em>list the contents of a directory</em></strong>. If no directory is specified on the <strong>ls</strong> command line, you get a list of files in the current directory, which is the one you are working in.</p>
 
-<table>
-  <thead>
-    <tr>
-      <th style="text-align: left">head1</th>
-      <th style="text-align: left">head two</th>
-      <th style="text-align: left">three</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="text-align: left">ok</td>
-      <td style="text-align: left">good swedish fish</td>
-      <td style="text-align: left">nice</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">out of stock</td>
-      <td style="text-align: left">good and plenty</td>
-      <td style="text-align: left">nice</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">ok</td>
-      <td style="text-align: left">good <code class="language-plaintext highlighter-rouge">oreos</code></td>
-      <td style="text-align: left">hmm</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">ok</td>
-      <td style="text-align: left">good <code class="language-plaintext highlighter-rouge">zoute</code> drop</td>
-      <td style="text-align: left">yumm</td>
-    </tr>
-  </tbody>
-</table>
-
-<h3 id="theres-a-horizontal-rule-below-this">There’s a horizontal rule below this.</h3>
-
-<hr />
-
-<h3 id="here-is-an-unordered-list">Here is an unordered list:</h3>
-
-<ul>
-  <li>Item foo</li>
-  <li>Item bar</li>
-  <li>Item baz</li>
-  <li>Item zip</li>
-</ul>
-
-<h3 id="and-an-ordered-list">And an ordered list:</h3>
-
-<ol>
-  <li>Item one</li>
-  <li>Item two</li>
-  <li>Item three</li>
-  <li>Item four</li>
-</ol>
-
-<h3 id="and-a-nested-list">And a nested list:</h3>
-
-<ul>
-  <li>level 1 item
-    <ul>
-      <li>level 2 item</li>
-      <li>level 2 item
-        <ul>
-          <li>level 3 item</li>
-          <li>level 3 item</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li>level 1 item
-    <ul>
-      <li>level 2 item</li>
-      <li>level 2 item</li>
-      <li>level 2 item</li>
-    </ul>
-  </li>
-  <li>level 1 item
-    <ul>
-      <li>level 2 item</li>
-      <li>level 2 item</li>
-    </ul>
-  </li>
-  <li>level 1 item</li>
-</ul>
-
-<h3 id="small-image">Small image</h3>
-
-<p><img src="https://assets-cdn.github.com/images/icons/emoji/octocat.png" alt="Octocat" /></p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Long, single-line code blocks should not wrap. They should horizontally scroll if they are too long. This line should be long enough to demonstrate this.
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span><span class="nb">ls</span> <span class="o">[</span><span class="nt">-al</span><span class="o">]</span>
 </code></pre></div></div>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>The final element.
+<p>The <strong>-a</strong> (for all) option to <strong>ls</strong> asks that all files (even hiffen) and subdirectories are listed. The <strong>-l</strong> (for long) option asks for a long listing; without it only the names of the files and subdirectories are shown. The period character “<strong>.</strong>” (usually called “dot”) means the current directory. The two periods “<strong>..</strong>” means the parent directory.</p>
+
+<p>You are the owner of your own “home” directory, you are not necessarily the owner of the parent directory. The slash character , /, is called the <strong><em>root</em></strong> of the file system.</p>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span><span class="nb">ls</span> <span class="nt">-l</span> dir1 dir2
 </code></pre></div></div>
+
+<p>The <strong>ls</strong> command above requests a <strong><em>long</em></strong> display of the two directories <strong><em>dir1</em></strong> and <strong><em>dir2</em></strong>. This form of <strong>ls</strong> places the name of each directory before the information for its subdirectories.</p>
 
             <hr />
 			<div class="pg-center">
@@ -235,8 +140,8 @@
   <div id="disqus_thread"></div>
   <script>
 var disqus_config = function () {
-  this.page.url = 'http://localhost:4000/artificial%20intelligence/2020/03/14/AI.html'; // Replace PAGE_URL with your page's canonical URL variable
-  this.page.identifier = '/artificial%20intelligence/2020/03/14/AI'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+  this.page.url = 'http://localhost:4000/computer%20science/linux/'; // Replace PAGE_URL with your page's canonical URL variable
+  this.page.identifier = '/computer%20science/linux'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
 };
 (function() {
   var d = document, s = d.createElement('script');
@@ -306,7 +211,7 @@ margin-top:2rem;
                 
 				<h4 class="card-title">Latest posts</h4>
 				
-                <a href="/machine%20learning/2020/03/14/ML.html" class="d-inline-block">
+                <a href="/machine%20learning/ML/" class="d-inline-block">
                   <h4 class="h6">Machine learning</h4>
                   
 				  <img class="card-img" src="/img/ml.jpg" alt="" />
@@ -316,7 +221,7 @@ margin-top:2rem;
                 <time>On 14 Mar 2020</time> in Machine Learning
 				<hr />
 				
-                <a href="/graph%20theory/2020/03/14/GL.html" class="d-inline-block">
+                <a href="/graph%20theory/GL/" class="d-inline-block">
                   <h4 class="h6">Introduction to Graph Theory</h4>
                   
 				  <img class="card-img" src="/img/graph_theory.png" alt="" />
@@ -370,7 +275,7 @@ margin-top:2rem;
         </li>
       </ul> -->
       <div class="copy">
-        &copy; The Architect 2021<br />
+        &copy;  2021<br />
         All rights reserved
         <a href="https://www.linkedin.com/in/ia-ds-bg/" title="Linkedin"><i class="fab fa-linkedin-square"></i></a>
         <a href="https://github.com/AbdelfattahAbouelaoualim" title="Github"><i class="fab fa-github-square"></i></a>
