@@ -17,12 +17,26 @@
 </head>
 
 <body>
+  <style>
+  img.card-img-author {
+  height: 10%;
+  width: 20%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+</style>
  <header role="banner">
-    <nav class="navbar navbar-expand-md navbar-light bg-white absolute-top">
-      <div class="container">
-        <button class="navbar-toggler order-2 order-md-1" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
+     <nav class="navbar navbar-expand-md navbar-dark bg-primary absolute-top"> 
+     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">  
+      <span class="navbar-toggler-icon"></span>
         </button>
+
+      <div class="container">
+        <!-- <button class="navbar-toggler order-2 order-md-1" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation"> 
+          
+           <span class="navbar-toggler-icon"></span> 
+        </button> -->
         <div class="collapse navbar-collapse order-3 order-md-2" id="navbar">
 		  <ul class="navbar-nav mr-auto">
 			
@@ -62,14 +76,15 @@
             <header class="card-header text-center">
 			 
 
-                <h1 class="card-title">Abdelfattah Abouelaoualim Ph.D.</h1>
+                <h3 class="card-title">Abdelfattah Abouelaoualim Ph.D.</h3>
+            
+            <a href="DSC_1020.jpg">
+              <img class="card-img-author" src="/img/DSC_1020.jpg" alt="" />
+            </a>
+            
 
             </header>
 			
-            <a href="DSC_1020.jpg">
-              <img class="card-img" src="/img/DSC_1020.jpg" alt="" />
-            </a>
-            
             <div class="card-body">
 			<head>
   <link href="/fontawesome-free-5.12.1-web/css/all.css" rel="stylesheet" /> <!--load all styles -->
@@ -79,7 +94,7 @@
 <a href="https://github.com/AbdelfattahAbouelaoualim" title="Github"><i class="fab fa-github-square"></i></a>
 <a href="mailto:aa.mlexpert@gmail.com" title="Email me"><i class="fas fa-envelope-square"></i></a></p>
 
-<h5 id="machine-learning-and-graph-theory">Machine Learning and Graph Theory</h5>
+<h5 id="machine-learning-and-graph-theory"><span style="color:#5634DB">Machine Learning and Graph Theory</span></h5>
 
 <p>I specialize in modern techniques that combine machine learning and graph theory: Graph Learning, Graph Embedding, Graph Representation, Spectral Graph Convolutions, Convolutional Graph Network, Knowledge Graph, NLP, Computer Vision,… The purpose of these techniques is to exploit the fact that often the data (texts, images,…) are linked. These techniques consist in making a first model of the problem in the form of a graph and then a second modeling in machine learning on the generated graph. Naturally, these techniques find their applications in the fields of:</p>
 <ul>
@@ -97,15 +112,15 @@
 
 <p>More and more, data are becoming linked, which means that machine learning on graphs is the future of artificial intelligence.</p>
 
-<h5 id="hybrid-cloud-infrastructure-and-big-data-engineering">Hybrid Cloud Infrastructure and Big Data Engineering</h5>
+<h5 id="-hybrid-cloud-infrastructure-and-big-data-engineering-"><span style="color:#5634DB"> Hybrid Cloud Infrastructure and Big Data Engineering </span></h5>
 
 <p>I am certified as an architect in Hybrid Cloud Infrastructure with Anthos and have more than 11 years of experience in IT as an R&amp;D engineer. In particular, I spent more than 8 years in the hardware department of <a href="https://atos.net/en/solutions"><span style="color:blue">Bull</span></a>, the only manufacturer specializing in the design of <a href="https://atos.net/en/solutions/high-performance-computing-hpc/bullsequana-x-supercomputers/bullsequana-x1000"><span style="color:blue">supercomputers and data centers</span></a> in Europe. My knowledge of hardware, firmware and HPC (high performance computing) gives me a great ease with Big Data infrastructure (distributed architectures, on-prem or in the cloud: AWS, GCP, AZURE) and a very good knowledge of new parallelization and pipeline technologies for data and computing such as the Apache Foundation projects (Hadoop, Spark, Kafka, Airflow…)</p>
 
-<h5 id="web-technologies-e-commerce-fintech-and-corporate-finance">Web Technologies, E-commerce, Fintech and Corporate Finance</h5>
+<h5 id="-web-technologies-e-commerce-fintech-and-corporate-finance-"><span style="color:#5634DB"> Web Technologies, E-commerce, Fintech and Corporate Finance </span></h5>
 
 <p>I am also a fan of web technologies, scrapping, e-commerce and fintech. During my career, I have developed the ability to approach the technical and theoretical aspects of my work with a high degree of autonomy and have become comfortable collaborating with multi-disciplinary teams.</p>
 
-<h5 id="education">Education</h5>
+<h5 id="-education-"><span style="color:#5634DB"> Education </span></h5>
 
 <ul>
   <li><i class="fas fa-graduation-cap"></i> International Certificate in Corporate Finance from <a href="https://www.hec.edu/en"><span style="color:blue">HEC Paris business school</span></a>.</li>
@@ -122,7 +137,13 @@
           </article><!-- /.card -->
 
         </div>
-             <div class="col-md-3 ml-auto">
+     <style>
+  h4.card-title{
+    color: #EA950B;
+  }
+</style>
+
+<div class="col-md-3 ml-auto">
 <!-- 
           <aside class="sidebar">
             <div class="card mb-4">
@@ -140,23 +161,23 @@
                 <h4 class="card-title">Categories</h4>
 				
 				    
-                <a class="btn btn-light btn-sm mb-1" href="/categories/#Computer Science">
+                <a class="btn btn-link btn-sm mb-1" href="/categories/#Computer Science"> 
                 Computer Science,</a>
 				
 				    
-                <a class="btn btn-light btn-sm mb-1" href="/categories/#Artificial Intelligence">
+                <a class="btn btn-link btn-sm mb-1" href="/categories/#Artificial Intelligence"> 
                 Artificial Intelligence,</a>
 				
 				    
-                <a class="btn btn-light btn-sm mb-1" href="/categories/#Data Science">
+                <a class="btn btn-link btn-sm mb-1" href="/categories/#Data Science"> 
                 Data Science,</a>
 				
 				    
-                <a class="btn btn-light btn-sm mb-1" href="/categories/#Graph Theory">
+                <a class="btn btn-link btn-sm mb-1" href="/categories/#Graph Theory"> 
                 Graph Theory,</a>
 				
 				    
-                <a class="btn btn-light btn-sm mb-1" href="/categories/#Machine Learning">
+                <a class="btn btn-link btn-sm mb-1" href="/categories/#Machine Learning"> 
                 Machine Learning</a>
 				
               </div>

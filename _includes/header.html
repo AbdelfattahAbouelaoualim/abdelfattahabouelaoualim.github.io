@@ -1,9 +1,14 @@
  <header role="banner">
-    <nav class="navbar navbar-expand-md navbar-light bg-white absolute-top">
-      <div class="container">
-        <button class="navbar-toggler order-2 order-md-1" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
+     <nav class="navbar navbar-expand-md navbar-dark bg-primary absolute-top"> 
+     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">  
+      <span class="navbar-toggler-icon"></span>
         </button>
+
+      <div class="container">
+        <!-- <button class="navbar-toggler order-2 order-md-1" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation"> 
+          
+           <span class="navbar-toggler-icon"></span> 
+        </button> -->
         <div class="collapse navbar-collapse order-3 order-md-2" id="navbar">
 		  <ul class="navbar-nav mr-auto">
 			{% for link in site.main_toc %}
