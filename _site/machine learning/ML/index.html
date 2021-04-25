@@ -1,11 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <style>
-    header {
-      background-color: red;
-    }
-  </style>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
@@ -17,42 +12,32 @@
 </head>
 
 <body>
- <header role="banner">
-     <nav class="navbar navbar-expand-md navbar-dark bg-primary absolute-top"> 
-     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">  
-      <span class="navbar-toggler-icon"></span>
-        </button>
-
-      <div class="container">
-        <!-- <button class="navbar-toggler order-2 order-md-1" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation"> 
-          
-           <span class="navbar-toggler-icon"></span> 
-        </button> -->
-        <div class="collapse navbar-collapse order-3 order-md-2" id="navbar">
-		  <ul class="navbar-nav mr-auto">
-			
-			    <li class="nav-item">
-			      <a class="nav-link" href="/">Home</a>
-			    </li>
-			
-			    <li class="nav-item">
-			      <a class="nav-link" href="/about">About</a>
-			    </li>
-			
-			    <li class="nav-item">
-			      <a class="nav-link" href="/author">Author</a>
-			    </li>
-						
-          	</ul>
-		  
-        </div>
-
-        <a class="navbar-brand mx-auto order-1 order-md-3" href="">
-          <img src="/img/logo.png" alt="">
-        </a>
-      </div>
-    </nav>
-  </header>
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand" href="/"></a>
+    <button class="navbar-toggler navbar-toggler-left" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      Menu
+      <i class="fa fa-bars"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive" >
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a style="color:#FFFFFF" class="nav-link" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a style="color:#FFFFFF" class="nav-link" href="/about">About</a>
+        </li>
+        <li class="nav-item">
+          <a style="color:#FFFFFF" class="nav-link" href="/author">Author</a>
+        </li>
+        <li class="nav-item">
+          <a style="color:#FFFFFF" class="nav-link" href="/contact">Contact</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
 
 
   <main class="main pt-4" role="main">
@@ -225,7 +210,7 @@
 
 <h3 id="small-image">Small image</h3>
 
-<p><img src="https://assets-cdn.github.com/images/icons/emoji/octocat.png" alt="Octocat" /></p>
+<p><img src="/img/AI.jpg" alt="Octocat" /></p>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Long, single-line code blocks should not wrap. They should horizontally scroll if they are too long. This line should be long enough to demonstrate this.
 </code></pre></div></div>
@@ -318,6 +303,16 @@ margin-top:2rem;
                 
 				<h4 class="card-title">Latest posts</h4>
 				
+                <a href="/machine%20learning/NP/" class="d-inline-block">
+                  <h4 class="h6">Neo4j to Python</h4>
+                  
+				  <img class="card-img" src="/img/ml.jpg" alt="" />
+				  
+                </a>
+				<br />
+                <time>On 25 Apr 2021</time> in Machine Learning
+				<hr />
+				
                 <a href="/machine%20learning/ML/" class="d-inline-block">
                   <h4 class="h6">Machine learning</h4>
                   
@@ -326,16 +321,6 @@ margin-top:2rem;
                 </a>
 				<br />
                 <time>On 14 Mar 2020</time> in Machine Learning
-				<hr />
-				
-                <a href="/graph%20theory/GL/" class="d-inline-block">
-                  <h4 class="h6">Introduction to Graph Theory</h4>
-                  
-				  <img class="card-img" src="/img/graph_theory.png" alt="" />
-				  
-                </a>
-				<br />
-                <time>On 14 Mar 2020</time> in Graph Theory
 				<hr />
 				
               </div>

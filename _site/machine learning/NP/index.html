@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <title> | Neo4j to Python</title>
+
+  <link href="/css/milo.css" rel="stylesheet">
+  <link href="/fontawesome-free-5.12.1-web/css/all.css" rel="stylesheet"> <!--load all styles -->
+</head>
+
+<body>
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand" href="/"></a>
+    <button class="navbar-toggler navbar-toggler-left" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      Menu
+      <i class="fa fa-bars"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive" >
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a style="color:#FFFFFF" class="nav-link" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a style="color:#FFFFFF" class="nav-link" href="/about">About</a>
+        </li>
+        <li class="nav-item">
+          <a style="color:#FFFFFF" class="nav-link" href="/author">Author</a>
+        </li>
+        <li class="nav-item">
+          <a style="color:#FFFFFF" class="nav-link" href="/contact">Contact</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+  <main class="main pt-4" role="main">
+
+    <div class="container">
+
+      <div class="row">
+        <div class="col-md-9">
+
+          <article class="card mb-4">
+		  
+            <header class="card-header text-center">
+			
+              <div class="card-meta">
+                <span>Published on 25 Apr 2021</time></span> in
+                  
+                  
+                  <a href="/categories/#Machine Learning">Machine Learning</a>
+                  
+                  
+              <div>
+			
+                <h1 class="card-title">Neo4j to Python</h1>
+
+            </header>
+			
+			
+            <a style="cursor:pointer;">
+              <img class="card-img" src="/img/ml.jpg" alt="" />
+            </a>
+            
+            
+            <div class="card-body">
+			<p>Neo4j contains libraries such as GDS and APOC which allow the use of already existing advanced methods and algorithms. But if that’s not enough, in this jupyter notebook, I want to show that we can get the results of Cypher queries on a Python environment and using specialized graph libraries such as networkx we can use advanced algorithms, make measurements and machine learning over graphs.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">!</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">neo4j</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Collecting neo4j
+[?25l  Downloading https://files.pythonhosted.org/packages/36/f7/3c0b20ad7cdeac89d44e5380b0b4507995b1aec843692e3e76dd6cd1c638/neo4j-4.2.1.tar.gz (69kB)
+[K    100% |████████████████████████████████| 71kB 8.6MB/s 
+[?25hRequirement already satisfied: pytz in ./anaconda3/lib/python3.6/site-packages (from neo4j) (2019.1)
+Building wheels for collected packages: neo4j
+  Building wheel for neo4j (setup.py) ... [?25ldone
+[?25h  Stored in directory: /home/arij/.cache/pip/wheels/00/a8/69/083e04c2ffc0a7e026c9356cd5bb54c65128f3e08ef8371be0
+Successfully built neo4j
+Installing collected packages: neo4j
+Successfully installed neo4j-4.2.1
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">!</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">py2neo</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Collecting py2neo
+[?25l  Downloading https://files.pythonhosted.org/packages/5b/ab/883ab4bd98c8e7493219daef648a54dc6f9c115c424e5b31d4c787838ffc/py2neo-2021.0.1-py2.py3-none-any.whl (195kB)
+[K    100% |████████████████████████████████| 204kB 10.8MB/s 
+[?25hCollecting neotime~=1.7.4 (from py2neo)
+  Downloading https://files.pythonhosted.org/packages/0b/7e/ca368a8d8e288be1352d4e2df35da1e01f8aaffbf526695df71630bcb8a6/neotime-1.7.4.tar.gz
+Requirement already satisfied: certifi in ./anaconda3/lib/python3.6/site-packages (from py2neo) (2019.6.16)
+Collecting docker (from py2neo)
+[?25l  Downloading https://files.pythonhosted.org/packages/c4/22/410313ad554477e87ec406d38d85f810e61ddb0d2fc44e64994857476de9/docker-4.4.4-py2.py3-none-any.whl (147kB)
+[K    100% |████████████████████████████████| 153kB 13.1MB/s 
+[?25hCollecting english (from py2neo)
+  Downloading https://files.pythonhosted.org/packages/05/1d/f1dd2cbd075c049a753815a0d1f29f29be3c09a62fb01a9ba74356bfee08/english-2020.7.0-py2.py3-none-any.whl
+Collecting six&gt;=1.15.0 (from py2neo)
+  Downloading https://files.pythonhosted.org/packages/ee/ff/48bde5c0f013094d729fe4b0316ba2a24774b3ff1c52d924a8a4cb04078a/six-1.15.0-py2.py3-none-any.whl
+Requirement already satisfied: pytz in ./anaconda3/lib/python3.6/site-packages (from py2neo) (2019.1)
+Collecting pansi&gt;=2020.7.3 (from py2neo)
+  Downloading https://files.pythonhosted.org/packages/0b/15/7972e08b7ec14a8b10d5ff206c644d4478906c909c134123ed7e6bd16724/pansi-2020.7.3-py2.py3-none-any.whl
+Requirement already satisfied: cryptography in ./anaconda3/lib/python3.6/site-packages (from py2neo) (2.5)
+Collecting monotonic (from py2neo)
+  Downloading https://files.pythonhosted.org/packages/ac/aa/063eca6a416f397bd99552c534c6d11d57f58f2e94c14780f3bbf818c4cf/monotonic-1.5-py2.py3-none-any.whl
+Requirement already satisfied: pygments&gt;=2.0.0 in ./anaconda3/lib/python3.6/site-packages (from py2neo) (2.3.1)
+Requirement already satisfied: urllib3 in ./anaconda3/lib/python3.6/site-packages (from py2neo) (1.24.1)
+Requirement already satisfied: packaging in ./anaconda3/lib/python3.6/site-packages (from py2neo) (19.0)
+Requirement already satisfied: prompt-toolkit~=2.0.7 in ./anaconda3/lib/python3.6/site-packages (from py2neo) (2.0.9)
+Requirement already satisfied: websocket-client&gt;=0.32.0 in ./anaconda3/lib/python3.6/site-packages (from docker-&gt;py2neo) (0.56.0)
+Requirement already satisfied: requests!=2.18.0,&gt;=2.14.2 in ./anaconda3/lib/python3.6/site-packages (from docker-&gt;py2neo) (2.21.0)
+Requirement already satisfied: asn1crypto&gt;=0.21.0 in ./anaconda3/lib/python3.6/site-packages (from cryptography-&gt;py2neo) (0.24.0)
+Requirement already satisfied: cffi!=1.11.3,&gt;=1.8 in ./anaconda3/lib/python3.6/site-packages (from cryptography-&gt;py2neo) (1.12.2)
+Requirement already satisfied: pyparsing&gt;=2.0.2 in ./anaconda3/lib/python3.6/site-packages (from packaging-&gt;py2neo) (2.3.1)
+Requirement already satisfied: wcwidth in ./anaconda3/lib/python3.6/site-packages (from prompt-toolkit~=2.0.7-&gt;py2neo) (0.1.7)
+Requirement already satisfied: idna&lt;2.9,&gt;=2.5 in ./anaconda3/lib/python3.6/site-packages (from requests!=2.18.0,&gt;=2.14.2-&gt;docker-&gt;py2neo) (2.8)
+Requirement already satisfied: chardet&lt;3.1.0,&gt;=3.0.2 in ./anaconda3/lib/python3.6/site-packages (from requests!=2.18.0,&gt;=2.14.2-&gt;docker-&gt;py2neo) (3.0.4)
+Requirement already satisfied: pycparser in ./anaconda3/lib/python3.6/site-packages (from cffi!=1.11.3,&gt;=1.8-&gt;cryptography-&gt;py2neo) (2.19)
+Building wheels for collected packages: neotime
+  Building wheel for neotime (setup.py) ... [?25ldone
+[?25h  Stored in directory: /home/arij/.cache/pip/wheels/d4/b4/c4/ab867cd0ac9e667f8cd269f9364fd1cb8ee75fe50f5ce97c79
+Successfully built neotime
+[31mfloyd-cli 0.11.17 has requirement click&lt;7,&gt;=6.7, but you'll have click 7.0 which is incompatible.[0m
+[31mcatboost 0.20 has requirement numpy&gt;=1.16.0, but you'll have numpy 1.14.6 which is incompatible.[0m
+Installing collected packages: six, neotime, docker, english, pansi, monotonic, py2neo
+  Found existing installation: six 1.12.0
+    Uninstalling six-1.12.0:
+      Successfully uninstalled six-1.12.0
+Successfully installed docker-4.4.4 english-2020.7.0 monotonic-1.5 neotime-1.7.4 pansi-2020.7.3 py2neo-2021.0.1 six-1.15.0
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">neo4j</span> <span class="kn">import</span> <span class="n">GraphDatabase</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">uri</span> <span class="o">=</span> <span class="s">"neo4j://localhost:7687"</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">connect</span> <span class="o">=</span> <span class="n">GraphDatabase</span><span class="p">.</span><span class="n">driver</span><span class="p">(</span><span class="n">uri</span><span class="p">,</span> <span class="n">auth</span><span class="o">=</span><span class="p">(</span><span class="s">"neo4j"</span><span class="p">,</span> <span class="s">"Mooc0915"</span><span class="p">))</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">session</span> <span class="o">=</span> <span class="n">connect</span><span class="p">.</span><span class="n">session</span><span class="p">()</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">query</span> <span class="o">=</span> <span class="s">"match (n)-[p]-&gt;(m), (m)-[r]-&gt;(j) return *"</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">results</span> <span class="o">=</span> <span class="n">session</span><span class="p">.</span><span class="n">run</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="n">nx</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="p">.</span><span class="n">Graph</span><span class="p">()</span>
+
+<span class="n">nodes</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">results</span><span class="p">.</span><span class="n">graph</span><span class="p">().</span><span class="n">_nodes</span><span class="p">.</span><span class="n">values</span><span class="p">())</span>
+<span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">nodes</span><span class="p">:</span>
+    <span class="n">G</span><span class="p">.</span><span class="n">add_node</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="nb">id</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="n">node</span><span class="p">.</span><span class="n">_labels</span><span class="p">,</span> <span class="n">properties</span><span class="o">=</span><span class="n">node</span><span class="p">.</span><span class="n">_properties</span><span class="p">)</span>
+
+<span class="n">rels</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">results</span><span class="p">.</span><span class="n">graph</span><span class="p">().</span><span class="n">_relationships</span><span class="p">.</span><span class="n">values</span><span class="p">())</span>
+<span class="k">for</span> <span class="n">rel</span> <span class="ow">in</span> <span class="n">rels</span><span class="p">:</span>
+    <span class="n">G</span><span class="p">.</span><span class="n">add_edge</span><span class="p">(</span><span class="n">rel</span><span class="p">.</span><span class="n">start_node</span><span class="p">.</span><span class="nb">id</span><span class="p">,</span> <span class="n">rel</span><span class="p">.</span><span class="n">end_node</span><span class="p">.</span><span class="nb">id</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">rel</span><span class="p">.</span><span class="nb">id</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">rel</span><span class="p">.</span><span class="nb">type</span><span class="p">,</span> <span class="n">properties</span><span class="o">=</span><span class="n">rel</span><span class="p">.</span><span class="n">_properties</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">style</span><span class="p">.</span><span class="n">use</span><span class="p">(</span><span class="s">'ggplot'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">options</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">'node_color'</span><span class="p">:</span> <span class="s">'blue'</span><span class="p">,</span>
+    <span class="s">'node_size'</span><span class="p">:</span> <span class="mi">800</span><span class="p">,</span>
+    <span class="s">'width'</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+    
+<span class="p">}</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">100</span><span class="p">,</span><span class="mi">100</span><span class="p">))</span>
+<span class="n">nx</span><span class="p">.</span><span class="n">draw</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">with_labels</span> <span class="o">=</span> <span class="bp">False</span><span class="p">,</span> <span class="o">**</span><span class="n">options</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/home/arij/anaconda3/lib/python3.6/site-packages/networkx/drawing/nx_pylab.py:563: MatplotlibDeprecationWarning: 
+The iterable function was deprecated in Matplotlib 3.1 and will be removed in 3.3. Use np.iterable instead.
+  if not cb.iterable(width):
+/home/arij/anaconda3/lib/python3.6/site-packages/networkx/drawing/nx_pylab.py:611: MatplotlibDeprecationWarning: 
+The is_numlike function was deprecated in Matplotlib 3.0 and will be removed in 3.2. Use isinstance(..., numbers.Number) instead.
+  if cb.is_numlike(alpha):
+</code></pre></div></div>
+
+<p><img src="/img/Neo4j_to_Python/output_12_1.png" alt="png" /></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">nx</span><span class="p">.</span><span class="n">info</span><span class="p">(</span><span class="n">G</span><span class="p">))</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Name: 
+Type: Graph
+Number of nodes: 1411
+Number of edges: 1679
+Average degree:   2.3799
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">degree_freq</span> <span class="o">=</span> <span class="n">nx</span><span class="p">.</span><span class="n">degree_histogram</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">degree_freq</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">stem</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">"Frequence"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">"Degre"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/home/arij/anaconda3/lib/python3.6/site-packages/ipykernel_launcher.py:4: UserWarning: In Matplotlib 3.3 individual lines on a stem plot will be added as a LineCollection instead of individual lines. This significantly improves the performance of a stem plot. To remove this warning and switch to the new behaviour, set the "use_line_collection" keyword argument to True.
+  after removing the cwd from sys.path.
+
+
+
+
+
+Text(0.5, 0, 'Degre')
+</code></pre></div></div>
+
+<p><img src="/img/Neo4j_to_Python/output_14_2.png" alt="png" /></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">plt</span><span class="p">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="s">'b-'</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">"log-Frequence"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">"log-Degre"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Text(0.5, 0, 'log-Degre')
+</code></pre></div></div>
+
+<p><img src="/img/Neo4j_to_Python/output_15_1.png" alt="png" /></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">degrees</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">G</span><span class="p">.</span><span class="n">degree</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">reverse</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">'Maximum degree: </span><span class="si">{</span><span class="n">degrees</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s">'</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">'Minimum degree: </span><span class="si">{</span><span class="n">degrees</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s">'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Maximum degree: 97
+Minimum degree: 1
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">get_second_elem</span><span class="p">(</span><span class="n">iterable</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">iterable</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">all_deg</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">nx</span><span class="p">.</span><span class="n">degree_centrality</span><span class="p">(</span><span class="n">G</span><span class="p">).</span><span class="n">items</span><span class="p">(),</span><span class="n">key</span><span class="o">=</span><span class="n">get_second_elem</span><span class="p">,</span> <span class="n">reverse</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"The 10 nodes with the greatest degree_centrality:"</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">all_deg</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">10</span><span class="p">]:</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>The 10 nodes with the greatest degree_centrality:
+(4180, 0.06879432624113475)
+(4197, 0.0673758865248227)
+(4206, 0.03475177304964539)
+(4190, 0.030496453900709222)
+(4145, 0.024113475177304965)
+(4175, 0.024113475177304965)
+(4152, 0.02340425531914894)
+(4198, 0.02340425531914894)
+(4140, 0.02269503546099291)
+(4199, 0.02269503546099291)
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">all_deg</span><span class="p">:</span>
+    <span class="n">found_first_author_max_degree</span> <span class="o">=</span> <span class="bp">False</span>
+    <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">nodes</span><span class="p">:</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="n">_labels</span> <span class="o">==</span> <span class="p">{</span><span class="s">'author'</span><span class="p">})</span> <span class="ow">and</span> <span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="n">_id</span> <span class="o">==</span> <span class="n">d</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+            <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"The author </span><span class="si">{</span><span class="n">node</span><span class="p">.</span><span class="n">_id</span><span class="si">}</span><span class="s"> has the max degree centrality </span><span class="si">{</span><span class="n">d</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+            <span class="k">print</span><span class="p">(</span><span class="s">"His name: "</span><span class="p">,</span><span class="n">node</span><span class="p">.</span><span class="n">_properties</span><span class="p">[</span><span class="s">'name'</span><span class="p">])</span>
+            <span class="k">print</span><span class="p">(</span><span class="s">"His topic: "</span><span class="p">,</span><span class="n">node</span><span class="p">.</span><span class="n">_properties</span><span class="p">[</span><span class="s">'topic'</span><span class="p">])</span>
+            <span class="n">found_first_author_max_degree</span> <span class="o">=</span> <span class="bp">True</span>
+            <span class="k">break</span>
+    <span class="k">if</span> <span class="n">found_first_author_max_degree</span><span class="p">:</span>
+        <span class="k">break</span>
+    
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>The author 4001 has the max degree centrality 0.005673758865248227
+His name:   Attwood, Kristopher M
+His topic:  sarcopenia
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+</code></pre></div></div>
+
+           <!-- <hr />
+			<div class="pg-center">
+
+<div class="comments">
+  <h2>Comments</h2>
+  <div id="disqus_thread"></div>
+  <script>
+var disqus_config = function () {
+  this.page.url = 'http://localhost:4000/machine%20learning/NP/'; // Replace PAGE_URL with your page's canonical URL variable
+  this.page.identifier = '/machine%20learning/NP'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+(function() {
+  var d = document, s = d.createElement('script');
+  s.src = '//thearchitect-page-disqus-com.disqus.com/embed.js';
+  s.setAttribute('data-timestamp', +new Date());
+  (d.head || d.body).appendChild(s);
+})();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+</div>
+
+</div>
+<style>
+.pg-center{
+background:#ffffff;
+padding-top:2rem;
+padding-bottom:2rem;
+margin-top:2rem;
+}
+</style>
+  
+		<hr /> -->		    
+            </div>
+          </article><!-- /.card -->
+        </div>
+		<style>
+  h4.card-title{
+    color: #EA950B;
+  }
+</style>
+
+<div class="col-md-3 ml-auto">
+<!-- 
+          <aside class="sidebar">
+            <div class="card mb-4">
+              <div class="card-body">
+                <h4 class="card-title">About</h4>
+                <p class="card-text"></p>
+              </div>
+            </div>
+          </aside>
+        -->
+		  
+          <aside class="sidebar sidebar-sticky">
+            <div class="card mb-4">
+              <div class="card-body">
+                <h4 class="card-title">Categories</h4>
+				
+				    
+                <a class="btn btn-link btn-sm mb-1" href="/categories/#Computer Science"> 
+                Computer Science,</a>
+				
+				    
+                <a class="btn btn-link btn-sm mb-1" href="/categories/#Artificial Intelligence"> 
+                Artificial Intelligence,</a>
+				
+				    
+                <a class="btn btn-link btn-sm mb-1" href="/categories/#Data Science"> 
+                Data Science,</a>
+				
+				    
+                <a class="btn btn-link btn-sm mb-1" href="/categories/#Graph Theory"> 
+                Graph Theory,</a>
+				
+				    
+                <a class="btn btn-link btn-sm mb-1" href="/categories/#Machine Learning"> 
+                Machine Learning</a>
+				
+              </div>
+            </div>
+            <div class="card mb-4">
+              <div class="card-body">
+                
+				<h4 class="card-title">Latest posts</h4>
+				
+                <a href="/machine%20learning/NP/" class="d-inline-block">
+                  <h4 class="h6">Neo4j to Python</h4>
+                  
+				  <img class="card-img" src="/img/ml.jpg" alt="" />
+				  
+                </a>
+				<br />
+                <time>On 25 Apr 2021</time> in Machine Learning
+				<hr />
+				
+                <a href="/machine%20learning/ML/" class="d-inline-block">
+                  <h4 class="h6">Machine learning</h4>
+                  
+				  <img class="card-img" src="/img/ml.jpg" alt="" />
+				  
+                </a>
+				<br />
+                <time>On 14 Mar 2020</time> in Machine Learning
+				<hr />
+				
+              </div>
+            </div>
+          </aside>
+
+        </div>
+	
+      </div>
+    </div>
+  </main>
+<!--   <div class="site-newsletter">
+    <div class="container">
+      <div class="text-center">
+        <h3 class="h4 mb-2">Subscribe to our newsletter</h3>
+        <p class="text-muted">Join our monthly newsletter and never miss out on new stories and promotions.</p>
+
+        <div class="row">
+          <div class="col-xs-12 col-sm-9 col-md-7 col-lg-5 ml-auto mr-auto">
+            <div class="input-group mb-3 mt-3">
+              <input type="text" class="form-control" placeholder="Email address" aria-label="Email address">
+              <span class="input-group-btn">
+                <button class="btn btn-secondary" type="button">Subscribe</button>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+ -->
+  <footer class="site-footer bg-darkest" role="contentinfo">
+    <div class="container">
+
+<!--       <ul class="nav justify-content-center">
+        <li class="nav-item">
+          <a class="nav-link" href="#">Privacy policy</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Feedback</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Contact</a>
+        </li>
+      </ul> -->
+      <div class="copy">
+        &copy;  2021<br />
+        All rights reserved
+        <a href="https://www.linkedin.com/in/ia-ds-bg/" title="Linkedin"><i class="fab fa-linkedin-square"></i></a>
+        <a href="https://github.com/AbdelfattahAbouelaoualim" title="Github"><i class="fab fa-github-square"></i></a>
+        <a href="mailto:aa.mlexpert@gmail.com" title="Email me"><i class="fas fa-envelope-square"></i></a>
+      </div>
+    </div>
+  </footer>
+  
+  <script src="/js/bundle.js"></script>
+
+</body>
+</html>

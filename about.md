@@ -1,6 +1,7 @@
 ---
 layout: default
 title: About
+background: '/img/back.png'
 ---
 
 # Welcome!

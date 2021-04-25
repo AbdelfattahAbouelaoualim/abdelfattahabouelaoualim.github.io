@@ -20,6 +20,17 @@ code{
   color: #515151;
 }
 
+img{
+  width: 100%;
+}
+
+#mainNav{
+  background: url('/img/graph.jpg')
+}
+
+.nav-link{
+  color: white;
+}
 
 /* Highlights taken from https://gist.github.com/asaaki/1007420  for Monokai theme */
 .c                 { color: #75715e }                            /* Comment                     */

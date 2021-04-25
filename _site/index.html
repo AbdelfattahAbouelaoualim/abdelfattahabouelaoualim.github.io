@@ -1,66 +1,91 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <style>
-    header {
-      background-color: red;
-    }
-  </style>
+ <html lang="en">
+ <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
-  <title> | Blog</title>
+  <title> | Thearchitect</title>
 
   <link href="/css/milo.css" rel="stylesheet">
   <link href="/fontawesome-free-5.12.1-web/css/all.css" rel="stylesheet"> <!--load all styles -->
 </head>
 
-<body>
- <header role="banner">
-     <nav class="navbar navbar-expand-md navbar-dark bg-primary absolute-top"> 
-     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">  
-      <span class="navbar-toggler-icon"></span>
-        </button>
+ <body>
+ <!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand" href="/"></a>
+    <button class="navbar-toggler navbar-toggler-left" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      Menu
+      <i class="fa fa-bars"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive" >
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a style="color:#FFFFFF" class="nav-link" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a style="color:#FFFFFF" class="nav-link" href="/about">About</a>
+        </li>
+        <li class="nav-item">
+          <a style="color:#FFFFFF" class="nav-link" href="/author">Author</a>
+        </li>
+        <li class="nav-item">
+          <a style="color:#FFFFFF" class="nav-link" href="/contact">Contact</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
 
-      <div class="container">
-        <!-- <button class="navbar-toggler order-2 order-md-1" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation"> 
-          
-           <span class="navbar-toggler-icon"></span> 
-        </button> -->
-        <div class="collapse navbar-collapse order-3 order-md-2" id="navbar">
-		  <ul class="navbar-nav mr-auto">
-			
-			    <li class="nav-item">
-			      <a class="nav-link" href="/">Home</a>
-			    </li>
-			
-			    <li class="nav-item">
-			      <a class="nav-link" href="/about">About</a>
-			    </li>
-			
-			    <li class="nav-item">
-			      <a class="nav-link" href="/author">Author</a>
-			    </li>
-						
-          	</ul>
-		  
+ <!-- Page Header -->
+
+  <header class="masthead">
+    
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-30 col-md-30 mx-auto">
+          <div class="page-heading">
+          </div>
         </div>
-
-        <a class="navbar-brand mx-auto order-1 order-md-3" href="">
-          <img src="/img/logo.png" alt="">
-        </a>
       </div>
-    </nav>
+    </div>
   </header>
-
-
-  <main class="main pt-4" role="main">
+ 
+   <main class="main pt-4" role="main">
 
     <div class="container">
 
       <div class="row">
         <div class="col-md-9">
+
+          <article class="card mb-4">
+            <header class="card-header">
+              <div class="card-meta">
+                <time>Published on 25 Apr 2021</time>
+                <span>
+                  in - 
+                  
+                  
+                  <a href="/categories/#Machine Learning">Machine Learning</a>
+                  
+                  
+                </span>
+
+              </div>
+              <a href="/machine%20learning/NP/">
+                <h4 class="card-title">Neo4j to Python</h4>
+              </a>
+            </header>
+            <a href="/machine%20learning/NP/">
+              <img class="card-img" src="/img/ml.jpg" alt="" />
+            </a>
+            <div class="card-body">
+              <p class="card-text">Neo4j contains libraries such as GDS and APOC which allow the use of already existing advanced methods and algorithms. But if that’s not enough, in this jupyter notebook, I want to show that we can get the results of Cypher...</p>
+            </div>
+          </article>
 
           <article class="card mb-4">
             <header class="card-header">
@@ -166,32 +191,6 @@
             </div>
           </article>
 
-          <article class="card mb-4">
-            <header class="card-header">
-              <div class="card-meta">
-                <time>Published on 04 Mar 2020</time>
-                <span>
-                  in - 
-                  
-                  
-                  <a href="/categories/#Computer Science">Computer Science</a>
-                  
-                  
-                </span>
-
-              </div>
-              <a href="/computer%20science/linux/">
-                <h4 class="card-title">Linux, the data scientist's best friend</h4>
-              </a>
-            </header>
-            <a href="/computer%20science/linux/">
-              <img class="card-img" src="/img/linux.webp" alt="" />
-            </a>
-            <div class="card-body">
-              <p class="card-text">Some simple commands The exact format of the date and time as printed by date varies from one system to another, but it displays what the system thinks is the current date and time (because it can be changed by...</p>
-            </div>
-          </article>
-
         </div>  
 		<style>
   h4.card-title{
@@ -243,6 +242,16 @@
                 
 				<h4 class="card-title">Latest posts</h4>
 				
+                <a href="/machine%20learning/NP/" class="d-inline-block">
+                  <h4 class="h6">Neo4j to Python</h4>
+                  
+				  <img class="card-img" src="/img/ml.jpg" alt="" />
+				  
+                </a>
+				<br />
+                <time>On 25 Apr 2021</time> in Machine Learning
+				<hr />
+				
                 <a href="/machine%20learning/ML/" class="d-inline-block">
                   <h4 class="h6">Machine learning</h4>
                   
@@ -251,16 +260,6 @@
                 </a>
 				<br />
                 <time>On 14 Mar 2020</time> in Machine Learning
-				<hr />
-				
-                <a href="/graph%20theory/GL/" class="d-inline-block">
-                  <h4 class="h6">Introduction to Graph Theory</h4>
-                  
-				  <img class="card-img" src="/img/graph_theory.png" alt="" />
-				  
-                </a>
-				<br />
-                <time>On 14 Mar 2020</time> in Graph Theory
 				<hr />
 				
               </div>
@@ -282,11 +281,11 @@
             
 
             <li class="page-item active"><a class="page-link">Page: 1 of
-                        1</a></li>
+                        2</a></li>
 
             
-            <li class="page-item disabled">
-                  <a class="page-link" href="#" tabindex="-1">Next</a>
+            <li class="page-item">
+                  <a class="page-link" href="//page2/">Next</a>
             </li>
             
       </ul>
@@ -349,6 +348,6 @@
 
 
  
-
-</body>
-</html>
+ 
+ </body>
+ </html>
