@@ -15,7 +15,9 @@
 <!-- Navigation -->
 <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
   <div class="container">
-    <a class="navbar-brand" href="/"></a>
+    <a class="navbar-brand" href="/">
+    <!-- <img class="logo" src="/img/logo.png" alt=""> -->
+    </a>
     <button class="navbar-toggler navbar-toggler-left" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
       Menu
       <i class="fa fa-bars"></i>
@@ -142,7 +144,7 @@ Successfully installed docker-4.4.4 english-2020.7.0 monotonic-1.5 neotime-1.7.4
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">uri</span> <span class="o">=</span> <span class="s">"neo4j://localhost:7687"</span>
 </code></pre></div></div>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">connect</span> <span class="o">=</span> <span class="n">GraphDatabase</span><span class="p">.</span><span class="n">driver</span><span class="p">(</span><span class="n">uri</span><span class="p">,</span> <span class="n">auth</span><span class="o">=</span><span class="p">(</span><span class="s">"neo4j"</span><span class="p">,</span> <span class="s">"Mooc0915"</span><span class="p">))</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">connect</span> <span class="o">=</span> <span class="n">GraphDatabase</span><span class="p">.</span><span class="n">driver</span><span class="p">(</span><span class="n">uri</span><span class="p">,</span> <span class="n">auth</span><span class="o">=</span><span class="p">(</span><span class="s">"neo4j"</span><span class="p">,</span> <span class="s">"************"</span><span class="p">))</span>
 </code></pre></div></div>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">session</span> <span class="o">=</span> <span class="n">connect</span><span class="p">.</span><span class="n">session</span><span class="p">()</span>
@@ -297,7 +299,7 @@ His topic:  sarcopenia
   <div id="disqus_thread"></div>
   <script>
 var disqus_config = function () {
-  this.page.url = '/machine%20learning/NP/'; // Replace PAGE_URL with your page's canonical URL variable
+  this.page.url = 'http://localhost:4000/machine%20learning/NP/'; // Replace PAGE_URL with your page's canonical URL variable
   this.page.identifier = '/machine%20learning/NP'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
 };
 (function() {
