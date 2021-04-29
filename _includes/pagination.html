@@ -8,7 +8,7 @@
             </li>
       -->
       <li class="previous">
-          <a class="page-link" href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">Newer</a>
+          <a class="page-link" href="{{ paginator.previous_page_path | site.baseurl | replace: '//', '/' }}">Newer</a>
       </li>
             {% else %}
             <li class="page-item disabled">
@@ -26,7 +26,7 @@
             </li>
       -->
       <li class="next">
-          <a class="page-link" href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}">Older</a>
+          <a class="page-link" href="{{ paginator.next_page_path | site.baseurl | replace: '//', '/' }}">Older</a>
       </li>
             {% else %}
             <li class="page-item disabled">
