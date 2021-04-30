@@ -77,25 +77,25 @@
 
 <p>The exact format of the date and time as printed by <strong>date</strong> varies from one system to another, but it displays what the system thinks is the current date and time (because it can be changed by the super-user).</p>
 
-<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span><span class="nb">date</span>
-<span class="go">mercredi 4 mars 2020, 23:13:50 (UTC+0100)
-</span></code></pre></div></div>
+<div class="language-bat highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ <span class="nb">date</span>
+<span class="kd">mercredi</span> <span class="m">4</span> <span class="kd">mars</span> <span class="m">2020</span><span class="o">,</span> <span class="m">23</span>:13:50 <span class="o">(</span><span class="kd">UTC</span><span class="o">+</span><span class="m">0100</span><span class="o">)</span>
+</code></pre></div></div>
 
 <p>Another simple one-word command tells you who is using the system.</p>
 
-<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span><span class="nb">who</span>
-<span class="go">me     :1           2020-03-04 20:54 (:1)
-</span></code></pre></div></div>
+<div class="language-bat highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ <span class="kd">who</span>
+<span class="kd">me</span>     :1           <span class="m">2020</span><span class="o">-</span><span class="m">03</span><span class="o">-</span><span class="m">04</span> <span class="m">20</span>:54 <span class="o">(</span>:1<span class="o">)</span>
+</code></pre></div></div>
 
 <p>A variation of the <strong>who</strong> command is <strong>whoami</strong>. Used to find out who opened the current terminal or session.</p>
 
 <p>The <strong>passwd</strong> command changes passwords for user accounts. A normal user may only change the password for his/her own account, while the superuser may change the password for any account.  passwd also changes the account or associated password validity period.</p>
 
-<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>passwd
+<div class="language-bat highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ <span class="kd">passwd</span>
 </code></pre></div></div>
 <p>The <strong>rm</strong> (remove files) command is:</p>
 
-<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span><span class="nb">rm</span> <span class="o">[</span><span class="nt">-fri</span><span class="o">]</span> file ...
+<div class="language-bat highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ <span class="kd">rm</span> <span class="o">[</span><span class="na">-fri</span><span class="o">]</span> <span class="kd">file</span> ...
 </code></pre></div></div>
 <ul>
   <li>-f ignore nonexistent files and arguments, never prompt</li>
@@ -105,20 +105,20 @@
 
 <p>The <strong>pwd</strong> command is a request to <strong>p</strong>rint the <strong>w</strong>orking <strong>d</strong>irectory.</p>
 
-<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span><span class="nb">pwd</span>
-<span class="go">/home/me
+<div class="language-bat highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ <span class="kd">pwd</span>
+<span class="na">/home/me
 </span></code></pre></div></div>
 
 <p>The <strong>ls</strong> command is a request to the system to <strong><em>list the contents of a directory</em></strong>. If no directory is specified on the <strong>ls</strong> command line, you get a list of files in the current directory, which is the one you are working in.</p>
 
-<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span><span class="nb">ls</span> <span class="o">[</span><span class="nt">-al</span><span class="o">]</span>
+<div class="language-bat highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ <span class="kd">ls</span> <span class="o">[</span><span class="na">-al</span><span class="o">]</span>
 </code></pre></div></div>
 
 <p>The <strong>-a</strong> (for all) option to <strong>ls</strong> asks that all files (even hiffen) and subdirectories are listed. The <strong>-l</strong> (for long) option asks for a long listing; without it only the names of the files and subdirectories are shown. The period character “<strong>.</strong>” (usually called “dot”) means the current directory. The two periods “<strong>..</strong>” means the parent directory.</p>
 
 <p>You are the owner of your own “home” directory, you are not necessarily the owner of the parent directory. The slash character , /, is called the <strong><em>root</em></strong> of the file system.</p>
 
-<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span><span class="nb">ls</span> <span class="nt">-l</span> dir1 dir2
+<div class="language-bat highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ <span class="kd">ls</span> <span class="na">-l </span><span class="kd">dir1</span> <span class="kd">dir2</span>
 </code></pre></div></div>
 
 <p>The <strong>ls</strong> command above requests a <strong><em>long</em></strong> display of the two directories <strong><em>dir1</em></strong> and <strong><em>dir2</em></strong>. This form of <strong>ls</strong> places the name of each directory before the information for its subdirectories.</p>
@@ -208,24 +208,24 @@ margin-top:2rem;
                 
 				<h4 class="card-title">Latest posts</h4>
 				
-                <a href="/machine%20learning/2021/04/25/NP/" class="d-inline-block">
-                  <h4 class="h6">How to transfer a Neo4j graph to a Python graph</h4>
+                <a href="/data%20science/2021/04/26/PN/" class="d-inline-block">
+                  <h4 class="h6">How to transfer a Python graph to a Neo4j graph</h4>
                   
-				  <img class="card-img" src="/img/np.png" alt="" />
+				  <img class="card-img" src="/img/pton.png" alt="" />
 				  
                 </a>
 				<br />
-                <time>On 25 Apr 2021</time> in Machine Learning
+                <time>On 26 Apr 2021</time> in Data Science
 				<hr />
 				
-                <a href="/machine%20learning/2020/03/14/ML/" class="d-inline-block">
-                  <h4 class="h6">Machine learning</h4>
+                <a href="/data%20science/2021/04/25/NP/" class="d-inline-block">
+                  <h4 class="h6">How to transfer a Neo4j graph to a Python graph</h4>
                   
-				  <img class="card-img" src="/img/ml.jpg" alt="" />
+				  <img class="card-img" src="/img/ntop.png" alt="" />
 				  
                 </a>
 				<br />
-                <time>On 14 Mar 2020</time> in Machine Learning
+                <time>On 25 Apr 2021</time> in Data Science
 				<hr />
 				
               </div>
