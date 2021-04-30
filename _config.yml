@@ -2,8 +2,8 @@ title: ""
 
 #about: "Bootstrap theme for jekyll"
 markdown: kramdown
-#permalink: /:categories/:title/
-permalink: pretty
+permalink: /:categories/:title/
+#permalink: pretty
 url: ""
 baseurl: ""
 disqus_short_name: thearchitect-page-disqus-com
