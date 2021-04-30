@@ -40,7 +40,7 @@ big_df_ = big_df[big_df['depart'] == 1]
 
 
 ```python
-ddf = pd.read_csv("msbgd/stage/data/ddf_2.csv")
+ddf = pd.read_csv("data/ddf_2.csv")
 ddf.drop(['Unnamed: 0'], axis=1, inplace=True)
 ddf.head()
 ```
@@ -634,7 +634,7 @@ print('Accuracy for model after calibration: {:.2f}'.format(accuracy_score(y_pre
 Find impotant features
 
 ```python
-big_df = pd.read_csv("msbgd/stage/data/big_df_orig.csv")
+big_df = pd.read_csv("data/big_df_orig.csv")
 big_df.drop(['Unnamed: 0'], axis=1, inplace=True)
 big_df['Count'] = (big_df['Count']-big_df['Count'].mean())/big_df['Count'].std()
 ```
