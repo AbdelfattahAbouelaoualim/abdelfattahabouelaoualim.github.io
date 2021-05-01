@@ -1,8 +1,7 @@
 ---
 layout: author
-title: Abdelfattah Abouelaoualim Ph.D.
-image: DSC_1020.jpg
-background: '/img/back.png'
+title: 
+image: photo_web_site.png
 ---
 <head>
   <link href="{{ site.baseurl }}/fontawesome-free-5.12.1-web/css/all.css" rel="stylesheet"> <!--load all styles -->

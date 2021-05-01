@@ -1,7 +1,8 @@
 ---
-layout: default
+layout: author
 permalink: /categories/
-title: Categories
+title: 
+image: Categories.jpg
 ---
 
 <div id="archives">

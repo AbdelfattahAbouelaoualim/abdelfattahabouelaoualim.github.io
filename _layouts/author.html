@@ -2,6 +2,7 @@
 <html lang="en">
 {% include head.html %}
 <body>
+  <!--
   <style>
   img.card-img-author {
   height: 10%;
@@ -11,6 +12,7 @@
   margin-right: auto;
 }
 </style>
+-->
 {% include header.html %}
 
   <main class="main pt-4" role="main">
@@ -30,15 +32,22 @@
 			{% endif %} 
 
                 <h3 class="card-title">{{ page.title }}</h3>
-            {% if page.image %}
+            <!-- {% if page.image %}
             <a href="{{ page.image }}">
               <img class="card-img-author" src="{{ site.baseurl }}/img/{{ page.image }}" alt="" />
             </a>
-            {% endif %}
+            {% endif %} -->
 
             </header>
-			{% if page.image != "DSC_1020.jpg" %}
+            <!--
+			     {% if page.image != "DSC_1020.jpg" %} 
             <a href="{{ page.image }}">
+              <img class="card-img" src="{{ site.baseurl }}/img/{{ page.image }}" alt="" />
+            </a>
+            {% endif %}
+          -->
+            {% if page.image %}
+            <a style="cursor:pointer;">
               <img class="card-img" src="{{ site.baseurl }}/img/{{ page.image }}" alt="" />
             </a>
             {% endif %}
