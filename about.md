@@ -1,6 +1,5 @@
 ---
 layout: author
-title: 
 image: about.jpg
 ---
 
