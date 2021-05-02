@@ -14,7 +14,7 @@ plugins:
   
 paginate_path: "/page:num/"
 
-paginate: 2
+paginate: 4
 
 
 main_toc:
