@@ -29,6 +29,25 @@ img{
 }
 
 
+
+
+
+
+
+
+#navbarResponsive ul li a{
+	float: right; text-decoration: none;
+	color: white;
+	background-color: #021c2b; }
+
+#navbarResponsive ul li a:visited{
+	color: white;}
+
+#navbarResponsive ul li a:hover, .menu ul li .current{
+	color: #fff;
+	background-color:#0b75b2;}
+
+
 /* Highlights taken from https://gist.github.com/asaaki/1007420  for Monokai theme */
 .c                 { color: #75715e }                            /* Comment                     */
 .err               { color: #960050; background-color: #1e0010 } /* Error                       */
