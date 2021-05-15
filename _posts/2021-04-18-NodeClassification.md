@@ -3,7 +3,7 @@ title: How to do node classification and choose important features
 layout: post
 date: 2021-04-25
 description: A complete post.
-image: NodeClassification.png
+image: NodeClassification.jpg
 categories: ["Machine Learning"]
 ---
 
