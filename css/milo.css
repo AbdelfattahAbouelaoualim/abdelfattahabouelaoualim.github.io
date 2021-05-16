@@ -38,24 +38,17 @@ img{
 #navbarResponsive ul li a{
 	float: right; text-decoration: none;
 	color: white;
-	background-color: #2395db; }
-
-#navbarResponsive a {
-  float: right;
   padding: 12px;
-  color: white;
-  text-decoration: none;
   font-size: 17px;
-  width: 15%; /* Four equal-width links. If you have two links, use 50%, and 33.33% for three links, etc.. */
-  text-align: center; /* If you want the text to be centered */
-}
+  text-align: center;
+	background-color: #2395db; }
 
 #navbarResponsive ul li a:visited{
 	color: white;}
 
 #navbarResponsive ul li a:hover, .menu ul li .current{
 	color: #fff;
-	background-color:#0b75b2;}
+	background-color:gold;}
 
 
 /* Highlights taken from https://gist.github.com/asaaki/1007420  for Monokai theme */
