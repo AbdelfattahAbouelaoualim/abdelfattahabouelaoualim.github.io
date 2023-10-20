@@ -17,3 +17,5 @@ gem "jemoji", "~> 0.10.1"
 gem "kramdown-parser-gfm"
 
 gem "kramdown-math-katex"
+
+gem "webrick"
