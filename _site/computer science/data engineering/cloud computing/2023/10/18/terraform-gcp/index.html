@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <title> | Harnessing Terraform for GCP: A Data Engineer's Toolkit</title>
+
+  <link href="/css/milo.css" rel="stylesheet">
+  <link href="/fontawesome-free-5.12.1-web/css/all.css" rel="stylesheet"> <!--load all styles -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.css" integrity="sha384-yFRtMMDnQtDRO8rLpMIKrtPCD5jdktao2TV19YiZYWMDkUR5GQZR/NOVTdquEx1j" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.js" integrity="sha384-9Nhn55MVVN0/4OFx7EE5kpFBPsEMZxKTCnA+4fqDmg12eCTqGi6+BB2LjY8brQxJ" crossorigin="anonymous"></script>
+ <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
+</head>
+
+<body>
+<!-- Navigation -->
+
+<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/">
+    <img class="logo" src="/img/logo.png" alt="" style="object-fit:contain;
+            width:200px;
+            height:200px;"> 
+    </a>
+    <button class="navbar-toggler" type="button" style="color:#FFFFFF" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      Menu
+      <i class="fa fa-bars"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive" >
+      <ul class="navbar-nav ml-auto" id="main_nav"> 
+      
+
+        <li class="nav-item">
+          <a style="color:#FFFFFF" class="nav-link" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a style="color:#FFFFFF" class="nav-link" href="/about">About</a>
+        </li>
+        <li class="nav-item">
+          <a style="color:#FFFFFF" class="nav-link" href="/author">Author</a>
+        </li>
+
+        <!--<li class="nav-item">
+           <a style="color:#FFFFFF" class="nav-link" href="/contact">Contact</a> 
+           
+        </li>-->
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+  <main class="main pt-4" role="main">
+
+    <div class="container">
+
+      <div class="row">
+        <div class="col-md-9">
+
+          <article class="card mb-4">
+		  
+            <header class="card-header text-center">
+			
+              <div class="card-meta">
+                <span>Published on 18 Oct 2023</time></span> in
+                  
+                  
+                  <a href="/categories/#Computer Science">Computer Science</a>
+                  &nbsp;
+                  
+                  <a href="/categories/#Data Engineering">Data Engineering</a>
+                  &nbsp;
+                  
+                  <a href="/categories/#Cloud Computing">Cloud Computing</a>
+                  
+                  
+              <div>
+			
+                <h1 class="card-title">Harnessing Terraform for GCP: A Data Engineer's Toolkit</h1>
+
+            </header>
+			
+			
+            <a style="cursor:pointer;">
+              <img class="card-img" src="/img/Terraform-GCP.png" alt="" />
+            </a>
+            
+            
+            <div class="card-body">
+			<h3 id="introduction">Introduction</h3>
+<p>Terraform, an open-source Infrastructure as Code (IaC) software by HashiCorp, empowers developers to manage and provision their infrastructure efficiently using a high-level configuration language known as HashiCorp Configuration Language (HCL). When paired with Google Cloud Platform (GCP), Terraform becomes a potent tool in a data engineer’s arsenal, allowing for the declarative configuration of services in GCP.</p>
+
+<h3 id="setting-up-terraform-with-gcp">Setting Up Terraform with GCP</h3>
+<ol>
+  <li>Install Terraform
+Download and install Terraform from the official website.</li>
+</ol>
+
+<div class="language-bat highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ <span class="nb">wget</span> <span class="kd">https</span>://releases.hashicorp.com/terraform/1.0.0/terraform_1.0.0_linux_amd64.zip
+$ <span class="kd">unzip</span> <span class="kd">terraform_1</span>.0.0_linux_amd64.zip
+$ <span class="kd">sudo</span> <span class="kd">mv</span> <span class="kd">terraform</span> <span class="na">/usr/local/bin</span>/
+</code></pre></div></div>
+
+<ol>
+  <li>Authenticate GCP
+Authenticate to GCP using a service account key JSON file.</li>
+</ol>
+
+<div class="language-bat highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ <span class="kd">gcloud</span> <span class="kd">auth</span> <span class="kd">application</span><span class="na">-default </span><span class="kd">login</span>
+</code></pre></div></div>
+
+<h3 id="provisioning-resources">Provisioning Resources</h3>
+<ol>
+  <li>Create a Terraform Configuration File
+Create a file named main.tf with the following content to provision a GCP compute instance.</li>
+</ol>
+
+<div class="language-hcl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">provider</span> <span class="s2">"google"</span> <span class="p">{</span>
+  <span class="nx">project</span> <span class="p">=</span> <span class="s2">"your-gcp-project-id"</span>
+  <span class="nx">region</span>  <span class="p">=</span> <span class="s2">"us-central1"</span>
+<span class="p">}</span>
+
+<span class="nx">resource</span> <span class="s2">"google_compute_instance"</span> <span class="s2">"vm_instance"</span> <span class="p">{</span>
+  <span class="nx">name</span>         <span class="p">=</span> <span class="s2">"terraform-instance"</span>
+  <span class="nx">machine_type</span> <span class="p">=</span> <span class="s2">"e2-medium"</span>
+  
+  <span class="nx">boot_disk</span> <span class="p">{</span>
+    <span class="nx">initialize_params</span> <span class="p">{</span>
+      <span class="nx">image</span> <span class="p">=</span> <span class="s2">"debian-cloud/debian-9"</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+  
+  <span class="nx">network_interface</span> <span class="p">{</span>
+    <span class="nx">network</span> <span class="p">=</span> <span class="s2">"default"</span>
+    <span class="nx">access_config</span> <span class="p">{</span>
+      <span class="c1">// Ephemeral IP</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<ol>
+  <li>Initialize and Apply Configuration
+Initialize Terraform and apply the configuration to provision the resources.</li>
+</ol>
+
+<div class="language-bat highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ <span class="kd">terraform</span> <span class="kd">init</span>
+$ <span class="kd">terraform</span> <span class="kd">apply</span>
+</code></pre></div></div>
+
+<h3 id="managing-state">Managing State</h3>
+<p>Terraform state is crucial for managing and understanding the resources under management. Utilize backend configurations to store state in a GCP storage bucket.</p>
+
+<div class="language-hcl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">terraform</span> <span class="p">{</span>
+  <span class="nx">backend</span> <span class="s2">"gcs"</span> <span class="p">{</span>
+    <span class="nx">bucket</span> <span class="p">=</span> <span class="s2">"your-gcp-storage-bucket"</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="conclusion">Conclusion</h3>
+<p>Terraform presents a robust, declarative, and efficient means to manage infrastructure on GCP. It encapsulates complex API interactions behind simple configurations, making infrastructure management a less daunting task for data engineers. By harnessing Terraform in GCP environments, data engineers can significantly expedite the provisioning and management of resources, ensuring that they can focus more on data engineering tasks at hand.</p>
+
+           <!-- <hr />
+			<div class="pg-center">
+
+<div class="comments">
+  <h2>Comments</h2>
+  <div id="disqus_thread"></div>
+  <script>
+var disqus_config = function () {
+  this.page.url = '/computer%20science/data%20engineering/cloud%20computing/2023/10/18/terraform-gcp/'; // Replace PAGE_URL with your page's canonical URL variable
+  this.page.identifier = '/computer%20science/data%20engineering/cloud%20computing/2023/10/18/terraform-gcp'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+(function() {
+  var d = document, s = d.createElement('script');
+  s.src = '//thearchitect-page-disqus-com.disqus.com/embed.js';
+  s.setAttribute('data-timestamp', +new Date());
+  (d.head || d.body).appendChild(s);
+})();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+</div>
+
+</div>
+<style>
+.pg-center{
+background:#ffffff;
+padding-top:2rem;
+padding-bottom:2rem;
+margin-top:2rem;
+}
+</style>
+  
+		<hr /> -->		    
+            </div>
+          </article><!-- /.card -->
+        </div>
+		<style>
+  h4.card-title{
+    color: #EA950B;
+  }
+</style>
+
+<div class="col-md-3 ml-auto">
+<!-- 
+          <aside class="sidebar">
+            <div class="card mb-4">
+              <div class="card-body">
+                <h4 class="card-title">About</h4>
+                <p class="card-text"></p>
+              </div>
+            </div>
+          </aside>
+        -->
+		  
+          <aside class="sidebar sidebar-sticky">
+            <div class="card mb-4">
+              <div class="card-body">
+                <h4 class="card-title">Categories</h4>
+				
+				    
+                <a class="btn btn-link btn-sm mb-1" href="/categories/#Computer Science"> 
+                Computer Science,</a>
+				
+				    
+                <a class="btn btn-link btn-sm mb-1" href="/categories/#Data Engineering"> 
+                Data Engineering,</a>
+				
+				    
+                <a class="btn btn-link btn-sm mb-1" href="/categories/#Artificial Intelligence"> 
+                Artificial Intelligence,</a>
+				
+				    
+                <a class="btn btn-link btn-sm mb-1" href="/categories/#Data Science"> 
+                Data Science,</a>
+				
+				    
+                <a class="btn btn-link btn-sm mb-1" href="/categories/#Graph Theory"> 
+                Graph Theory,</a>
+				
+				    
+                <a class="btn btn-link btn-sm mb-1" href="/categories/#Machine Learning"> 
+                Machine Learning,</a>
+				
+				    
+                <a class="btn btn-link btn-sm mb-1" href="/categories/#Cloud Computing"> 
+                Cloud Computing</a>
+				
+              </div>
+            </div>
+            <div class="card mb-4">
+              <div class="card-body">
+                
+				<h4 class="card-title">Latest posts</h4>
+				
+                <a href="/computer%20science/data%20engineering/cloud%20computing/2023/10/18/terraform-gcp/" class="d-inline-block">
+                  <h4 class="h6">Harnessing Terraform for GCP: A Data Engineer's Toolkit</h4>
+                  
+				  <img class="card-img" src="/img/Terraform-GCP.png" alt="" />
+				  
+                </a>
+				<br />
+                <time>On 18 Oct 2023</time> in Computer Science
+				<hr />
+				
+                <a href="/data%20science/2021/05/01/MP/" class="d-inline-block">
+                  <h4 class="h6">How to use MongoDb with Python</h4>
+                  
+				  <img class="card-img" src="/img/MongoDB_Python.png" alt="" />
+				  
+                </a>
+				<br />
+                <time>On 01 May 2021</time> in Data Science
+				<hr />
+				
+              </div>
+            </div>
+          </aside>
+
+        </div>
+	
+      </div>
+    </div>
+  </main>
+<!--   <div class="site-newsletter">
+    <div class="container">
+      <div class="text-center">
+        <h3 class="h4 mb-2">Subscribe to our newsletter</h3>
+        <p class="text-muted">Join our monthly newsletter and never miss out on new stories and promotions.</p>
+
+        <div class="row">
+          <div class="col-xs-12 col-sm-9 col-md-7 col-lg-5 ml-auto mr-auto">
+            <div class="input-group mb-3 mt-3">
+              <input type="text" class="form-control" placeholder="Email address" aria-label="Email address">
+              <span class="input-group-btn">
+                <button class="btn btn-secondary" type="button">Subscribe</button>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+ -->
+  <footer class="site-footer bg-darkest" role="contentinfo">
+    <div class="container">
+
+<!--       <ul class="nav justify-content-center">
+        <li class="nav-item">
+          <a class="nav-link" href="#">Privacy policy</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Feedback</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Contact</a>
+        </li>
+      </ul> -->
+      <div class="copy">
+        &copy;  2021<br />
+        All rights reserved
+        <a href="https://www.linkedin.com/in/ia-ds-bg/" title="Linkedin"><i class="fab fa-linkedin-square"></i></a>
+        <a href="https://github.com/AbdelfattahAbouelaoualim" title="Github"><i class="fab fa-github-square"></i></a>
+        <a href="mailto:abdelfattah.abouelaoualim@gmail.com" title="Email me"><i class="fas fa-envelope-square"></i></a>
+      </div>
+    </div>
+  </footer>
+  
+  <script src="/js/bundle.js"></script>
+
+</body>
+</html>
