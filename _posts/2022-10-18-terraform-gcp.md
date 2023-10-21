@@ -1,7 +1,7 @@
 ---
 title: "Harnessing Terraform for GCP: A Data Engineer's Toolkit"
 layout: post
-date: 2023-10-18
+date: 2022-10-18
 image: "tf_gcp.png"
 mathjax: "true"
 categories: ["Computer Science", "Data Engineering", "Cloud Computing"]
