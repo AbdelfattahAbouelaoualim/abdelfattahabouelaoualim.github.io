@@ -165,89 +165,137 @@ margin-top:2rem;
           </article><!-- /.card -->
         </div>
 		<style>
-  h4.card-title{
+  /* Styles généraux */
+  h4.card-title {
     color: #EA950B;
+    border-bottom: 2px solid #EA950B;
+    padding-bottom: 10px;
+  }
+
+  .card {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s;
+  }
+
+  .card:hover {
+    transform: translateY(-5px);
+  }
+
+  .btn-link {
+    color: #007bff;
+    transition: color 0.3s;
+  }
+
+  .btn-link:hover {
+    color: #0056b3;
+    text-decoration: underline;
+  }
+
+  .card-img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+    margin-top: 10px;
+  }
+
+  time {
+    color: #888;
+    font-size: 14px;
   }
 </style>
 
 <div class="col-md-3 ml-auto">
-<!-- 
-          <aside class="sidebar">
-            <div class="card mb-4">
-              <div class="card-body">
-                <h4 class="card-title">About</h4>
-                <p class="card-text"></p>
-              </div>
-            </div>
-          </aside>
-        -->
-		  
-          <aside class="sidebar sidebar-sticky">
-            <div class="card mb-4">
-              <div class="card-body">
-                <h4 class="card-title">Categories</h4>
-				
-				    
-                <a class="btn btn-link btn-sm mb-1" href="/categories/#Computer Science"> 
-                Computer Science,</a>
-				
-				    
-                <a class="btn btn-link btn-sm mb-1" href="/categories/#Data Engineering"> 
-                Data Engineering,</a>
-				
-				    
-                <a class="btn btn-link btn-sm mb-1" href="/categories/#Artificial Intelligence"> 
-                Artificial Intelligence,</a>
-				
-				    
-                <a class="btn btn-link btn-sm mb-1" href="/categories/#Data Science"> 
-                Data Science,</a>
-				
-				    
-                <a class="btn btn-link btn-sm mb-1" href="/categories/#Graph Theory"> 
-                Graph Theory,</a>
-				
-				    
-                <a class="btn btn-link btn-sm mb-1" href="/categories/#Machine Learning"> 
-                Machine Learning,</a>
-				
-				    
-                <a class="btn btn-link btn-sm mb-1" href="/categories/#Cloud Computing"> 
-                Cloud Computing</a>
-				
-              </div>
-            </div>
-            <div class="card mb-4">
-              <div class="card-body">
-                
-				<h4 class="card-title">Latest posts</h4>
-				
-                <a href="/computer%20science/data%20engineering/cloud%20computing/2022/11/03/gcp-network/" class="d-inline-block">
-                  <h4 class="h6">Navigating GCP Network: A Closer Look at Key Features</h4>
-                  
-				  <img class="card-img" src="/img/gcp-network.webp" alt="" />
-				  
-                </a>
-				<br />
-                <time>On 03 Nov 2022</time> in Computer Science
-				<hr />
-				
-                <a href="/computer%20science/data%20engineering/cloud%20computing/2022/10/18/terraform-gcp/" class="d-inline-block">
-                  <h4 class="h6">Harnessing Terraform for GCP: A Data Engineer's Toolkit</h4>
-                  
-				  <img class="card-img" src="/img/tf_gcp.png" alt="" />
-				  
-                </a>
-				<br />
-                <time>On 18 Oct 2022</time> in Computer Science
-				<hr />
-				
-              </div>
-            </div>
-          </aside>
+  <aside class="sidebar sidebar-sticky">
+    <!-- Card for Categories -->
+    <div class="card mb-4">
+      <div class="card-body">
+        <h4 class="card-title">Categories</h4>
+        <ul class="list-unstyled">
+          
+          
+          <li>
+            <a class="btn btn-link btn-sm" href="/categories/#Computer Science">
+              Computer Science
+            </a>
+          </li>
+          
+          
+          <li>
+            <a class="btn btn-link btn-sm" href="/categories/#Data Engineering">
+              Data Engineering
+            </a>
+          </li>
+          
+          
+          <li>
+            <a class="btn btn-link btn-sm" href="/categories/#Artificial Intelligence">
+              Artificial Intelligence
+            </a>
+          </li>
+          
+          
+          <li>
+            <a class="btn btn-link btn-sm" href="/categories/#Data Science">
+              Data Science
+            </a>
+          </li>
+          
+          
+          <li>
+            <a class="btn btn-link btn-sm" href="/categories/#Graph Theory">
+              Graph Theory
+            </a>
+          </li>
+          
+          
+          <li>
+            <a class="btn btn-link btn-sm" href="/categories/#Machine Learning">
+              Machine Learning
+            </a>
+          </li>
+          
+          
+          <li>
+            <a class="btn btn-link btn-sm" href="/categories/#Cloud Computing">
+              Cloud Computing
+            </a>
+          </li>
+          
+        </ul>
+      </div>
+    </div>
 
+    <!-- Card for Latest Posts -->
+    <div class="card mb-4">
+      <div class="card-body">
+        <h4 class="card-title">Latest posts</h4>
+        
+        <div class="post-item">
+          <a href="/computer%20science/data%20engineering/cloud%20computing/2022/11/03/gcp-network/">
+            <h4 class="h6">Navigating GCP Network: A Closer Look at Key Features</h4>
+            
+            <img class="card-img" src="/img/gcp-network.webp" alt="Navigating GCP Network: A Closer Look at Key Features" />
+            
+          </a>
+          <time>On 03 Nov 2022</time> in Computer Science
+          <hr />
         </div>
-	
+        
+        <div class="post-item">
+          <a href="/computer%20science/data%20engineering/cloud%20computing/2022/10/18/terraform-gcp/">
+            <h4 class="h6">Harnessing Terraform for GCP: A Data Engineer's Toolkit</h4>
+            
+            <img class="card-img" src="/img/tf_gcp.png" alt="Harnessing Terraform for GCP: A Data Engineer's Toolkit" />
+            
+          </a>
+          <time>On 18 Oct 2022</time> in Computer Science
+          <hr />
+        </div>
+        
+      </div>
+    </div>
+  </aside>
+</div>	
       </div>
     </div>
   </main>

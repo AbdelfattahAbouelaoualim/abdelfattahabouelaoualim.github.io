@@ -8,6 +8,26 @@ categories: ["Computer Science", "Data Engineering", "Cloud Computing"]
 
 ---
 
+<style>
+  /* Styles pour améliorer la lisibilité et l'esthétique */
+  h2 {
+    border-bottom: 2px solid #EA950B;
+    padding-bottom: 10px;
+    margin-top: 40px;
+  }
+
+  h3 {
+    color: #007bff;
+    margin-top: 30px;
+  }
+
+  pre {
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 5px;
+  }
+</style>
+
 ### Introduction
 Networking in Google Cloud Platform (GCP) is designed to be robust and scalable to cater to the diverse needs of modern applications. This article delves into various GCP networking components and services that are crucial for securely managing and optimizing network traffic.
 
@@ -15,7 +35,7 @@ Networking in Google Cloud Platform (GCP) is designed to be robust and scalable 
 #### Virtual Private Cloud (VPC)
 VPC in GCP provides a private network space where resources like VM instances can be deployed. It facilitates control over networking topology, IP address range, and routing rules.
 
-## VPC Firewall Rules
+#### VPC Firewall Rules
 GCP’s firewall rules enable you to control inbound and outbound traffic within your VPC, ensuring only authorized access to and from your resources.
 
 ```hcl
