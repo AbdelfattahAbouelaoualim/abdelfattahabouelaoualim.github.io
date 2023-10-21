@@ -1,4 +1,81 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-10-21T15:55:24+02:00</updated><id>http://localhost:4000/feed.xml</id><entry><title type="html">Harnessing Terraform for GCP: A Data Engineer’s Toolkit</title><link href="http://localhost:4000/computer%20science/data%20engineering/cloud%20computing/2022/10/18/terraform-gcp/" rel="alternate" type="text/html" title="Harnessing Terraform for GCP: A Data Engineer&apos;s Toolkit" /><published>2022-10-18T00:00:00+02:00</published><updated>2022-10-18T00:00:00+02:00</updated><id>http://localhost:4000/computer%20science/data%20engineering/cloud%20computing/2022/10/18/terraform-gcp</id><content type="html" xml:base="http://localhost:4000/computer%20science/data%20engineering/cloud%20computing/2022/10/18/terraform-gcp/">&lt;h3 id=&quot;introduction&quot;&gt;Introduction&lt;/h3&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-10-21T16:25:06+02:00</updated><id>http://localhost:4000/feed.xml</id><entry><title type="html">Navigating GCP Network: A Closer Look at Key Features</title><link href="http://localhost:4000/computer%20science/data%20engineering/cloud%20computing/2022/11/03/gcp-network/" rel="alternate" type="text/html" title="Navigating GCP Network: A Closer Look at Key Features" /><published>2022-11-03T00:00:00+01:00</published><updated>2022-11-03T00:00:00+01:00</updated><id>http://localhost:4000/computer%20science/data%20engineering/cloud%20computing/2022/11/03/gcp-network</id><content type="html" xml:base="http://localhost:4000/computer%20science/data%20engineering/cloud%20computing/2022/11/03/gcp-network/">&lt;h3 id=&quot;introduction&quot;&gt;Introduction&lt;/h3&gt;
+&lt;p&gt;Networking in Google Cloud Platform (GCP) is designed to be robust and scalable to cater to the diverse needs of modern applications. This article delves into various GCP networking components and services that are crucial for securely managing and optimizing network traffic.&lt;/p&gt;
+
+&lt;h3 id=&quot;vpc-and-firewall-rules&quot;&gt;VPC and Firewall Rules&lt;/h3&gt;
+&lt;h4 id=&quot;virtual-private-cloud-vpc&quot;&gt;Virtual Private Cloud (VPC)&lt;/h4&gt;
+&lt;p&gt;VPC in GCP provides a private network space where resources like VM instances can be deployed. It facilitates control over networking topology, IP address range, and routing rules.&lt;/p&gt;
+
+&lt;h2 id=&quot;vpc-firewall-rules&quot;&gt;VPC Firewall Rules&lt;/h2&gt;
+&lt;p&gt;GCP’s firewall rules enable you to control inbound and outbound traffic within your VPC, ensuring only authorized access to and from your resources.&lt;/p&gt;
+
+&lt;div class=&quot;language-hcl highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nx&quot;&gt;resource&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;google_compute_firewall&quot;&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;default&quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;name&lt;/span&gt;    &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;default-firewall&quot;&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;network&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;default&quot;&lt;/span&gt;
+
+  &lt;span class=&quot;nx&quot;&gt;allow&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;protocol&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;icmp&quot;&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;allow&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;protocol&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;tcp&quot;&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;ports&lt;/span&gt;    &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;80&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;443&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;cloud-firewall&quot;&gt;Cloud Firewall&lt;/h3&gt;
+&lt;p&gt;Cloud Firewall allows for the management of firewall rules across multiple projects and networks, streamlining the enforcement of security policies.&lt;/p&gt;
+
+&lt;h3 id=&quot;google-cloud-nat&quot;&gt;Google Cloud NAT&lt;/h3&gt;
+&lt;p&gt;Google Cloud NAT (Network Address Translation) enables private instances within a VPC to access the internet securely.&lt;/p&gt;
+
+&lt;div class=&quot;language-hcl highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nx&quot;&gt;resource&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;google_compute_router_nat&quot;&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;default&quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;name&lt;/span&gt;   &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;cloud-nat&quot;&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;router&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;google_compute_router&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;default&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;name&lt;/span&gt;
+
+  &lt;span class=&quot;nx&quot;&gt;nat_ip_allocate_option&lt;/span&gt;             &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;AUTO_ONLY&quot;&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;source_subnetwork_ip_ranges_to_nat&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;ALL_SUBNETWORKS_ALL_IP_RANGES&quot;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;load-balancing-google-lb7-and-lb4&quot;&gt;Load Balancing: Google LB7 and LB4&lt;/h3&gt;
+&lt;h4 id=&quot;google-lb7&quot;&gt;Google LB7&lt;/h4&gt;
+&lt;p&gt;Google LB7 (HTTP(S) Load Balancing) operates at the application layer (Layer 7) and distributes HTTP(S) traffic across multiple servers to ensure no single server becomes overwhelmed with too much traffic.&lt;/p&gt;
+
+&lt;h4 id=&quot;google-lb4&quot;&gt;Google LB4&lt;/h4&gt;
+&lt;p&gt;Google LB4 (TCP/UDP Load Balancing) operates at the transport layer (Layer 4), distributing traffic based on IP protocol data.&lt;/p&gt;
+
+&lt;h3 id=&quot;cloud-armor&quot;&gt;Cloud Armor&lt;/h3&gt;
+&lt;p&gt;Cloud Armor works alongside the HTTP(S) Load Balancing, providing defense against DDoS attacks, and enabling application-aware HTTP(S) firewall capabilities.&lt;/p&gt;
+
+&lt;h3 id=&quot;cloud-router&quot;&gt;Cloud Router&lt;/h3&gt;
+&lt;p&gt;Cloud Router enables dynamic route updates between a VPC and on-premises network using BGP (Border Gateway Protocol).&lt;/p&gt;
+
+&lt;div class=&quot;language-hcl highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nx&quot;&gt;resource&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;google_compute_router&quot;&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;default&quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;name&lt;/span&gt;    &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;cloud-router&quot;&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;network&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;default&quot;&lt;/span&gt;
+
+  &lt;span class=&quot;nx&quot;&gt;bgp&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;asn&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;64514&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;vpc-connector-and-private-service-connect&quot;&gt;VPC Connector and Private Service Connect&lt;/h3&gt;
+&lt;h4 id=&quot;vpc-connector&quot;&gt;VPC Connector&lt;/h4&gt;
+&lt;p&gt;VPC Connector facilitates the connection between serverless GCP services and a VPC network, enabling access to resources within the VPC.&lt;/p&gt;
+
+&lt;h4 id=&quot;private-service-connect&quot;&gt;Private Service Connect&lt;/h4&gt;
+&lt;p&gt;Private Service Connect allows for secure and private connections to Google Cloud services, third-party services, or your own services.&lt;/p&gt;
+
+&lt;div class=&quot;language-hcl highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nx&quot;&gt;resource&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;google_service_networking_connection&quot;&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;private_vpc_connection&quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;network&lt;/span&gt;                 &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;default&quot;&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;service&lt;/span&gt;                 &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;servicenetworking.googleapis.com&quot;&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;reserved_peering_ranges&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;reserved-range&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h3&gt;
+&lt;p&gt;The array of networking services provided by GCP furnishes developers and data engineers with robust tools to architect, secure, and optimize their network infrastructure. Each service is tailored to address specific networking requirements, thereby enabling fine-grained control over network traffic and security policies. Through a thorough understanding and apt utilization of these services, one can significantly enhance the efficiency and security of applications hosted on GCP.&lt;/p&gt;</content><author><name></name></author><summary type="html">Introduction Networking in Google Cloud Platform (GCP) is designed to be robust and scalable to cater to the diverse needs of modern applications. This article delves into various GCP networking components and services that are crucial for securely managing and optimizing network traffic.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/gcp-network.webp" /></entry><entry><title type="html">Harnessing Terraform for GCP: A Data Engineer’s Toolkit</title><link href="http://localhost:4000/computer%20science/data%20engineering/cloud%20computing/2022/10/18/terraform-gcp/" rel="alternate" type="text/html" title="Harnessing Terraform for GCP: A Data Engineer&apos;s Toolkit" /><published>2022-10-18T00:00:00+02:00</published><updated>2022-10-18T00:00:00+02:00</updated><id>http://localhost:4000/computer%20science/data%20engineering/cloud%20computing/2022/10/18/terraform-gcp</id><content type="html" xml:base="http://localhost:4000/computer%20science/data%20engineering/cloud%20computing/2022/10/18/terraform-gcp/">&lt;h3 id=&quot;introduction&quot;&gt;Introduction&lt;/h3&gt;
 &lt;p&gt;Terraform, an open-source Infrastructure as Code (IaC) software by HashiCorp, empowers developers to manage and provision their infrastructure efficiently using a high-level configuration language known as HashiCorp Configuration Language (HCL). When paired with Google Cloud Platform (GCP), Terraform becomes a potent tool in a data engineer’s arsenal, allowing for the declarative configuration of services in GCP.&lt;/p&gt;
 
 &lt;h3 id=&quot;setting-up-terraform-with-gcp&quot;&gt;Setting Up Terraform with GCP&lt;/h3&gt;
@@ -3127,149 +3204,4 @@ Best action (estimation) =  1
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;The final element.
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name></name></author><summary type="html">Text can be bold, italic, strikethrough or keyword Link to another page. There should be whitespace between paragraphs. There should be whitespace between paragraphs. We recommend including a README, or a file with information about your project. Header 1 This is a normal paragraph following a header. GitHub is a code hosting platform for version control and collaboration. It lets you and others work together on projects from anywhere. Header 2 This is a blockquote following a header. When something is important enough, you do it even if the odds are not in your favor. Header 3 // Javascript code with syntax highlighting. var fun = function lang(l) { dateformat.i18n = require(&apos;./lang/&apos; + l) return true; } # Ruby code with syntax highlighting GitHubPages::Dependencies.gems.each do |gem, version| s.add_dependency(gem, &quot;= #{version}&quot;) end Header 4 This is an unordered list following a header. This is an unordered list following a header. This is an unordered list following a header. Header 5 This is an ordered list following a header. This is an ordered list following a header. This is an ordered list following a header. Header 6 head1 head two three ok good swedish fish nice out of stock good and plenty nice ok good oreos hmm ok good zoute drop yumm There’s a horizontal rule below this. Here is an unordered list: Item foo Item bar Item baz Item zip And an ordered list: Item one Item two Item three Item four And a nested list: level 1 item level 2 item level 2 item level 3 item level 3 item level 1 item level 2 item level 2 item level 2 item level 1 item level 2 item level 2 item level 1 item Small image Long, single-line code blocks should not wrap. They should horizontally scroll if they are too long. This line should be long enough to demonstrate this. The final element.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/graph_theory.png" /></entry><entry><title type="html">Machine learning</title><link href="http://localhost:4000/machine%20learning/2020/03/14/ML/" rel="alternate" type="text/html" title="Machine learning" /><published>2020-03-14T00:00:00+01:00</published><updated>2020-03-14T00:00:00+01:00</updated><id>http://localhost:4000/machine%20learning/2020/03/14/ML</id><content type="html" xml:base="http://localhost:4000/machine%20learning/2020/03/14/ML/">&lt;p&gt;Text can be &lt;strong&gt;bold&lt;/strong&gt;, &lt;em&gt;italic&lt;/em&gt;, &lt;del&gt;strikethrough&lt;/del&gt; or &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;keyword&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;./another-page.html&quot;&gt;Link to another page&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;There should be whitespace between paragraphs.&lt;/p&gt;
-
-&lt;p&gt;There should be whitespace between paragraphs. We recommend including a README, or a file with information about your project.&lt;/p&gt;
-
-&lt;h1 id=&quot;header-1&quot;&gt;Header 1&lt;/h1&gt;
-
-&lt;p&gt;This is a normal paragraph following a header. GitHub is a code hosting platform for version control and collaboration. It lets you and others work together on projects from anywhere.&lt;/p&gt;
-
-&lt;h2 id=&quot;header-2&quot;&gt;Header 2&lt;/h2&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;This is a blockquote following a header.&lt;/p&gt;
-
-  &lt;p&gt;When something is important enough, you do it even if the odds are not in your favor.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h3 id=&quot;header-3&quot;&gt;Header 3&lt;/h3&gt;
-
-&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// Javascript code with syntax highlighting.&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;fun&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;lang&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;l&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;nx&quot;&gt;dateformat&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;i18n&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;./lang/&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&apos;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;l&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;# Ruby code with syntax highlighting&lt;/span&gt;
-&lt;span class=&quot;no&quot;&gt;GitHubPages&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Dependencies&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;gems&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;each&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;gem&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;version&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;add_dependency&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;gem&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;= &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;version&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h4 id=&quot;header-4&quot;&gt;Header 4&lt;/h4&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;This is an unordered list following a header.&lt;/li&gt;
-  &lt;li&gt;This is an unordered list following a header.&lt;/li&gt;
-  &lt;li&gt;This is an unordered list following a header.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h5 id=&quot;header-5&quot;&gt;Header 5&lt;/h5&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;This is an ordered list following a header.&lt;/li&gt;
-  &lt;li&gt;This is an ordered list following a header.&lt;/li&gt;
-  &lt;li&gt;This is an ordered list following a header.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h6 id=&quot;header-6&quot;&gt;Header 6&lt;/h6&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th style=&quot;text-align: left&quot;&gt;head1&lt;/th&gt;
-      &lt;th style=&quot;text-align: left&quot;&gt;head two&lt;/th&gt;
-      &lt;th style=&quot;text-align: left&quot;&gt;three&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;ok&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;good swedish fish&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;nice&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;out of stock&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;good and plenty&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;nice&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;ok&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;good &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;oreos&lt;/code&gt;&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;hmm&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;ok&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;good &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;zoute&lt;/code&gt; drop&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;yumm&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;h3 id=&quot;theres-a-horizontal-rule-below-this&quot;&gt;There’s a horizontal rule below this.&lt;/h3&gt;
-
-&lt;hr /&gt;
-
-&lt;h3 id=&quot;here-is-an-unordered-list&quot;&gt;Here is an unordered list:&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Item foo&lt;/li&gt;
-  &lt;li&gt;Item bar&lt;/li&gt;
-  &lt;li&gt;Item baz&lt;/li&gt;
-  &lt;li&gt;Item zip&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;and-an-ordered-list&quot;&gt;And an ordered list:&lt;/h3&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;Item one&lt;/li&gt;
-  &lt;li&gt;Item two&lt;/li&gt;
-  &lt;li&gt;Item three&lt;/li&gt;
-  &lt;li&gt;Item four&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h3 id=&quot;and-a-nested-list&quot;&gt;And a nested list:&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;level 1 item
-    &lt;ul&gt;
-      &lt;li&gt;level 2 item&lt;/li&gt;
-      &lt;li&gt;level 2 item
-        &lt;ul&gt;
-          &lt;li&gt;level 3 item&lt;/li&gt;
-          &lt;li&gt;level 3 item&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;level 1 item
-    &lt;ul&gt;
-      &lt;li&gt;level 2 item&lt;/li&gt;
-      &lt;li&gt;level 2 item&lt;/li&gt;
-      &lt;li&gt;level 2 item&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;level 1 item
-    &lt;ul&gt;
-      &lt;li&gt;level 2 item&lt;/li&gt;
-      &lt;li&gt;level 2 item&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;level 1 item&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;small-image&quot;&gt;Small image&lt;/h3&gt;
-
-&lt;p&gt;&lt;img src=&quot;/img/AI.jpg&quot; alt=&quot;Octocat&quot; /&gt;&lt;/p&gt;
-
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Long, single-line code blocks should not wrap. They should horizontally scroll if they are too long. This line should be long enough to demonstrate this.
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;The final element.
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name></name></author><summary type="html">Text can be bold, italic, strikethrough or keyword Link to another page. There should be whitespace between paragraphs. There should be whitespace between paragraphs. We recommend including a README, or a file with information about your project. Header 1 This is a normal paragraph following a header. GitHub is a code hosting platform for version control and collaboration. It lets you and others work together on projects from anywhere. Header 2 This is a blockquote following a header. When something is important enough, you do it even if the odds are not in your favor. Header 3 // Javascript code with syntax highlighting. var fun = function lang(l) { dateformat.i18n = require(&apos;./lang/&apos; + l) return true; } # Ruby code with syntax highlighting GitHubPages::Dependencies.gems.each do |gem, version| s.add_dependency(gem, &quot;= #{version}&quot;) end Header 4 This is an unordered list following a header. This is an unordered list following a header. This is an unordered list following a header. Header 5 This is an ordered list following a header. This is an ordered list following a header. This is an ordered list following a header. Header 6 head1 head two three ok good swedish fish nice out of stock good and plenty nice ok good oreos hmm ok good zoute drop yumm There’s a horizontal rule below this. Here is an unordered list: Item foo Item bar Item baz Item zip And an ordered list: Item one Item two Item three Item four And a nested list: level 1 item level 2 item level 2 item level 3 item level 3 item level 1 item level 2 item level 2 item level 2 item level 1 item level 2 item level 2 item level 1 item Small image Long, single-line code blocks should not wrap. They should horizontally scroll if they are too long. This line should be long enough to demonstrate this. The final element.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/ml.jpg" /></entry></feed>
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name></name></author><summary type="html">Text can be bold, italic, strikethrough or keyword Link to another page. There should be whitespace between paragraphs. There should be whitespace between paragraphs. We recommend including a README, or a file with information about your project. Header 1 This is a normal paragraph following a header. GitHub is a code hosting platform for version control and collaboration. It lets you and others work together on projects from anywhere. Header 2 This is a blockquote following a header. When something is important enough, you do it even if the odds are not in your favor. Header 3 // Javascript code with syntax highlighting. var fun = function lang(l) { dateformat.i18n = require(&apos;./lang/&apos; + l) return true; } # Ruby code with syntax highlighting GitHubPages::Dependencies.gems.each do |gem, version| s.add_dependency(gem, &quot;= #{version}&quot;) end Header 4 This is an unordered list following a header. This is an unordered list following a header. This is an unordered list following a header. Header 5 This is an ordered list following a header. This is an ordered list following a header. This is an ordered list following a header. Header 6 head1 head two three ok good swedish fish nice out of stock good and plenty nice ok good oreos hmm ok good zoute drop yumm There’s a horizontal rule below this. Here is an unordered list: Item foo Item bar Item baz Item zip And an ordered list: Item one Item two Item three Item four And a nested list: level 1 item level 2 item level 2 item level 3 item level 3 item level 1 item level 2 item level 2 item level 2 item level 1 item level 2 item level 2 item level 1 item Small image Long, single-line code blocks should not wrap. They should horizontally scroll if they are too long. This line should be long enough to demonstrate this. The final element.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/graph_theory.png" /></entry></feed>

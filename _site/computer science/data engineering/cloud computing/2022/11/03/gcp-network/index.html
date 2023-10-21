@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
-  <title> | Machine learning</title>
+  <title> | Navigating GCP Network: A Closer Look at Key Features</title>
 
   <link href="/css/milo.css" rel="stylesheet">
   <link href="/fontawesome-free-5.12.1-web/css/all.css" rel="stylesheet"> <!--load all styles -->
@@ -64,171 +64,109 @@
             <header class="card-header text-center">
 			
               <div class="card-meta">
-                <span>Published on 14 Mar 2020</time></span> in
+                <span>Published on 03 Nov 2022</time></span> in
                   
                   
-                  <a href="/categories/#Machine Learning">Machine Learning</a>
+                  <a href="/categories/#Computer Science">Computer Science</a>
+                  &nbsp;
+                  
+                  <a href="/categories/#Data Engineering">Data Engineering</a>
+                  &nbsp;
+                  
+                  <a href="/categories/#Cloud Computing">Cloud Computing</a>
                   
                   
               <div>
 			
-                <h1 class="card-title">Machine learning</h1>
+                <h1 class="card-title">Navigating GCP Network: A Closer Look at Key Features</h1>
 
             </header>
 			
 			
             <a style="cursor:pointer;">
-              <img class="card-img" src="/img/ml.jpg" alt="" />
+              <img class="card-img" src="/img/gcp-network.webp" alt="" />
             </a>
             
             
             <div class="card-body">
-			<p>Text can be <strong>bold</strong>, <em>italic</em>, <del>strikethrough</del> or <code class="language-plaintext highlighter-rouge">keyword</code></p>
+			<h3 id="introduction">Introduction</h3>
+<p>Networking in Google Cloud Platform (GCP) is designed to be robust and scalable to cater to the diverse needs of modern applications. This article delves into various GCP networking components and services that are crucial for securely managing and optimizing network traffic.</p>
 
-<p><a href="./another-page.html">Link to another page</a>.</p>
+<h3 id="vpc-and-firewall-rules">VPC and Firewall Rules</h3>
+<h4 id="virtual-private-cloud-vpc">Virtual Private Cloud (VPC)</h4>
+<p>VPC in GCP provides a private network space where resources like VM instances can be deployed. It facilitates control over networking topology, IP address range, and routing rules.</p>
 
-<p>There should be whitespace between paragraphs.</p>
+<h2 id="vpc-firewall-rules">VPC Firewall Rules</h2>
+<p>GCP’s firewall rules enable you to control inbound and outbound traffic within your VPC, ensuring only authorized access to and from your resources.</p>
 
-<p>There should be whitespace between paragraphs. We recommend including a README, or a file with information about your project.</p>
+<div class="language-hcl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">resource</span> <span class="s2">"google_compute_firewall"</span> <span class="s2">"default"</span> <span class="p">{</span>
+  <span class="nx">name</span>    <span class="p">=</span> <span class="s2">"default-firewall"</span>
+  <span class="nx">network</span> <span class="p">=</span> <span class="s2">"default"</span>
 
-<h1 id="header-1">Header 1</h1>
-
-<p>This is a normal paragraph following a header. GitHub is a code hosting platform for version control and collaboration. It lets you and others work together on projects from anywhere.</p>
-
-<h2 id="header-2">Header 2</h2>
-
-<blockquote>
-  <p>This is a blockquote following a header.</p>
-
-  <p>When something is important enough, you do it even if the odds are not in your favor.</p>
-</blockquote>
-
-<h3 id="header-3">Header 3</h3>
-
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Javascript code with syntax highlighting.</span>
-<span class="kd">var</span> <span class="nx">fun</span> <span class="o">=</span> <span class="kd">function</span> <span class="nx">lang</span><span class="p">(</span><span class="nx">l</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nx">dateformat</span><span class="p">.</span><span class="nx">i18n</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">./lang/</span><span class="dl">'</span> <span class="o">+</span> <span class="nx">l</span><span class="p">)</span>
-  <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+  <span class="nx">allow</span> <span class="p">{</span>
+    <span class="nx">protocol</span> <span class="p">=</span> <span class="s2">"icmp"</span>
+  <span class="p">}</span>
+  <span class="nx">allow</span> <span class="p">{</span>
+    <span class="nx">protocol</span> <span class="p">=</span> <span class="s2">"tcp"</span>
+    <span class="nx">ports</span>    <span class="p">=</span> <span class="p">[</span><span class="s2">"80"</span><span class="p">,</span> <span class="s2">"443"</span><span class="p">]</span>
+  <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div></div>
 
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Ruby code with syntax highlighting</span>
-<span class="no">GitHubPages</span><span class="o">::</span><span class="no">Dependencies</span><span class="p">.</span><span class="nf">gems</span><span class="p">.</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">gem</span><span class="p">,</span> <span class="n">version</span><span class="o">|</span>
-  <span class="n">s</span><span class="p">.</span><span class="nf">add_dependency</span><span class="p">(</span><span class="n">gem</span><span class="p">,</span> <span class="s2">"= </span><span class="si">#{</span><span class="n">version</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-<span class="k">end</span>
+<h3 id="cloud-firewall">Cloud Firewall</h3>
+<p>Cloud Firewall allows for the management of firewall rules across multiple projects and networks, streamlining the enforcement of security policies.</p>
+
+<h3 id="google-cloud-nat">Google Cloud NAT</h3>
+<p>Google Cloud NAT (Network Address Translation) enables private instances within a VPC to access the internet securely.</p>
+
+<div class="language-hcl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">resource</span> <span class="s2">"google_compute_router_nat"</span> <span class="s2">"default"</span> <span class="p">{</span>
+  <span class="nx">name</span>   <span class="p">=</span> <span class="s2">"cloud-nat"</span>
+  <span class="nx">router</span> <span class="p">=</span> <span class="nx">google_compute_router</span><span class="err">.</span><span class="nx">default</span><span class="err">.</span><span class="nx">name</span>
+
+  <span class="nx">nat_ip_allocate_option</span>             <span class="p">=</span> <span class="s2">"AUTO_ONLY"</span>
+  <span class="nx">source_subnetwork_ip_ranges_to_nat</span> <span class="p">=</span> <span class="s2">"ALL_SUBNETWORKS_ALL_IP_RANGES"</span>
+<span class="p">}</span>
 </code></pre></div></div>
 
-<h4 id="header-4">Header 4</h4>
+<h3 id="load-balancing-google-lb7-and-lb4">Load Balancing: Google LB7 and LB4</h3>
+<h4 id="google-lb7">Google LB7</h4>
+<p>Google LB7 (HTTP(S) Load Balancing) operates at the application layer (Layer 7) and distributes HTTP(S) traffic across multiple servers to ensure no single server becomes overwhelmed with too much traffic.</p>
 
-<ul>
-  <li>This is an unordered list following a header.</li>
-  <li>This is an unordered list following a header.</li>
-  <li>This is an unordered list following a header.</li>
-</ul>
+<h4 id="google-lb4">Google LB4</h4>
+<p>Google LB4 (TCP/UDP Load Balancing) operates at the transport layer (Layer 4), distributing traffic based on IP protocol data.</p>
 
-<h5 id="header-5">Header 5</h5>
+<h3 id="cloud-armor">Cloud Armor</h3>
+<p>Cloud Armor works alongside the HTTP(S) Load Balancing, providing defense against DDoS attacks, and enabling application-aware HTTP(S) firewall capabilities.</p>
 
-<ol>
-  <li>This is an ordered list following a header.</li>
-  <li>This is an ordered list following a header.</li>
-  <li>This is an ordered list following a header.</li>
-</ol>
+<h3 id="cloud-router">Cloud Router</h3>
+<p>Cloud Router enables dynamic route updates between a VPC and on-premises network using BGP (Border Gateway Protocol).</p>
 
-<h6 id="header-6">Header 6</h6>
+<div class="language-hcl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">resource</span> <span class="s2">"google_compute_router"</span> <span class="s2">"default"</span> <span class="p">{</span>
+  <span class="nx">name</span>    <span class="p">=</span> <span class="s2">"cloud-router"</span>
+  <span class="nx">network</span> <span class="p">=</span> <span class="s2">"default"</span>
 
-<table>
-  <thead>
-    <tr>
-      <th style="text-align: left">head1</th>
-      <th style="text-align: left">head two</th>
-      <th style="text-align: left">three</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="text-align: left">ok</td>
-      <td style="text-align: left">good swedish fish</td>
-      <td style="text-align: left">nice</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">out of stock</td>
-      <td style="text-align: left">good and plenty</td>
-      <td style="text-align: left">nice</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">ok</td>
-      <td style="text-align: left">good <code class="language-plaintext highlighter-rouge">oreos</code></td>
-      <td style="text-align: left">hmm</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">ok</td>
-      <td style="text-align: left">good <code class="language-plaintext highlighter-rouge">zoute</code> drop</td>
-      <td style="text-align: left">yumm</td>
-    </tr>
-  </tbody>
-</table>
-
-<h3 id="theres-a-horizontal-rule-below-this">There’s a horizontal rule below this.</h3>
-
-<hr />
-
-<h3 id="here-is-an-unordered-list">Here is an unordered list:</h3>
-
-<ul>
-  <li>Item foo</li>
-  <li>Item bar</li>
-  <li>Item baz</li>
-  <li>Item zip</li>
-</ul>
-
-<h3 id="and-an-ordered-list">And an ordered list:</h3>
-
-<ol>
-  <li>Item one</li>
-  <li>Item two</li>
-  <li>Item three</li>
-  <li>Item four</li>
-</ol>
-
-<h3 id="and-a-nested-list">And a nested list:</h3>
-
-<ul>
-  <li>level 1 item
-    <ul>
-      <li>level 2 item</li>
-      <li>level 2 item
-        <ul>
-          <li>level 3 item</li>
-          <li>level 3 item</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li>level 1 item
-    <ul>
-      <li>level 2 item</li>
-      <li>level 2 item</li>
-      <li>level 2 item</li>
-    </ul>
-  </li>
-  <li>level 1 item
-    <ul>
-      <li>level 2 item</li>
-      <li>level 2 item</li>
-    </ul>
-  </li>
-  <li>level 1 item</li>
-</ul>
-
-<h3 id="small-image">Small image</h3>
-
-<p><img src="/img/AI.jpg" alt="Octocat" /></p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Long, single-line code blocks should not wrap. They should horizontally scroll if they are too long. This line should be long enough to demonstrate this.
+  <span class="nx">bgp</span> <span class="p">{</span>
+    <span class="nx">asn</span> <span class="p">=</span> <span class="mi">64514</span>
+  <span class="p">}</span>
+<span class="p">}</span>
 </code></pre></div></div>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>The final element.
+<h3 id="vpc-connector-and-private-service-connect">VPC Connector and Private Service Connect</h3>
+<h4 id="vpc-connector">VPC Connector</h4>
+<p>VPC Connector facilitates the connection between serverless GCP services and a VPC network, enabling access to resources within the VPC.</p>
+
+<h4 id="private-service-connect">Private Service Connect</h4>
+<p>Private Service Connect allows for secure and private connections to Google Cloud services, third-party services, or your own services.</p>
+
+<div class="language-hcl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">resource</span> <span class="s2">"google_service_networking_connection"</span> <span class="s2">"private_vpc_connection"</span> <span class="p">{</span>
+  <span class="nx">network</span>                 <span class="p">=</span> <span class="s2">"default"</span>
+  <span class="nx">service</span>                 <span class="p">=</span> <span class="s2">"servicenetworking.googleapis.com"</span>
+  <span class="nx">reserved_peering_ranges</span> <span class="p">=</span> <span class="p">[</span><span class="s2">"reserved-range"</span><span class="p">]</span>
+<span class="p">}</span>
 </code></pre></div></div>
+
+<h3 id="conclusion">Conclusion</h3>
+<p>The array of networking services provided by GCP furnishes developers and data engineers with robust tools to architect, secure, and optimize their network infrastructure. Each service is tailored to address specific networking requirements, thereby enabling fine-grained control over network traffic and security policies. Through a thorough understanding and apt utilization of these services, one can significantly enhance the efficiency and security of applications hosted on GCP.</p>
 
            <!-- <hr />
 			<div class="pg-center">
@@ -238,8 +176,8 @@
   <div id="disqus_thread"></div>
   <script>
 var disqus_config = function () {
-  this.page.url = 'http://localhost:4000/machine%20learning/2020/03/14/ML/'; // Replace PAGE_URL with your page's canonical URL variable
-  this.page.identifier = '/machine%20learning/2020/03/14/ML'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+  this.page.url = 'http://localhost:4000/computer%20science/data%20engineering/cloud%20computing/2022/11/03/gcp-network/'; // Replace PAGE_URL with your page's canonical URL variable
+  this.page.identifier = '/computer%20science/data%20engineering/cloud%20computing/2022/11/03/gcp-network'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
 };
 (function() {
   var d = document, s = d.createElement('script');

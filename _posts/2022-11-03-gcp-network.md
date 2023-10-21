@@ -1,7 +1,7 @@
 ---
 title: "Navigating GCP Network: A Closer Look at Key Features"
 layout: post
-date: 2023-11-03
+date: 2022-11-03
 image: "gcp-network.webp"
 mathjax: "true"
 categories: ["Computer Science", "Data Engineering", "Cloud Computing"]
