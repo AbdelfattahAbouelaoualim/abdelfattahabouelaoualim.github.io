@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-10-21T17:00:21+02:00</updated><id>http://localhost:4000/feed.xml</id><entry><title type="html">Navigating GCP Network: A Closer Look at Key Features</title><link href="http://localhost:4000/computer%20science/data%20engineering/cloud%20computing/2022/11/03/gcp-network/" rel="alternate" type="text/html" title="Navigating GCP Network: A Closer Look at Key Features" /><published>2022-11-03T00:00:00+01:00</published><updated>2022-11-03T00:00:00+01:00</updated><id>http://localhost:4000/computer%20science/data%20engineering/cloud%20computing/2022/11/03/gcp-network</id><content type="html" xml:base="http://localhost:4000/computer%20science/data%20engineering/cloud%20computing/2022/11/03/gcp-network/">&lt;style&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-10-27T15:54:39+02:00</updated><id>http://localhost:4000/feed.xml</id><entry><title type="html">Navigating GCP Network: A Closer Look at Key Features</title><link href="http://localhost:4000/computer%20science/data%20engineering/cloud%20computing/2022/11/03/gcp-network/" rel="alternate" type="text/html" title="Navigating GCP Network: A Closer Look at Key Features" /><published>2022-11-03T00:00:00+01:00</published><updated>2022-11-03T00:00:00+01:00</updated><id>http://localhost:4000/computer%20science/data%20engineering/cloud%20computing/2022/11/03/gcp-network</id><content type="html" xml:base="http://localhost:4000/computer%20science/data%20engineering/cloud%20computing/2022/11/03/gcp-network/">&lt;style&gt;
   /* Styles pour améliorer la lisibilité et l&apos;esthétique */
   h2 {
     border-bottom: 2px solid #EA950B;
@@ -167,7 +167,91 @@ $ &lt;span class=&quot;kd&quot;&gt;terraform&lt;/span&gt; &lt;span class=&quot;k
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;h3 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h3&gt;
-&lt;p&gt;Terraform presents a robust, declarative, and efficient means to manage infrastructure on GCP. It encapsulates complex API interactions behind simple configurations, making infrastructure management a less daunting task for data engineers. By harnessing Terraform in GCP environments, data engineers can significantly expedite the provisioning and management of resources, ensuring that they can focus more on data engineering tasks at hand.&lt;/p&gt;</content><author><name></name></author><summary type="html">Introduction Terraform, an open-source Infrastructure as Code (IaC) software by HashiCorp, empowers developers to manage and provision their infrastructure efficiently using a high-level configuration language known as HashiCorp Configuration Language (HCL). When paired with Google Cloud Platform (GCP), Terraform becomes a potent tool in a data engineer’s arsenal, allowing for the declarative configuration of services in GCP.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/tf_gcp.png" /></entry><entry><title type="html">How to use MongoDb with Python</title><link href="http://localhost:4000/data%20science/2021/05/01/MP/" rel="alternate" type="text/html" title="How to use MongoDb with Python" /><published>2021-05-01T00:00:00+02:00</published><updated>2021-05-01T00:00:00+02:00</updated><id>http://localhost:4000/data%20science/2021/05/01/MP</id><content type="html" xml:base="http://localhost:4000/data%20science/2021/05/01/MP/">&lt;p&gt;This little tutorial shows how to use MongoDB with python.&lt;/p&gt;
+&lt;p&gt;Terraform presents a robust, declarative, and efficient means to manage infrastructure on GCP. It encapsulates complex API interactions behind simple configurations, making infrastructure management a less daunting task for data engineers. By harnessing Terraform in GCP environments, data engineers can significantly expedite the provisioning and management of resources, ensuring that they can focus more on data engineering tasks at hand.&lt;/p&gt;</content><author><name></name></author><summary type="html">Introduction Terraform, an open-source Infrastructure as Code (IaC) software by HashiCorp, empowers developers to manage and provision their infrastructure efficiently using a high-level configuration language known as HashiCorp Configuration Language (HCL). When paired with Google Cloud Platform (GCP), Terraform becomes a potent tool in a data engineer’s arsenal, allowing for the declarative configuration of services in GCP.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/tf_gcp.png" /></entry><entry><title type="html">Unlocking Data Insights with BigQuery: A GCP Gem</title><link href="http://localhost:4000/computer%20science/data%20engineering/cloud%20computing/2022/10/10/bigquery-gcp/" rel="alternate" type="text/html" title="Unlocking Data Insights with BigQuery: A GCP Gem" /><published>2022-10-10T00:00:00+02:00</published><updated>2022-10-10T00:00:00+02:00</updated><id>http://localhost:4000/computer%20science/data%20engineering/cloud%20computing/2022/10/10/bigquery-gcp</id><content type="html" xml:base="http://localhost:4000/computer%20science/data%20engineering/cloud%20computing/2022/10/10/bigquery-gcp/">&lt;style&gt;
+  /* Styles pour améliorer la lisibilité et l&apos;esthétique */
+  h2 {
+    border-bottom: 2px solid #EA950B;
+    padding-bottom: 10px;
+    margin-top: 40px;
+  }
+
+  h3 {
+    color: #007bff;
+    margin-top: 30px;
+  }
+
+  pre {
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 5px;
+  }
+&lt;/style&gt;
+
+&lt;h3 id=&quot;introduction&quot;&gt;Introduction&lt;/h3&gt;
+&lt;p&gt;Google Cloud’s BigQuery is a fully-managed, serverless data warehouse that enables super-fast SQL queries across large datasets. With its ability to execute SQL queries over vast amounts of data in seconds, BigQuery stands out as a potent tool for data analysis and business intelligence.&lt;/p&gt;
+
+&lt;h3 id=&quot;getting-started-with-bigquery&quot;&gt;Getting Started with BigQuery&lt;/h3&gt;
+&lt;h4 id=&quot;1-setting-up-bigquery&quot;&gt;1. Setting up BigQuery&lt;/h4&gt;
+&lt;p&gt;Access BigQuery through the GCP Console, command-line tool, or by making calls to the BigQuery REST API using client libraries.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# Access BigQuery from command-line&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;bq &lt;span class=&quot;nb&quot;&gt;ls&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;2-creating-datasets-and-tables&quot;&gt;2. Creating Datasets and Tables&lt;/h4&gt;
+&lt;p&gt;Organize your data in BigQuery by creating datasets and tables.&lt;/p&gt;
+
+&lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;-- Create a dataset&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;CREATE&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;SCHEMA&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;my_dataset&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;-- Create a table&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;CREATE&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;TABLE&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;my_dataset&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;my_table&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;column1&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;STRING&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;column2&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;INT64&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;querying-data&quot;&gt;Querying Data&lt;/h3&gt;
+&lt;p&gt;BigQuery’s SQL dialect allows for familiar querying of data, with additional functions for handling nested and repeated data.&lt;/p&gt;
+
+&lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;-- Example query&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;SELECT&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;column1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;COUNT&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;count&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;FROM&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;my_dataset&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;my_table&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;GROUP&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;BY&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;column1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;loading-and-exporting-data&quot;&gt;Loading and Exporting Data&lt;/h3&gt;
+&lt;p&gt;Load data into BigQuery from various sources like Google Sheets, Cloud Storage, or streaming data.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# Load data from Cloud Storage&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;bq load &lt;span class=&quot;nt&quot;&gt;--source_format&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;CSV my_dataset.my_table gs://my_bucket/my_data.csv
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Export data from BigQuery to Cloud Storage for further analysis or backup.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# Export data to Cloud Storage&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;bq extract my_dataset.my_table gs://my_bucket/my_data_export.csv
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;materialized-views&quot;&gt;Materialized Views&lt;/h3&gt;
+&lt;p&gt;Materialized views in BigQuery provide a way to compute and store query results for improved performance and efficiency.&lt;/p&gt;
+
+&lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;-- Create a materialized view&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;CREATE&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;MATERIALIZED&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;VIEW&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;my_dataset&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;my_materialized_view&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;AS&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;SELECT&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;column1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;COUNT&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;count&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;FROM&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;my_dataset&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;my_table&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;GROUP&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;BY&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;column1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;access-control-and-security&quot;&gt;Access Control and Security&lt;/h3&gt;
+&lt;p&gt;Control access to your data by setting IAM roles and permissions, ensuring that only authorized individuals can access sensitive data.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# Set IAM roles&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;gcloud projects add-iam-policy-binding my_project &lt;span class=&quot;nt&quot;&gt;--member&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;user:example@example.com &lt;span class=&quot;nt&quot;&gt;--role&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;roles/bigquery.user
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h3&gt;
+&lt;p&gt;BigQuery offers a robust platform for data analytics, enabling businesses to unlock insights from their data swiftly and efficiently. Its serverless model, powerful SQL capabilities, and seamless integration with other GCP services make it an indispensable tool for data engineers and analysts. By leveraging BigQuery, organizations can foster a data-driven culture, empowering them to make informed decisions and stay ahead in today’s competitive landscape.&lt;/p&gt;</content><author><name></name></author><summary type="html"></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/bigquery-gcp.png" /></entry><entry><title type="html">How to use MongoDb with Python</title><link href="http://localhost:4000/data%20science/2021/05/01/MP/" rel="alternate" type="text/html" title="How to use MongoDb with Python" /><published>2021-05-01T00:00:00+02:00</published><updated>2021-05-01T00:00:00+02:00</updated><id>http://localhost:4000/data%20science/2021/05/01/MP</id><content type="html" xml:base="http://localhost:4000/data%20science/2021/05/01/MP/">&lt;p&gt;This little tutorial shows how to use MongoDB with python.&lt;/p&gt;
 
 &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;pymongo&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;MongoClient&lt;/span&gt;
 &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;pprint&lt;/span&gt;
@@ -3079,149 +3163,4 @@ Best action (estimation) =  1
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;The final element.
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name></name></author><summary type="html">Text can be bold, italic, strikethrough or keyword Link to another page. There should be whitespace between paragraphs. There should be whitespace between paragraphs. We recommend including a README, or a file with information about your project. Header 1 This is a normal paragraph following a header. GitHub is a code hosting platform for version control and collaboration. It lets you and others work together on projects from anywhere. Header 2 This is a blockquote following a header. When something is important enough, you do it even if the odds are not in your favor. Header 3 // Javascript code with syntax highlighting. var fun = function lang(l) { dateformat.i18n = require(&apos;./lang/&apos; + l) return true; } # Ruby code with syntax highlighting GitHubPages::Dependencies.gems.each do |gem, version| s.add_dependency(gem, &quot;= #{version}&quot;) end Header 4 This is an unordered list following a header. This is an unordered list following a header. This is an unordered list following a header. Header 5 This is an ordered list following a header. This is an ordered list following a header. This is an ordered list following a header. Header 6 head1 head two three ok good swedish fish nice out of stock good and plenty nice ok good oreos hmm ok good zoute drop yumm There’s a horizontal rule below this. Here is an unordered list: Item foo Item bar Item baz Item zip And an ordered list: Item one Item two Item three Item four And a nested list: level 1 item level 2 item level 2 item level 3 item level 3 item level 1 item level 2 item level 2 item level 2 item level 1 item level 2 item level 2 item level 1 item Small image Long, single-line code blocks should not wrap. They should horizontally scroll if they are too long. This line should be long enough to demonstrate this. The final element.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/data_science.png" /></entry><entry><title type="html">Introduction to Graph Theory</title><link href="http://localhost:4000/graph%20theory/2020/03/14/GL/" rel="alternate" type="text/html" title="Introduction to Graph Theory" /><published>2020-03-14T00:00:00+01:00</published><updated>2020-03-14T00:00:00+01:00</updated><id>http://localhost:4000/graph%20theory/2020/03/14/GL</id><content type="html" xml:base="http://localhost:4000/graph%20theory/2020/03/14/GL/">&lt;p&gt;Text can be &lt;strong&gt;bold&lt;/strong&gt;, &lt;em&gt;italic&lt;/em&gt;, &lt;del&gt;strikethrough&lt;/del&gt; or &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;keyword&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;./another-page.html&quot;&gt;Link to another page&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;There should be whitespace between paragraphs.&lt;/p&gt;
-
-&lt;p&gt;There should be whitespace between paragraphs. We recommend including a README, or a file with information about your project.&lt;/p&gt;
-
-&lt;h1 id=&quot;header-1&quot;&gt;Header 1&lt;/h1&gt;
-
-&lt;p&gt;This is a normal paragraph following a header. GitHub is a code hosting platform for version control and collaboration. It lets you and others work together on projects from anywhere.&lt;/p&gt;
-
-&lt;h2 id=&quot;header-2&quot;&gt;Header 2&lt;/h2&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;This is a blockquote following a header.&lt;/p&gt;
-
-  &lt;p&gt;When something is important enough, you do it even if the odds are not in your favor.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h3 id=&quot;header-3&quot;&gt;Header 3&lt;/h3&gt;
-
-&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// Javascript code with syntax highlighting.&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;fun&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;lang&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;l&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;nx&quot;&gt;dateformat&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;i18n&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;./lang/&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&apos;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;l&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;# Ruby code with syntax highlighting&lt;/span&gt;
-&lt;span class=&quot;no&quot;&gt;GitHubPages&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Dependencies&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;gems&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;each&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;gem&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;version&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;add_dependency&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;gem&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;= &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;version&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h4 id=&quot;header-4&quot;&gt;Header 4&lt;/h4&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;This is an unordered list following a header.&lt;/li&gt;
-  &lt;li&gt;This is an unordered list following a header.&lt;/li&gt;
-  &lt;li&gt;This is an unordered list following a header.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h5 id=&quot;header-5&quot;&gt;Header 5&lt;/h5&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;This is an ordered list following a header.&lt;/li&gt;
-  &lt;li&gt;This is an ordered list following a header.&lt;/li&gt;
-  &lt;li&gt;This is an ordered list following a header.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h6 id=&quot;header-6&quot;&gt;Header 6&lt;/h6&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th style=&quot;text-align: left&quot;&gt;head1&lt;/th&gt;
-      &lt;th style=&quot;text-align: left&quot;&gt;head two&lt;/th&gt;
-      &lt;th style=&quot;text-align: left&quot;&gt;three&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;ok&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;good swedish fish&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;nice&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;out of stock&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;good and plenty&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;nice&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;ok&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;good &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;oreos&lt;/code&gt;&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;hmm&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;ok&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;good &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;zoute&lt;/code&gt; drop&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;yumm&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;h3 id=&quot;theres-a-horizontal-rule-below-this&quot;&gt;There’s a horizontal rule below this.&lt;/h3&gt;
-
-&lt;hr /&gt;
-
-&lt;h3 id=&quot;here-is-an-unordered-list&quot;&gt;Here is an unordered list:&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Item foo&lt;/li&gt;
-  &lt;li&gt;Item bar&lt;/li&gt;
-  &lt;li&gt;Item baz&lt;/li&gt;
-  &lt;li&gt;Item zip&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;and-an-ordered-list&quot;&gt;And an ordered list:&lt;/h3&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;Item one&lt;/li&gt;
-  &lt;li&gt;Item two&lt;/li&gt;
-  &lt;li&gt;Item three&lt;/li&gt;
-  &lt;li&gt;Item four&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h3 id=&quot;and-a-nested-list&quot;&gt;And a nested list:&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;level 1 item
-    &lt;ul&gt;
-      &lt;li&gt;level 2 item&lt;/li&gt;
-      &lt;li&gt;level 2 item
-        &lt;ul&gt;
-          &lt;li&gt;level 3 item&lt;/li&gt;
-          &lt;li&gt;level 3 item&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;level 1 item
-    &lt;ul&gt;
-      &lt;li&gt;level 2 item&lt;/li&gt;
-      &lt;li&gt;level 2 item&lt;/li&gt;
-      &lt;li&gt;level 2 item&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;level 1 item
-    &lt;ul&gt;
-      &lt;li&gt;level 2 item&lt;/li&gt;
-      &lt;li&gt;level 2 item&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;level 1 item&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;small-image&quot;&gt;Small image&lt;/h3&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://assets-cdn.github.com/images/icons/emoji/octocat.png&quot; alt=&quot;Octocat&quot; /&gt;&lt;/p&gt;
-
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Long, single-line code blocks should not wrap. They should horizontally scroll if they are too long. This line should be long enough to demonstrate this.
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;The final element.
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name></name></author><summary type="html">Text can be bold, italic, strikethrough or keyword Link to another page. There should be whitespace between paragraphs. There should be whitespace between paragraphs. We recommend including a README, or a file with information about your project. Header 1 This is a normal paragraph following a header. GitHub is a code hosting platform for version control and collaboration. It lets you and others work together on projects from anywhere. Header 2 This is a blockquote following a header. When something is important enough, you do it even if the odds are not in your favor. Header 3 // Javascript code with syntax highlighting. var fun = function lang(l) { dateformat.i18n = require(&apos;./lang/&apos; + l) return true; } # Ruby code with syntax highlighting GitHubPages::Dependencies.gems.each do |gem, version| s.add_dependency(gem, &quot;= #{version}&quot;) end Header 4 This is an unordered list following a header. This is an unordered list following a header. This is an unordered list following a header. Header 5 This is an ordered list following a header. This is an ordered list following a header. This is an ordered list following a header. Header 6 head1 head two three ok good swedish fish nice out of stock good and plenty nice ok good oreos hmm ok good zoute drop yumm There’s a horizontal rule below this. Here is an unordered list: Item foo Item bar Item baz Item zip And an ordered list: Item one Item two Item three Item four And a nested list: level 1 item level 2 item level 2 item level 3 item level 3 item level 1 item level 2 item level 2 item level 2 item level 1 item level 2 item level 2 item level 1 item Small image Long, single-line code blocks should not wrap. They should horizontally scroll if they are too long. This line should be long enough to demonstrate this. The final element.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/graph_theory.png" /></entry></feed>
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name></name></author><summary type="html">Text can be bold, italic, strikethrough or keyword Link to another page. There should be whitespace between paragraphs. There should be whitespace between paragraphs. We recommend including a README, or a file with information about your project. Header 1 This is a normal paragraph following a header. GitHub is a code hosting platform for version control and collaboration. It lets you and others work together on projects from anywhere. Header 2 This is a blockquote following a header. When something is important enough, you do it even if the odds are not in your favor. Header 3 // Javascript code with syntax highlighting. var fun = function lang(l) { dateformat.i18n = require(&apos;./lang/&apos; + l) return true; } # Ruby code with syntax highlighting GitHubPages::Dependencies.gems.each do |gem, version| s.add_dependency(gem, &quot;= #{version}&quot;) end Header 4 This is an unordered list following a header. This is an unordered list following a header. This is an unordered list following a header. Header 5 This is an ordered list following a header. This is an ordered list following a header. This is an ordered list following a header. Header 6 head1 head two three ok good swedish fish nice out of stock good and plenty nice ok good oreos hmm ok good zoute drop yumm There’s a horizontal rule below this. Here is an unordered list: Item foo Item bar Item baz Item zip And an ordered list: Item one Item two Item three Item four And a nested list: level 1 item level 2 item level 2 item level 3 item level 3 item level 1 item level 2 item level 2 item level 2 item level 1 item level 2 item level 2 item level 1 item Small image Long, single-line code blocks should not wrap. They should horizontally scroll if they are too long. This line should be long enough to demonstrate this. The final element.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/data_science.png" /></entry></feed>
