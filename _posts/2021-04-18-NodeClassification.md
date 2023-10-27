@@ -7,6 +7,39 @@ image: NodeClassification.jpg
 categories: ["Machine Learning"]
 ---
 
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+  
+  body {
+      font-family: 'Open Sans', sans-serif;
+  }
+
+  h1 {
+    font-family: 'Roboto', sans-serif;
+    color: #007bff;
+    margin-top: 30px;
+  }
+
+  h3 {
+    font-family: 'Roboto', sans-serif;
+    color: #007bff;
+    margin-top: 30px;
+  }
+
+  h4 {
+    font-family: 'Roboto', sans-serif;
+    color: #EA950B;
+    margin-top: 30px;
+  }
+
+  pre {
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 5px;
+  }
+</style>
+
+
 ```python
 import networkx as nx
 import numpy as np

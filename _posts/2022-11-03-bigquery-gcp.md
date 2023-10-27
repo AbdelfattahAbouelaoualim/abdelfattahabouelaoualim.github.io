@@ -9,15 +9,27 @@ categories: ["Computer Science", "Data Engineering", "Cloud Computing"]
 ---
 
 <style>
-  /* Styles pour améliorer la lisibilité et l'esthétique */
-  h2 {
-    border-bottom: 2px solid #EA950B;
-    padding-bottom: 10px;
-    margin-top: 40px;
+  @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+  
+  body {
+      font-family: 'Open Sans', sans-serif;
+  }
+
+  h1 {
+    font-family: 'Roboto', sans-serif;
+    color: #007bff;
+    margin-top: 30px;
   }
 
   h3 {
+    font-family: 'Roboto', sans-serif;
     color: #007bff;
+    margin-top: 30px;
+  }
+
+  h4 {
+    font-family: 'Roboto', sans-serif;
+    color: #EA950B;
     margin-top: 30px;
   }
 
@@ -27,6 +39,7 @@ categories: ["Computer Science", "Data Engineering", "Cloud Computing"]
     border-radius: 5px;
   }
 </style>
+
 
 ### Introduction
 Google Cloud's BigQuery is a fully-managed, serverless data warehouse that enables super-fast SQL queries across large datasets. With its ability to execute SQL queries over vast amounts of data in seconds, BigQuery stands out as a potent tool for data analysis and business intelligence.
