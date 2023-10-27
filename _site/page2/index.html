@@ -76,6 +76,32 @@
           <article class="card mb-4">
             <header class="card-header">
               <div class="card-meta">
+                <time>Published on 01 May 2021</time>
+                <span>
+                  in - 
+                  
+                  
+                  <a href="/categories/#Data Science">Data Science</a>
+                  
+                  
+                </span>
+
+              </div>
+              <a href="/data%20science/2021/05/01/MP/">
+                <h4 class="card-title">How to use MongoDb with Python</h4>
+              </a>
+            </header>
+            <a href="/data%20science/2021/05/01/MP/">
+              <img class="card-img" src="/img/MongoDB_Python.png" alt="" />
+            </a>
+            <div class="card-body">
+              <p class="card-text">This little tutorial shows how to use MongoDB with python. from pymongo import MongoClient import pprint import pandas as pd #Connect to mongodb client = MongoClient('mongodb://localhost:27017/', readPreference='primaryPreferred') #Connect to spark db db = client['Connect_to_Spark_db'] mentions_events = db['mentions_events'] pprint.pprint(mentions_events.find_one()) Test request...</p>
+            </div>
+          </article>
+
+          <article class="card mb-4">
+            <header class="card-header">
+              <div class="card-meta">
                 <time>Published on 26 Apr 2021</time>
                 <span>
                   in - 
@@ -148,32 +174,6 @@
             </a>
             <div class="card-body">
               <p class="card-text">import networkx as nx import numpy as np import pandas as pd import os import stellargraph as sg from stellargraph.mapper import GraphSAGENodeGenerator from stellargraph.layer import GraphSAGE from tensorflow.keras import layers, optimizers, losses, metrics, Model from sklearn import model_selection from sklearn.utils...</p>
-            </div>
-          </article>
-
-          <article class="card mb-4">
-            <header class="card-header">
-              <div class="card-meta">
-                <time>Published on 06 Feb 2021</time>
-                <span>
-                  in - 
-                  
-                  
-                  <a href="/categories/#Machine Learning">Machine Learning</a>
-                  
-                  
-                </span>
-
-              </div>
-              <a href="/machine%20learning/2021/02/06/bandit/">
-                <h4 class="card-title">Machine learning</h4>
-              </a>
-            </header>
-            <a href="/machine%20learning/2021/02/06/bandit/">
-              <img class="card-img" src="/img/multi_armed_bandit.jpg" alt="" />
-            </a>
-            <div class="card-body">
-              <p class="card-text">Multi-armed bandits The objective of this lab session is to test the performance of some usual bandit algorithms. import numpy as np import matplotlib.pyplot as plt Algorithms There are kkk possible actions, a∈{0,1,...,k−1}a \in \{ 0, 1,...,k - 1\}a∈{0,1,...,k−1}. We...</p>
             </div>
           </article>
 
@@ -275,6 +275,13 @@
             </a>
           </li>
           
+          
+          <li>
+            <a class="btn btn-link btn-sm" href="/categories/#Analytics Engineering">
+              Analytics Engineering
+            </a>
+          </li>
+          
         </ul>
       </div>
     </div>
@@ -285,6 +292,17 @@
         <h4 class="card-title">Latest posts</h4>
         
         <div class="post-item">
+          <a href="/computer%20science/data%20engineering/analytics%20engineering/2022/12/03/dbt/">
+            <h4 class="h6">Empowering Data Workflows with dbt: A SQL Lover's Delight</h4>
+            
+            <img class="card-img" src="/img/dbt.png" alt="Empowering Data Workflows with dbt: A SQL Lover's Delight" />
+            
+          </a>
+          <time>On 03 Dec 2022</time> in Computer Science
+          <hr />
+        </div>
+        
+        <div class="post-item">
           <a href="/computer%20science/data%20engineering/cloud%20computing/2022/11/03/gcp-network/">
             <h4 class="h6">Navigating GCP Network: A Closer Look at Key Features</h4>
             
@@ -292,17 +310,6 @@
             
           </a>
           <time>On 03 Nov 2022</time> in Computer Science
-          <hr />
-        </div>
-        
-        <div class="post-item">
-          <a href="/computer%20science/data%20engineering/cloud%20computing/2022/10/18/terraform-gcp/">
-            <h4 class="h6">Harnessing Terraform for GCP: A Data Engineer's Toolkit</h4>
-            
-            <img class="card-img" src="/img/tf_gcp.png" alt="Harnessing Terraform for GCP: A Data Engineer's Toolkit" />
-            
-          </a>
-          <time>On 18 Oct 2022</time> in Computer Science
           <hr />
         </div>
         

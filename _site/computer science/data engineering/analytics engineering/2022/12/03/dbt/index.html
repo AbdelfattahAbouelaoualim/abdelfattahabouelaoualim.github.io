@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
-  <title> | Navigating GCP Network: A Closer Look at Key Features</title>
+  <title> | Empowering Data Workflows with dbt: A SQL Lover's Delight</title>
 
   <link href="/css/milo.css" rel="stylesheet">
   <link href="/fontawesome-free-5.12.1-web/css/all.css" rel="stylesheet"> <!--load all styles -->
@@ -64,7 +64,7 @@
             <header class="card-header text-center">
 			
               <div class="card-meta">
-                <span>Published on 03 Nov 2022</time></span> in
+                <span>Published on 03 Dec 2022</time></span> in
                   
                   
                   <a href="/categories/#Computer Science">Computer Science</a>
@@ -73,24 +73,23 @@
                   <a href="/categories/#Data Engineering">Data Engineering</a>
                   &nbsp;
                   
-                  <a href="/categories/#Cloud Computing">Cloud Computing</a>
+                  <a href="/categories/#Analytics Engineering">Analytics Engineering</a>
                   
                   
               <div>
 			
-                <h1 class="card-title">Navigating GCP Network: A Closer Look at Key Features</h1>
+                <h1 class="card-title">Empowering Data Workflows with dbt: A SQL Lover's Delight</h1>
 
             </header>
 			
 			
             <a style="cursor:pointer;">
-              <img class="card-img" src="/img/gcp-network.webp" alt="" />
+              <img class="card-img" src="/img/dbt.png" alt="" />
             </a>
             
             
             <div class="card-body">
 			<style>
-  /* Styles pour améliorer la lisibilité et l'esthétique */
   h2 {
     border-bottom: 2px solid #EA950B;
     padding-bottom: 10px;
@@ -110,83 +109,104 @@
 </style>
 
 <h3 id="introduction">Introduction</h3>
-<p>Networking in Google Cloud Platform (GCP) is designed to be robust and scalable to cater to the diverse needs of modern applications. This article delves into various GCP networking components and services that are crucial for securely managing and optimizing network traffic.</p>
 
-<h3 id="vpc-and-firewall-rules">VPC and Firewall Rules</h3>
-<h4 id="virtual-private-cloud-vpc">Virtual Private Cloud (VPC)</h4>
-<p>VPC in GCP provides a private network space where resources like VM instances can be deployed. It facilitates control over networking topology, IP address range, and routing rules.</p>
+<p>dbt (data build tool) is a revolutionary tool in the realm of analytics engineering and data transformation. It empowers data analysts and engineers to transform and model data in the warehouse through SQL. Unlike traditional ETL (Extract, Transform, Load) processes, dbt advocates for an ELT (Extract, Load, Transform) approach, enabling transformations to occur within the data warehouse. This approach allows for version-controlled, tested, and documented data transformation workflows, which are critical for reliable data analytics.</p>
 
-<h4 id="vpc-firewall-rules">VPC Firewall Rules</h4>
-<p>GCP’s firewall rules enable you to control inbound and outbound traffic within your VPC, ensuring only authorized access to and from your resources.</p>
+<h3 id="setting-sail-with-dbt">Setting Sail with dbt</h3>
 
-<div class="language-hcl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">resource</span> <span class="s2">"google_compute_firewall"</span> <span class="s2">"default"</span> <span class="p">{</span>
-  <span class="nx">name</span>    <span class="p">=</span> <span class="s2">"default-firewall"</span>
-  <span class="nx">network</span> <span class="p">=</span> <span class="s2">"default"</span>
+<h4 id="1-installation">1. Installation</h4>
 
-  <span class="nx">allow</span> <span class="p">{</span>
-    <span class="nx">protocol</span> <span class="p">=</span> <span class="s2">"icmp"</span>
-  <span class="p">}</span>
-  <span class="nx">allow</span> <span class="p">{</span>
-    <span class="nx">protocol</span> <span class="p">=</span> <span class="s2">"tcp"</span>
-    <span class="nx">ports</span>    <span class="p">=</span> <span class="p">[</span><span class="s2">"80"</span><span class="p">,</span> <span class="s2">"443"</span><span class="p">]</span>
-  <span class="p">}</span>
-<span class="p">}</span>
+<p>Installing dbt is a straightforward process that can be done through pip:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Install dbt</span>
+<span class="nv">$ </span>pip <span class="nb">install </span>dbt
+</code></pre></div></div>
+<h4 id="2-project-configuration">2. Project Configuration</h4>
+<p>Once installed, you will need to create a dbt project and configure your data warehouse connection:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># dbt_project.yml</span>
+<span class="na">name</span><span class="pi">:</span> <span class="s1">'</span><span class="s">my_dbt_project'</span>
+<span class="na">version</span><span class="pi">:</span> <span class="s1">'</span><span class="s">1.0.0'</span>
+<span class="na">profile</span><span class="pi">:</span> <span class="s1">'</span><span class="s">default'</span>
+</code></pre></div></div>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># profiles.yml</span>
+<span class="na">default</span><span class="pi">:</span>
+  <span class="na">outputs</span><span class="pi">:</span>
+    <span class="na">dev</span><span class="pi">:</span>
+      <span class="na">type</span><span class="pi">:</span> <span class="s1">'</span><span class="s">bigquery'</span>
+      <span class="na">method</span><span class="pi">:</span> <span class="s1">'</span><span class="s">oauth'</span>
+      <span class="na">project</span><span class="pi">:</span> <span class="s1">'</span><span class="s">my_project'</span>
+      <span class="na">dataset</span><span class="pi">:</span> <span class="s1">'</span><span class="s">my_dataset'</span>
+      <span class="na">threads</span><span class="pi">:</span> <span class="m">1</span>
+      <span class="na">timeout_seconds</span><span class="pi">:</span> <span class="m">300</span>
 </code></pre></div></div>
 
-<h3 id="cloud-firewall">Cloud Firewall</h3>
-<p>Cloud Firewall allows for the management of firewall rules across multiple projects and networks, streamlining the enforcement of security policies.</p>
+<h3 id="building-models">Building Models</h3>
+<p>In dbt, data transformation models are built using SQL and are organized in a project directory structure:</p>
 
-<h3 id="google-cloud-nat">Google Cloud NAT</h3>
-<p>Google Cloud NAT (Network Address Translation) enables private instances within a VPC to access the internet securely.</p>
-
-<div class="language-hcl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">resource</span> <span class="s2">"google_compute_router_nat"</span> <span class="s2">"default"</span> <span class="p">{</span>
-  <span class="nx">name</span>   <span class="p">=</span> <span class="s2">"cloud-nat"</span>
-  <span class="nx">router</span> <span class="p">=</span> <span class="nx">google_compute_router</span><span class="err">.</span><span class="nx">default</span><span class="err">.</span><span class="nx">name</span>
-
-  <span class="nx">nat_ip_allocate_option</span>             <span class="p">=</span> <span class="s2">"AUTO_ONLY"</span>
-  <span class="nx">source_subnetwork_ip_ranges_to_nat</span> <span class="p">=</span> <span class="s2">"ALL_SUBNETWORKS_ALL_IP_RANGES"</span>
-<span class="p">}</span>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Directory structure</span>
+models/
+  my_model.sql
+  ...
+</code></pre></div></div>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">-- my_model.sql</span>
+<span class="k">SELECT</span>
+  <span class="n">column1</span><span class="p">,</span>
+  <span class="n">column2</span><span class="p">,</span>
+  <span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="k">as</span> <span class="k">count</span>
+<span class="k">FROM</span>
+  
+  <span class="p">{{</span> <span class="k">ref</span><span class="p">(</span><span class="s1">'source_table'</span><span class="p">)</span> <span class="p">}}</span>
+  
+<span class="k">GROUP</span> <span class="k">BY</span>
+  <span class="n">column1</span><span class="p">,</span>
+  <span class="n">column2</span><span class="p">;</span>
 </code></pre></div></div>
 
-<h3 id="load-balancing-google-lb7-and-lb4">Load Balancing: Google LB7 and LB4</h3>
-<h4 id="google-lb7">Google LB7</h4>
-<p>Google LB7 (HTTP(S) Load Balancing) operates at the application layer (Layer 7) and distributes HTTP(S) traffic across multiple servers to ensure no single server becomes overwhelmed with too much traffic.</p>
+<h3 id="running-and-testing-models">Running and Testing Models</h3>
+<p>dbt provides a variety of commands to run, test, and document your models:</p>
 
-<h4 id="google-lb4">Google LB4</h4>
-<p>Google LB4 (TCP/UDP Load Balancing) operates at the transport layer (Layer 4), distributing traffic based on IP protocol data.</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Run models</span>
+<span class="nv">$ </span>dbt run
 
-<h3 id="cloud-armor">Cloud Armor</h3>
-<p>Cloud Armor works alongside the HTTP(S) Load Balancing, providing defense against DDoS attacks, and enabling application-aware HTTP(S) firewall capabilities.</p>
-
-<h3 id="cloud-router">Cloud Router</h3>
-<p>Cloud Router enables dynamic route updates between a VPC and on-premises network using BGP (Border Gateway Protocol).</p>
-
-<div class="language-hcl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">resource</span> <span class="s2">"google_compute_router"</span> <span class="s2">"default"</span> <span class="p">{</span>
-  <span class="nx">name</span>    <span class="p">=</span> <span class="s2">"cloud-router"</span>
-  <span class="nx">network</span> <span class="p">=</span> <span class="s2">"default"</span>
-
-  <span class="nx">bgp</span> <span class="p">{</span>
-    <span class="nx">asn</span> <span class="p">=</span> <span class="mi">64514</span>
-  <span class="p">}</span>
-<span class="p">}</span>
+<span class="c"># Test models</span>
+<span class="nv">$ </span>dbt <span class="nb">test</span>
 </code></pre></div></div>
 
-<h3 id="vpc-connector-and-private-service-connect">VPC Connector and Private Service Connect</h3>
-<h4 id="vpc-connector">VPC Connector</h4>
-<p>VPC Connector facilitates the connection between serverless GCP services and a VPC network, enabling access to resources within the VPC.</p>
+<h3 id="materializing-models">Materializing Models</h3>
+<p>dbt supports different materializations (views, tables, incremental models, etc.) to optimize the performance of your analytics workflow:</p>
 
-<h4 id="private-service-connect">Private Service Connect</h4>
-<p>Private Service Connect allows for secure and private connections to Google Cloud services, third-party services, or your own services.</p>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">-- config block</span>
 
-<div class="language-hcl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">resource</span> <span class="s2">"google_service_networking_connection"</span> <span class="s2">"private_vpc_connection"</span> <span class="p">{</span>
-  <span class="nx">network</span>                 <span class="p">=</span> <span class="s2">"default"</span>
-  <span class="nx">service</span>                 <span class="p">=</span> <span class="s2">"servicenetworking.googleapis.com"</span>
-  <span class="nx">reserved_peering_ranges</span> <span class="p">=</span> <span class="p">[</span><span class="s2">"reserved-range"</span><span class="p">]</span>
-<span class="p">}</span>
+<span class="p">{{</span> <span class="n">config</span><span class="p">(</span><span class="n">materialized</span><span class="o">=</span><span class="s1">'incremental'</span><span class="p">)</span> <span class="p">}}</span>
+
+
+<span class="c1">-- model SQL</span>
+<span class="k">SELECT</span>
+  <span class="n">column1</span><span class="p">,</span>
+  <span class="n">column2</span><span class="p">,</span>
+  <span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="k">as</span> <span class="k">count</span>
+<span class="k">FROM</span>
+  
+  <span class="p">{{</span> <span class="k">ref</span><span class="p">(</span><span class="s1">'source_table'</span><span class="p">)</span> <span class="p">}}</span>
+  
+<span class="k">GROUP</span> <span class="k">BY</span>
+  <span class="n">column1</span><span class="p">,</span>
+  <span class="n">column2</span><span class="p">;</span>
+</code></pre></div></div>
+
+<h3 id="version-control-and-documentation">Version Control and Documentation</h3>
+<p>With dbt, all your data models are version controlled and can be thoroughly documented, fostering a well-organized and reliable data architecture:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Generate documentation</span>
+<span class="nv">$ </span>dbt docs generate
+
+<span class="c"># Serve documentation</span>
+<span class="nv">$ </span>dbt docs serve
 </code></pre></div></div>
 
 <h3 id="conclusion">Conclusion</h3>
-<p>The array of networking services provided by GCP furnishes developers and data engineers with robust tools to architect, secure, and optimize their network infrastructure. Each service is tailored to address specific networking requirements, thereby enabling fine-grained control over network traffic and security policies. Through a thorough understanding and apt utilization of these services, one can significantly enhance the efficiency and security of applications hosted on GCP.</p>
+<p>dbt is a pivotal tool for modern analytics engineering, allowing for streamlined, version-controlled, and well-documented data transformation workflows entirely in SQL. By harnessing the power of dbt, data teams can build a robust analytics foundation, enabling insightful data-driven decisions across the organization. The ease of use, combined with powerful features like materializations and testing, make dbt an invaluable asset in any data engineer’s toolkit.</p>
 
            <!-- <hr />
 			<div class="pg-center">
@@ -196,8 +216,8 @@
   <div id="disqus_thread"></div>
   <script>
 var disqus_config = function () {
-  this.page.url = 'http://localhost:4000/computer%20science/data%20engineering/cloud%20computing/2022/11/03/gcp-network/'; // Replace PAGE_URL with your page's canonical URL variable
-  this.page.identifier = '/computer%20science/data%20engineering/cloud%20computing/2022/11/03/gcp-network'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+  this.page.url = 'http://localhost:4000/computer%20science/data%20engineering/analytics%20engineering/2022/12/03/dbt/'; // Replace PAGE_URL with your page's canonical URL variable
+  this.page.identifier = '/computer%20science/data%20engineering/analytics%20engineering/2022/12/03/dbt'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
 };
 (function() {
   var d = document, s = d.createElement('script');
