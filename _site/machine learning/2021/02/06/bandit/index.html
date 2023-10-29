@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
-  <title> | Machine learning</title>
+  <title> | Multi-armed bandits</title>
 
   <link href="/css/milo.css" rel="stylesheet">
   <link href="/fontawesome-free-5.12.1-web/css/all.css" rel="stylesheet"> <!--load all styles -->
@@ -72,7 +72,7 @@
                   
               <div>
 			
-                <h1 class="card-title">Machine learning</h1>
+                <h1 class="card-title">Multi-armed bandits</h1>
 
             </header>
 			
@@ -115,7 +115,7 @@
   }
 </style>
 
-<h2 id="multi-armed-bandits">Multi-armed bandits</h2>
+<h3 id="introduction">Introduction</h3>
 
 <p>The objective of this lab session is to test the performance of some usual bandit algorithms.</p>
 
@@ -123,7 +123,7 @@
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
 </code></pre></div></div>
 
-<h2 id="algorithms">Algorithms</h2>
+<h3 id="algorithms">Algorithms</h3>
 
 <p>There are <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal" style="margin-right:0.03148em;">k</span></span></span></span> possible actions, <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>∈</mo><mo stretchy="false">{</mo><mn>0</mn><mo separator="true">,</mo><mn>1</mn><mo separator="true">,</mo><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mo separator="true">,</mo><mi>k</mi><mo>−</mo><mn>1</mn><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">a \in \{ 0, 1,...,k - 1\}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mord mathnormal">a</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">∈</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">{</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">...</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.03148em;">k</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">}</span></span></span></span>.</p>
 
@@ -287,7 +287,7 @@
 Best action (estimation) =  1
 </code></pre></div></div>
 
-<h2 id="regret-and-precision">Regret and precision</h2>
+<h3 id="regret-and-precision">Regret and precision</h3>
 
 <p>We now compare the performance of the algorithms in terms of <strong>regret</strong> and <strong>precision</strong>.</p>
 
@@ -391,7 +391,7 @@ Best action (estimation) =  1
 
 <p><img src="/img/bandit/output_25_0.png" alt="png" /></p>
 
-<h2 id="statistics">Statistics</h2>
+<h3 id="statistics">Statistics</h3>
 
 <p>Finally, we provide some statistics on the performance of each algorithm for different time horizons.</p>
 
@@ -452,7 +452,7 @@ Best action (estimation) =  1
   <div id="disqus_thread"></div>
   <script>
 var disqus_config = function () {
-  this.page.url = 'http://localhost:4000/machine%20learning/2021/02/06/bandit/'; // Replace PAGE_URL with your page's canonical URL variable
+  this.page.url = '/machine%20learning/2021/02/06/bandit/'; // Replace PAGE_URL with your page's canonical URL variable
   this.page.identifier = '/machine%20learning/2021/02/06/bandit'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
 };
 (function() {
