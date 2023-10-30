@@ -1,7 +1,7 @@
 ---
 title: "Sailing the Clouds: Docker, GKE, and Terraform"
 layout: post
-date: 2023-10-27
+date: 2023-10-25
 image: "terraform_docker.png"
 mathjax: "true"
 categories: ["DevOps", "Cloud Computing"]

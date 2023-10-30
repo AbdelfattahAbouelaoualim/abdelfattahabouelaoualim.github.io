@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
-  <title></title>
+  <title>Mastering Dependencies with Poetry: An Expert's Guide</title>
 
   <link href="/css/milo.css" rel="stylesheet">
   <link href="/fontawesome-free-5.12.1-web/css/all.css" rel="stylesheet"> <!--load all styles -->
@@ -19,17 +19,6 @@
     onload="renderMathInElement(document.body);"></script>
 </head>
 <body>
-  <!--
-  <style>
-  img.card-img-author {
-  height: 10%;
-  width: 20%;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-}
-</style>
--->
 <!-- Navigation -->
 
 <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
@@ -77,55 +66,184 @@
           <article class="card mb-4">
 		  
             <header class="card-header text-center">
-			 
-<!--            <h3 class="card-title"></h3> -->
-            <!-- 
-            <a href="about.jpg">
-              <img class="card-img-author" src="/img/about.jpg" alt="" />
-            </a>
-             -->
+			
+              <div class="card-meta">
+                <span>Published on 24 Oct 2023</time></span> in
+                  
+                  
+                  <a href="/categories/#Computer Science">Computer Science</a>
+                  &nbsp;
+                  
+                  <a href="/categories/#Data Engineering">Data Engineering</a>
+                  
+                  
+              <div>
+			
+                <h1 class="card-title">Mastering Dependencies with Poetry: An Expert's Guide</h1>
 
             </header>
-            <!--
-			      
-            <a href="about.jpg">
-              <img class="card-img" src="/img/about.jpg" alt="" />
-            </a>
-            
-          -->
-            
+			
+			
             <a style="cursor:pointer;">
-              <img class="card-img" src="/img/about.jpg" alt="" />
+              <img class="card-img" src="/img/poetry.png" alt="" />
             </a>
+            
             
             <div class="card-body">
-			<h1 id="welcome">Welcome!</h1>
+			<style>
+  @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+  
+  body {
+      font-family: 'Open Sans', sans-serif;
+  }
 
-<p>It’s very difficult to find time to write, but it’s the best way to learn and share knowledge. In this website, I will apply myself to regularly write articles on :</p>
-<ul>
-  <li>Cloud architecture,</li>
-  <li>Cloud technologies,</li>
-  <li>Data architecture,</li>
-  <li>Big Data ecosystem,</li>
-  <li>Artificial intelligence,</li>
-  <li>Machine learning,</li>
-  <li>Data science,</li>
-  <li>Graph theory,</li>
-  <li>Social and organizational networks analysis,</li>
-  <li>Computer science,</li>
-  <li>Business,</li>
-</ul>
+  h1 {
+    font-family: 'Roboto', sans-serif;
+    color: #007bff;
+    margin-top: 30px;
+  }
 
-<p>And many other subjects…</p>
+  h3 {
+    font-family: 'Roboto', sans-serif;
+    color: #007bff;
+    margin-top: 30px;
+  }
 
+  h4 {
+    font-family: 'Roboto', sans-serif;
+    color: #EA950B;
+    margin-top: 30px;
+  }
 
-            <hr />
-			  
+  pre {
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 5px;
+  }
+</style>
+
+<h3 id="introduction">Introduction</h3>
+
+<p>Managing dependencies in a Python project can be a tedious task, especially as the project grows and the number of dependencies increases. This is where Poetry comes into play, a flexible and powerful dependency management tool that simplifies package management and dependency resolution. In this article, we’ll delve into some advanced features and practices of using Poetry in your Python projects.</p>
+
+<h3 id="getting-started">Getting Started</h3>
+
+<h4 id="installation">Installation</h4>
+
+<p>Poetry can be easily installed using pip:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip <span class="nb">install</span> <span class="nt">--user</span> poetry
+</code></pre></div></div>
+
+<h3 id="initializing-a-project">Initializing a Project</h3>
+<p>Initialize a new project with Poetry:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>poetry new my_project
+<span class="nb">cd </span>my_project
+</code></pre></div></div>
+
+<h3 id="dependency-management">Dependency Management</h3>
+<p>####Adding Dependencies
+Add a new dependency to your project:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>poetry add numpy
+</code></pre></div></div>
+<h4 id="specifying-dependency-versions">Specifying Dependency Versions</h4>
+<p>Specify versions or version ranges for your dependencies:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[tool.poetry.dependencies]
+python = "^3.8"
+numpy = "^1.19"
+</code></pre></div></div>
+<h4 id="updating-dependencies">Updating Dependencies</h4>
+<p>Update a specific dependency or all dependencies:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>poetry update numpy
+poetry update
+</code></pre></div></div>
+<h3 id="virtual-environments">Virtual Environments</h3>
+<p>Poetry creates a virtual environment for your project, ensuring dependencies are isolated.</p>
+
+<h4 id="activating-the-virtual-environment">Activating the Virtual Environment</h4>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>poetry shell
+</code></pre></div></div>
+<h4 id="deactivating-the-virtual-environment">Deactivating the Virtual Environment</h4>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">exit</span>
+</code></pre></div></div>
+<h3 id="packaging-and-publishing">Packaging and Publishing</h3>
+<h4 id="building-your-package">Building Your Package</h4>
+<p>Build your package with:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>poetry build
+</code></pre></div></div>
+<h3 id="publishing-your-package">Publishing Your Package</h3>
+<h4 id="publish-your-package-to-pypi">Publish your package to PyPi:</h4>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>poetry publish <span class="nt">--build</span>
+</code></pre></div></div>
+<h3 id="advanced-usage">Advanced Usage</h3>
+<h4 id="custom-repository-sources">Custom Repository Sources</h4>
+<p>Add custom repository sources for dependency resolution:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[[tool.poetry.source]]
+name = "private-repo"
+url = "https://private-repo.example.com/simple/"
+</code></pre></div></div>
+<h4 id="dependency-groups">Dependency Groups</h4>
+<p>Create groups for optional dependencies:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[tool.poetry.group.dev.dependencies]
+pytest = "^6.0"
+</code></pre></div></div>
+<h4 id="scripting-with-poetry">Scripting with Poetry</h4>
+<p>Create custom scripts in your pyproject.toml:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[tool.poetry.scripts]
+test = "pytest"
+</code></pre></div></div>
+<p>Run your custom script with:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>poetry run <span class="nb">test</span>
+</code></pre></div></div>
+<h3 id="conclusion">Conclusion</h3>
+<p>Poetry provides an intuitive and robust way to manage dependencies, package, and publish your Python projects. Its ability to handle complex dependencies, provide isolated environments, and simplify package publishing makes it an indispensable tool for Python developers aiming to maintain clean and manageable projects.</p>
+
+           <!-- <hr />
+			<div class="pg-center">
+
+<div class="comments">
+  <h2>Comments</h2>
+  <div id="disqus_thread"></div>
+  <script>
+var disqus_config = function () {
+  this.page.url = 'http://localhost:4000/computer%20science/data%20engineering/2023/10/24/poetry/'; // Replace PAGE_URL with your page's canonical URL variable
+  this.page.identifier = '/computer%20science/data%20engineering/2023/10/24/poetry'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+(function() {
+  var d = document, s = d.createElement('script');
+  s.src = '//thearchitect-page-disqus-com.disqus.com/embed.js';
+  s.setAttribute('data-timestamp', +new Date());
+  (d.head || d.body).appendChild(s);
+})();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+</div>
+
+</div>
+<style>
+.pg-center{
+background:#ffffff;
+padding-top:2rem;
+padding-bottom:2rem;
+margin-top:2rem;
+}
+</style>
+  
+		<hr /> -->		    
             </div>
           </article><!-- /.card -->
-
         </div>
-     <style>
+		<style>
   /* Styles généraux */
   h4.card-title {
     font-family: 'Roboto', sans-serif;
@@ -312,12 +430,10 @@
       </div>
     </div>
   </aside>
-</div>
+</div>	
       </div>
     </div>
-
   </main>
-  
 <!--   <div class="site-newsletter">
     <div class="container">
       <div class="text-center">
@@ -353,7 +469,7 @@
         </li>
       </ul> -->
     <div class="copy">
-      &copy;  2021<br />
+      &copy; Mastering Dependencies with Poetry: An Expert's Guide 2021<br />
       All rights reserved
       <a href="https://www.linkedin.com/in/ia-ds-bg/" title="Linkedin"><i class="fab fa-linkedin-square"></i></a>
       <a href="https://github.com/AbdelfattahAbouelaoualim" title="Github"><i class="fab fa-github-square"></i></a>
@@ -364,6 +480,5 @@
 </footer>
 
 <script src="/js/bundle.js"></script>
-
 </body>
 </html>

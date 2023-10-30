@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
-  <title>Performance Tuning in Linux for Data Engineers</title>
+  <title>Navigating Continuous Data Pipelines: An Extensive Look into CI/CD with Azure DevOps, dbt, Airflow, GCS, and BigQuery</title>
 
   <link href="/css/milo.css" rel="stylesheet">
   <link href="/fontawesome-free-5.12.1-web/css/all.css" rel="stylesheet"> <!--load all styles -->
@@ -68,24 +68,27 @@
             <header class="card-header text-center">
 			
               <div class="card-meta">
-                <span>Published on 04 Mar 2020</time></span> in
+                <span>Published on 27 Oct 2023</time></span> in
                   
                   
-                  <a href="/categories/#Computer Science">Computer Science</a>
+                  <a href="/categories/#DevOps">DevOps</a>
                   &nbsp;
                   
                   <a href="/categories/#Data Engineering">Data Engineering</a>
+                  &nbsp;
+                  
+                  <a href="/categories/#Cloud Computing">Cloud Computing</a>
                   
                   
               <div>
 			
-                <h1 class="card-title">Performance Tuning in Linux for Data Engineers</h1>
+                <h1 class="card-title">Navigating Continuous Data Pipelines: An Extensive Look into CI/CD with Azure DevOps, dbt, Airflow, GCS, and BigQuery</h1>
 
             </header>
 			
 			
             <a style="cursor:pointer;">
-              <img class="card-img" src="/img/linux.webp" alt="" />
+              <img class="card-img" src="/img/azuredevops.png" alt="" />
             </a>
             
             
@@ -122,48 +125,93 @@
   }
 </style>
 
-<h3 id="memory-management">Memory Management</h3>
-<h4 id="monitoring-memory-usage">Monitoring Memory Usage</h4>
-<p>Understanding the memory usage is paramount for performance tuning. The free and vmstat commands are instrumental in this regard.</p>
+<h3 id="introduction">Introduction</h3>
 
-<div class="language-bat highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ <span class="kd">free</span> <span class="na">-m
-</span>$ <span class="kd">vmstat</span> <span class="na">-s
-</span></code></pre></div></div>
+<p>Continuous Integration and Continuous Deployment (CI/CD) serve as the backbone of modern data engineering, enabling seamless and reliable data pipelines. This article embarks on an extensive exploration of CI/CD implementation, employing Azure DevOps, dbt, Airflow (via Cloud Composer), Google Cloud Storage (GCS), and BigQuery. We will walk through each tool, its role in the pipeline, and how they interconnect to form a cohesive data engineering workflow.</p>
 
-<h4 id="adjusting-swappiness">Adjusting Swappiness</h4>
-<p>Swappiness is a property that affects how often your system swaps data out of RAM to the swap space. Lowering the swappiness value can potentially improve system performance.</p>
+<h3 id="azure-devops-the-cornerstone-of-cicd">Azure DevOps: The Cornerstone of CI/CD</h3>
 
-<div class="language-bat highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ <span class="kd">sysctl</span> <span class="kd">vm</span>.swappiness<span class="o">=</span><span class="m">10</span>
+<p>Azure DevOps is a comprehensive suite of development tools facilitating CI/CD practices. It provides version control, automated builds, and deployment configurations.</p>
+
+<h4 id="establishing-a-cicd-pipeline">Establishing a CI/CD Pipeline</h4>
+
+<p>Setting up a CI/CD pipeline begins with defining the workflow in a YAML file. This file outlines the build and deployment process.</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">trigger</span><span class="pi">:</span>
+<span class="pi">-</span> <span class="s">main</span>
+
+<span class="na">pool</span><span class="pi">:</span>
+  <span class="na">vmImage</span><span class="pi">:</span> <span class="s1">'</span><span class="s">ubuntu-latest'</span>
+
+<span class="na">steps</span><span class="pi">:</span>
+<span class="pi">-</span> <span class="na">script</span><span class="pi">:</span> <span class="s">echo Building the project...</span>
+  <span class="na">displayName</span><span class="pi">:</span> <span class="s1">'</span><span class="s">Build</span><span class="nv"> </span><span class="s">step'</span>
+  
+<span class="pi">-</span> <span class="na">task</span><span class="pi">:</span> <span class="s">PublishBuildArtifacts@1</span>
+  <span class="na">inputs</span><span class="pi">:</span>
+    <span class="na">pathtoPublish</span><span class="pi">:</span> <span class="s1">'</span><span class="s">$(Build.ArtifactStagingDirectory)'</span>
+    <span class="na">artifactName</span><span class="pi">:</span> <span class="s1">'</span><span class="s">my_artifact'</span>
+    <span class="na">publishLocation</span><span class="pi">:</span> <span class="s1">'</span><span class="s">Container'</span>
 </code></pre></div></div>
+<p>In this YAML file, we define a simple pipeline triggered on changes to the main branch, utilizing an Ubuntu VM, and comprising two steps: a build step and a publish artifacts step.</p>
 
-<h3 id="file-system-optimization">File System Optimization</h3>
-<h4 id="choosing-the-right-file-system">Choosing the Right File System</h4>
-<p>File systems like ext4 and XFS are known for their robustness and performance. ext4 often strikes a good balance between performance and features.</p>
+<h3 id="dbt-data-build-tool-for-transformations">dbt: Data Build Tool for Transformations</h3>
+<p>dbt is instrumental for defining, documenting, and executing data transformations in BigQuery.</p>
 
-<h3 id="mount-options">Mount Options</h3>
-<p>Utilizing mount options like noatime and nodiratime can reduce filesystem overhead.</p>
-
-<div class="language-bat highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ <span class="kd">mount</span> <span class="na">-o </span><span class="kd">remount</span><span class="o">,</span><span class="kd">noatime</span><span class="o">,</span><span class="kd">nodiratime</span> <span class="na">/dev/sda</span><span class="m">1</span> /
+<h4 id="crafting-a-dbt-model">Crafting a dbt Model</h4>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">models</span><span class="pi">:</span>
+  <span class="na">my_project</span><span class="pi">:</span>
+    <span class="na">example</span><span class="pi">:</span>
+      <span class="na">materialized</span><span class="pi">:</span> <span class="s">table</span>
+      <span class="na">post-hook</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="s2">"</span><span class="s">GRANT</span><span class="nv"> </span><span class="s">SELECT</span><span class="nv"> </span><span class="s">ON</span><span class="nv">  </span><span class="s">TO</span><span class="nv"> </span><span class="s">GROUP</span><span class="nv"> </span><span class="s">analytics"</span>
 </code></pre></div></div>
+<p>Here, we define a dbt model to materialize a table and set permissions using a post-hook.</p>
 
-<h3 id="network-optimization">Network Optimization</h3>
-<h4 id="kernel-parameter-tuning">Kernel Parameter Tuning</h4>
-<p>Adjusting kernel parameters such as net.core.rmem_max and net.core.wmem_max can enhance network performance.</p>
+<h3 id="cloud-composer-and-airflow-orchestrating-data-workflows">Cloud Composer and Airflow: Orchestrating Data Workflows</h3>
+<p>Cloud Composer, leveraging Apache Airflow, orchestrates complex data workflows, scheduling, monitoring, and managing workflows in a cloud environment.</p>
 
-<div class="language-bat highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ <span class="kd">sysctl</span> <span class="na">-w </span><span class="nb">net</span>.core.rmem_max<span class="o">=</span><span class="m">16777216</span>
-$ <span class="kd">sysctl</span> <span class="na">-w </span><span class="nb">net</span>.core.wmem_max<span class="o">=</span><span class="m">16777216</span>
+<h4 id="sculpting-an-airflow-dag">Sculpting an Airflow DAG</h4>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">airflow</span> <span class="kn">import</span> <span class="n">DAG</span>
+<span class="kn">from</span> <span class="nn">airflow.operators.dummy_operator</span> <span class="kn">import</span> <span class="n">DummyOperator</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+
+<span class="n">default_args</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">'owner'</span><span class="p">:</span> <span class="s">'airflow'</span><span class="p">,</span>
+    <span class="s">'depends_on_past'</span><span class="p">:</span> <span class="bp">False</span><span class="p">,</span>
+    <span class="s">'start_date'</span><span class="p">:</span> <span class="n">datetime</span><span class="p">(</span><span class="mi">2022</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+<span class="p">}</span>
+
+<span class="n">dag</span> <span class="o">=</span> <span class="n">DAG</span><span class="p">(</span>
+    <span class="s">'example_dag'</span><span class="p">,</span>
+    <span class="n">default_args</span><span class="o">=</span><span class="n">default_args</span><span class="p">,</span>
+    <span class="n">description</span><span class="o">=</span><span class="s">'An example DAG'</span><span class="p">,</span>
+    <span class="n">schedule_interval</span><span class="o">=</span><span class="s">'@daily'</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">start</span> <span class="o">=</span> <span class="n">DummyOperator</span><span class="p">(</span>
+    <span class="n">task_id</span><span class="o">=</span><span class="s">'start'</span><span class="p">,</span>
+    <span class="n">dag</span><span class="o">=</span><span class="n">dag</span><span class="p">,</span>
+<span class="p">)</span>
 </code></pre></div></div>
+<p>Here, an example Airflow Directed Acyclic Graph (DAG) is created, defining the order of task execution and their dependencies.</p>
 
-<h3 id="monitoring-and-profiling">Monitoring and Profiling</h3>
-<h4 id="tools-for-the-job">Tools for the Job</h4>
-<p>dstat and htop are powerful tools for monitoring and profiling system resources.</p>
+<h3 id="google-cloud-storage-and-bigquery-storing-and-analyzing-data">Google Cloud Storage and BigQuery: Storing and Analyzing Data</h3>
+<p>GCS and BigQuery form a potent duo for data storage and analysis.</p>
 
-<div class="language-bat highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ <span class="kd">dstat</span> <span class="na">-cdngy
-</span>$ <span class="kd">htop</span>
+<h4 id="uploading-and-querying-data">Uploading and Querying Data</h4>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Uploading data to GCS</span>
+gsutil <span class="nb">cp </span>data.csv gs://my_bucket/data.csv
+
+<span class="c"># Loading data into BigQuery</span>
+bq load <span class="nt">--autodetect</span> <span class="nt">--source_format</span><span class="o">=</span>CSV my_dataset.my_table gs://my_bucket/data.csv
+</code></pre></div></div>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">-- Querying data in BigQuery</span>
+<span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="nv">`my_project.my_dataset.my_table`</span>
 </code></pre></div></div>
 
 <h3 id="conclusion">Conclusion</h3>
-<p>Performance tuning in Linux is a vast yet crucial domain, especially for data engineers looking to get the most out of their systems. The techniques discussed above are just the tip of the iceberg but can significantly enhance system efficiency when applied judiciously.</p>
+<p>The amalgamation of Azure DevOps, dbt, Cloud Composer, GCS, and BigQuery under the umbrella of CI/CD fosters a streamlined, reliable, and robust data engineering infrastructure. This detailed walkthrough delineates how these tools can be orchestrated to accelerate the development cycle, fortify data pipelines, and propel organizations towards a data-driven epoch with assurance.</p>
 
            <!-- <hr />
 			<div class="pg-center">
@@ -173,8 +221,8 @@ $ <span class="kd">sysctl</span> <span class="na">-w </span><span class="nb">net
   <div id="disqus_thread"></div>
   <script>
 var disqus_config = function () {
-  this.page.url = 'http://localhost:4000/computer%20science/data%20engineering/2020/03/04/linux/'; // Replace PAGE_URL with your page's canonical URL variable
-  this.page.identifier = '/computer%20science/data%20engineering/2020/03/04/linux'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+  this.page.url = 'http://localhost:4000/devops/data%20engineering/cloud%20computing/2023/10/27/azuredevops/'; // Replace PAGE_URL with your page's canonical URL variable
+  this.page.identifier = '/devops/data%20engineering/cloud%20computing/2023/10/27/azuredevops'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
 };
 (function() {
   var d = document, s = d.createElement('script');
@@ -426,7 +474,7 @@ margin-top:2rem;
         </li>
       </ul> -->
     <div class="copy">
-      &copy; Performance Tuning in Linux for Data Engineers 2021<br />
+      &copy; Navigating Continuous Data Pipelines: An Extensive Look into CI/CD with Azure DevOps, dbt, Airflow, GCS, and BigQuery 2021<br />
       All rights reserved
       <a href="https://www.linkedin.com/in/ia-ds-bg/" title="Linkedin"><i class="fab fa-linkedin-square"></i></a>
       <a href="https://github.com/AbdelfattahAbouelaoualim" title="Github"><i class="fab fa-github-square"></i></a>

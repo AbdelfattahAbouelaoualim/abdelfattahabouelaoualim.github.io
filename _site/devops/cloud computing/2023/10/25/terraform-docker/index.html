@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
-  <title></title>
+  <title>Sailing the Clouds: Docker, GKE, and Terraform</title>
 
   <link href="/css/milo.css" rel="stylesheet">
   <link href="/fontawesome-free-5.12.1-web/css/all.css" rel="stylesheet"> <!--load all styles -->
@@ -19,17 +19,6 @@
     onload="renderMathInElement(document.body);"></script>
 </head>
 <body>
-  <!--
-  <style>
-  img.card-img-author {
-  height: 10%;
-  width: 20%;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-}
-</style>
--->
 <!-- Navigation -->
 
 <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
@@ -77,55 +66,187 @@
           <article class="card mb-4">
 		  
             <header class="card-header text-center">
-			 
-<!--            <h3 class="card-title"></h3> -->
-            <!-- 
-            <a href="about.jpg">
-              <img class="card-img-author" src="/img/about.jpg" alt="" />
-            </a>
-             -->
+			
+              <div class="card-meta">
+                <span>Published on 25 Oct 2023</time></span> in
+                  
+                  
+                  <a href="/categories/#DevOps">DevOps</a>
+                  &nbsp;
+                  
+                  <a href="/categories/#Cloud Computing">Cloud Computing</a>
+                  
+                  
+              <div>
+			
+                <h1 class="card-title">Sailing the Clouds: Docker, GKE, and Terraform</h1>
 
             </header>
-            <!--
-			      
-            <a href="about.jpg">
-              <img class="card-img" src="/img/about.jpg" alt="" />
-            </a>
-            
-          -->
-            
+			
+			
             <a style="cursor:pointer;">
-              <img class="card-img" src="/img/about.jpg" alt="" />
+              <img class="card-img" src="/img/terraform_docker.png" alt="" />
             </a>
+            
             
             <div class="card-body">
-			<h1 id="welcome">Welcome!</h1>
+			<style>
+  @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+  
+  body {
+      font-family: 'Open Sans', sans-serif;
+  }
 
-<p>It’s very difficult to find time to write, but it’s the best way to learn and share knowledge. In this website, I will apply myself to regularly write articles on :</p>
-<ul>
-  <li>Cloud architecture,</li>
-  <li>Cloud technologies,</li>
-  <li>Data architecture,</li>
-  <li>Big Data ecosystem,</li>
-  <li>Artificial intelligence,</li>
-  <li>Machine learning,</li>
-  <li>Data science,</li>
-  <li>Graph theory,</li>
-  <li>Social and organizational networks analysis,</li>
-  <li>Computer science,</li>
-  <li>Business,</li>
-</ul>
+  h1 {
+    font-family: 'Roboto', sans-serif;
+    color: #007bff;
+    margin-top: 30px;
+  }
 
-<p>And many other subjects…</p>
+  h3 {
+    font-family: 'Roboto', sans-serif;
+    color: #007bff;
+    margin-top: 30px;
+  }
 
+  h4 {
+    font-family: 'Roboto', sans-serif;
+    color: #EA950B;
+    margin-top: 30px;
+  }
 
-            <hr />
-			  
+  pre {
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 5px;
+  }
+</style>
+
+<h3 id="introduction">Introduction</h3>
+
+<p>The cloud-native ecosystem is bustling with tools that facilitate container orchestration, infrastructure as code, and seamless deployment. Among these tools, Docker, Google Kubernetes Engine (GKE), and Terraform stand out for their robustness and ease of use. This article unfolds the synergy between these tools and demonstrates how they can be leveraged to sail smoothly through the cloud-native waters.</p>
+
+<h3 id="docker-containerization-at-its-best">Docker: Containerization at its Best</h3>
+
+<p>Docker is a platform that enables developers to create, deploy, and run applications in containers. Containers allow a developer to package up an application with all parts it needs, such as libraries and other dependencies, and ship it all out as one package.</p>
+
+<h4 id="example-dockerizing-a-simple-application">Example: Dockerizing a Simple Application</h4>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Create a Dockerfile</span>
+<span class="nb">echo</span> <span class="s1">'
+FROM python:3.8-slim-buster
+
+WORKDIR /app
+
+COPY requirements.txt requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY . .
+
+CMD ["python", "app.py"]
+'</span> <span class="o">&gt;</span> Dockerfile
+
+<span class="c"># Build the Docker image</span>
+docker build <span class="nt">-t</span> my-app <span class="nb">.</span>
+</code></pre></div></div>
+<h3 id="gke-orchestrate-containers-with-kubernetes">GKE: Orchestrate Containers with Kubernetes</h3>
+<p>Google Kubernetes Engine (GKE) provides a managed environment for deploying, managing, and scaling your containerized applications using Google infrastructure. It leverages Kubernetes, the open-source container orchestration system.</p>
+
+<h4 id="example-deploying-to-gke">Example: Deploying to GKE</h4>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Create a Kubernetes deployment configuration</span>
+<span class="nb">echo</span> <span class="s1">'
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-app-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: my-app
+  template:
+    metadata:
+      labels:
+        app: my-app
+    spec:
+      containers:
+      - name: my-app
+        image: gcr.io/my-project/my-app:latest
+'</span> <span class="o">&gt;</span> deployment.yaml
+
+<span class="c"># Deploy to GKE</span>
+kubectl apply <span class="nt">-f</span> deployment.yaml
+</code></pre></div></div>
+<h3 id="terraform-infrastructure-as-code">Terraform: Infrastructure as Code</h3>
+<p>Terraform is an open-source infrastructure as code software tool that enables users to define and provision a datacenter infrastructure using a high-level configuration language.</p>
+
+<h4 id="example-provisioning-gke-cluster-using-terraform">Example: Provisioning GKE Cluster using Terraform</h4>
+<div class="language-hcl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">provider</span> <span class="s2">"google"</span> <span class="p">{</span>
+  <span class="nx">credentials</span> <span class="p">=</span> <span class="nx">file</span><span class="err">(</span><span class="s2">"&lt;YOUR-GCP-JSON-KEY&gt;"</span><span class="err">)</span>
+  <span class="nx">project</span>     <span class="p">=</span> <span class="s2">"&lt;YOUR-GCP-PROJECT&gt;"</span>
+  <span class="nx">region</span>      <span class="p">=</span> <span class="s2">"us-central1"</span>
+<span class="p">}</span>
+
+<span class="nx">resource</span> <span class="s2">"google_container_cluster"</span> <span class="s2">"primary"</span> <span class="p">{</span>
+  <span class="nx">name</span>     <span class="p">=</span> <span class="s2">"my-gke-cluster"</span>
+  <span class="nx">location</span> <span class="p">=</span> <span class="s2">"us-central1-a"</span>
+
+  <span class="nx">remove_default_node_pool</span> <span class="p">=</span> <span class="kc">true</span>
+  <span class="nx">initial_node_count</span>       <span class="p">=</span> <span class="mi">1</span>
+
+  <span class="nx">master_auth</span> <span class="p">{</span>
+    <span class="nx">username</span> <span class="p">=</span> <span class="s2">""</span>
+    <span class="nx">password</span> <span class="p">=</span> <span class="s2">""</span>
+
+    <span class="nx">client_certificate_config</span> <span class="p">{</span>
+      <span class="nx">issue_client_certificate</span> <span class="p">=</span> <span class="kc">false</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nx">output</span> <span class="s2">"cluster_endpoint"</span> <span class="p">{</span>
+  <span class="nx">value</span> <span class="p">=</span> <span class="nx">google_container_cluster</span><span class="err">.</span><span class="nx">primary</span><span class="err">.</span><span class="nx">endpoint</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<h3 id="conclusion">Conclusion</h3>
+<p>Embracing Docker, GKE, and Terraform can significantly streamline the deployment and management of cloud-native applications. By containerizing applications with Docker, orchestrating them with GKE, and provisioning infrastructure with Terraform, developers and operations teams can ensure consistency, scalability, and reliability across the development lifecycle.</p>
+
+           <!-- <hr />
+			<div class="pg-center">
+
+<div class="comments">
+  <h2>Comments</h2>
+  <div id="disqus_thread"></div>
+  <script>
+var disqus_config = function () {
+  this.page.url = 'http://localhost:4000/devops/cloud%20computing/2023/10/25/terraform-docker/'; // Replace PAGE_URL with your page's canonical URL variable
+  this.page.identifier = '/devops/cloud%20computing/2023/10/25/terraform-docker'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+(function() {
+  var d = document, s = d.createElement('script');
+  s.src = '//thearchitect-page-disqus-com.disqus.com/embed.js';
+  s.setAttribute('data-timestamp', +new Date());
+  (d.head || d.body).appendChild(s);
+})();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+</div>
+
+</div>
+<style>
+.pg-center{
+background:#ffffff;
+padding-top:2rem;
+padding-bottom:2rem;
+margin-top:2rem;
+}
+</style>
+  
+		<hr /> -->		    
             </div>
           </article><!-- /.card -->
-
         </div>
-     <style>
+		<style>
   /* Styles généraux */
   h4.card-title {
     font-family: 'Roboto', sans-serif;
@@ -312,12 +433,10 @@
       </div>
     </div>
   </aside>
-</div>
+</div>	
       </div>
     </div>
-
   </main>
-  
 <!--   <div class="site-newsletter">
     <div class="container">
       <div class="text-center">
@@ -353,7 +472,7 @@
         </li>
       </ul> -->
     <div class="copy">
-      &copy;  2021<br />
+      &copy; Sailing the Clouds: Docker, GKE, and Terraform 2021<br />
       All rights reserved
       <a href="https://www.linkedin.com/in/ia-ds-bg/" title="Linkedin"><i class="fab fa-linkedin-square"></i></a>
       <a href="https://github.com/AbdelfattahAbouelaoualim" title="Github"><i class="fab fa-github-square"></i></a>
@@ -364,6 +483,5 @@
 </footer>
 
 <script src="/js/bundle.js"></script>
-
 </body>
 </html>
