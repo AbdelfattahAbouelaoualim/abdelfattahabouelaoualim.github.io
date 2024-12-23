@@ -12,11 +12,4 @@ image: photo_web_site.png
 <a href="{{ site.data.social-media.email.href }}{{ site.data.social-media.email.id }}" title="Email me"><i class="fas fa-envelope-square"></i></a>
 
 
-
-As a seasoned data engineer and technology strategist, I bring over 16 years of diverse industry experience, including significant achievements in data architecture, machine learning, and big data analytics. My academic credentials from HEC Paris, Telecom Paris, Université Paris-Saclay, and ENSIMAG underline my deep understanding of data systems and innovative technologies.
-
-Currently leading technology initiatives at SFEIR, my expertise lies in transforming data handling processes and designing robust data governance frameworks. I specialize in migrating complex data systems to cloud platforms (GCP) and implementing cutting-edge solutions in big data, including the utilization of SQL and NoSQL databases, ETL tools, and data visualization techniques.
-
-My experience extends to managing high-performance computing (HPC) environments and delivering data-driven solutions in diverse sectors, from retail to pharmaceuticals. I am adept in advanced machine learning techniques and have a strong foundation in cybersecurity, essential for today's data-centric roles.
-
-With a proven track record in leading teams and managing stakeholder relationships, I am poised to drive strategic data initiatives. My approach combines technical proficiency with a strategic mindset, ensuring data not only supports but also drives business objectives and operational efficiency.
+As a Senior Lead Architect, I specialize in designing and implementing innovative solutions that drive business transformation. With a robust foundation in enterprise architecture, evidenced by my TOGAF certification, I seamlessly integrate overarching business strategies with technology. My expertise extends deeply into the Google Cloud Platform, where I am certified as a Professional Cloud Architect, Data Engineer, ML Engineer, and DevOps Engineer. This diverse skill set allows me to architect, build, and optimize systems that are not only efficient but also scalable and future-proof.
