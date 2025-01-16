@@ -24,36 +24,71 @@
 <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
   <div class="container-fluid">
     <a class="navbar-brand" href="/">
-    <img class="logo" src="/img/logo.png" alt="" style="object-fit:contain;
-            width:200px;
-            height:200px;"> 
+      <img class="logo" src="/img/logo.png" alt="" />
     </a>
-    <button class="navbar-toggler" type="button" style="color:#FFFFFF" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-      Menu
-      <i class="fa fa-bars"></i>
+    <button class="navbar-toggler navbar-dark" type="button" data-toggle="collapse" data-target="#navbarResponsive">
+      <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarResponsive" >
-      <ul class="navbar-nav ml-auto" id="main_nav"> 
-      
-
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
         <li class="nav-item">
-          <a style="color:#FFFFFF" class="nav-link" href="/">Home</a>
+          <a class="nav-link" href="/">Home</a>
         </li>
         <li class="nav-item">
-          <a style="color:#FFFFFF" class="nav-link" href="/about">About</a>
+          <a class="nav-link" href="/about">About</a>
         </li>
         <li class="nav-item">
-          <a style="color:#FFFFFF" class="nav-link" href="/author">Author</a>
+          <a class="nav-link" href="/author">Author</a>
         </li>
-
-        <!--<li class="nav-item">
-           <a style="color:#FFFFFF" class="nav-link" href="/contact">Contact</a> 
-           
-        </li>-->
       </ul>
     </div>
   </div>
 </nav>
+
+<style>
+.navbar {
+  background: rgba(0,0,0,0.8);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+}
+
+.navbar-brand img.logo {
+  width: 150px;
+  height: auto;
+  transition: all 0.3s ease;
+}
+
+.nav-link {
+  color: #fff !important;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  position: relative;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  left: 50%;
+  background: #EA950B;
+  transition: all 0.3s ease;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+  left: 0;
+}
+
+@media (max-width: 991px) {
+  .navbar-collapse {
+    background: rgba(0,0,0,0.9);
+    padding: 1rem;
+    border-radius: 0.5rem;
+  }
+}
+</style>
 
 
   <main class="main pt-4" role="main">
@@ -64,30 +99,26 @@
         <div class="col-md-9">
 
           <article class="card mb-4">
-		  
             <header class="card-header text-center">
-			
               <div class="card-meta">
-                <span>Published on 06 Feb 2021</time></span> in
+                <span class="date">6 February 2021</span>
+                <span class="categories">
                   
+                    <a href="/categories/#Machine Learning">#Machine Learning</a>
                   
-                  <a href="/categories/#Machine Learning">Machine Learning</a>
-                  
-                  
-              <div>
-			
-                <h1 class="card-title">Multi-armed bandits</h1>
-
+                </span>
+              </div>
+              <h1 class="card-title">Multi-armed bandits</h1>
             </header>
-			
-			
-            <a style="cursor:pointer;">
-              <img class="card-img" src="/img/multi_armed_bandit.jpg" alt="" />
-            </a>
+
             
+            <div class="card-img-wrapper">
+              <img class="card-img" src="/img/multi_armed_bandit.jpg" alt="Multi-armed bandits" />
+            </div>
             
+
             <div class="card-body">
-			<style>
+              <style>
   @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
   
   body {
@@ -123,8 +154,8 @@
 
 <p>The objective of this lab session is to test the performance of some usual bandit algorithms.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="kn">import</span> <span class="n">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
 </code></pre></div></div>
 
 <h3 id="algorithms">Algorithms</h3>
@@ -178,93 +209,93 @@
     <span class="k">if</span> <span class="n">param</span> <span class="o">==</span> <span class="bp">None</span><span class="p">:</span>
         <span class="n">eps</span> <span class="o">=</span> <span class="mf">0.1</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="n">eps</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">param</span><span class="p">)</span>
-    <span class="n">k</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">shape</span><span class="p">(</span><span class="n">nb_tries</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
-    <span class="k">if</span> <span class="n">np</span><span class="p">.</span><span class="nb">sum</span><span class="p">(</span><span class="n">nb_tries</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">random</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">eps</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">randint</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
+        <span class="n">eps</span> <span class="o">=</span> <span class="nf">float</span><span class="p">(</span><span class="n">param</span><span class="p">)</span>
+    <span class="n">k</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">shape</span><span class="p">(</span><span class="n">nb_tries</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">np</span><span class="p">.</span><span class="nf">sum</span><span class="p">(</span><span class="n">nb_tries</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="nf">random</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">eps</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="nf">randint</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="n">index</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">where</span><span class="p">(</span><span class="n">nb_tries</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
-        <span class="k">return</span> <span class="n">index</span><span class="p">[</span><span class="n">np</span><span class="p">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">cum_rewards</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">/</span> <span class="n">nb_tries</span><span class="p">[</span><span class="n">index</span><span class="p">])]</span>
+        <span class="n">index</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">where</span><span class="p">(</span><span class="n">nb_tries</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">index</span><span class="p">[</span><span class="n">np</span><span class="p">.</span><span class="nf">argmax</span><span class="p">(</span><span class="n">cum_rewards</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">/</span> <span class="n">nb_tries</span><span class="p">[</span><span class="n">index</span><span class="p">])]</span>
 </code></pre></div></div>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">adaptive_greedy</span><span class="p">(</span><span class="n">nb_tries</span><span class="p">,</span> <span class="n">cum_rewards</span><span class="p">,</span> <span class="n">param</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">param</span> <span class="o">==</span> <span class="bp">None</span><span class="p">:</span>
         <span class="n">c</span> <span class="o">=</span> <span class="mf">1.</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="n">c</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">param</span><span class="p">)</span>
-    <span class="n">k</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">shape</span><span class="p">(</span><span class="n">nb_tries</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
-    <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nb">sum</span><span class="p">(</span><span class="n">nb_tries</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">np</span><span class="p">.</span><span class="nb">sum</span><span class="p">(</span><span class="n">nb_tries</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">random</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">c</span> <span class="o">/</span> <span class="p">(</span><span class="n">c</span> <span class="o">+</span> <span class="n">t</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">randint</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
+        <span class="n">c</span> <span class="o">=</span> <span class="nf">float</span><span class="p">(</span><span class="n">param</span><span class="p">)</span>
+    <span class="n">k</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">shape</span><span class="p">(</span><span class="n">nb_tries</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">sum</span><span class="p">(</span><span class="n">nb_tries</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">np</span><span class="p">.</span><span class="nf">sum</span><span class="p">(</span><span class="n">nb_tries</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="nf">random</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">c</span> <span class="o">/</span> <span class="p">(</span><span class="n">c</span> <span class="o">+</span> <span class="n">t</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="nf">randint</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="n">index</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">where</span><span class="p">(</span><span class="n">nb_tries</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
-        <span class="k">return</span> <span class="n">index</span><span class="p">[</span><span class="n">np</span><span class="p">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">cum_rewards</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">/</span> <span class="n">nb_tries</span><span class="p">[</span><span class="n">index</span><span class="p">])]</span>
+        <span class="n">index</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">where</span><span class="p">(</span><span class="n">nb_tries</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">index</span><span class="p">[</span><span class="n">np</span><span class="p">.</span><span class="nf">argmax</span><span class="p">(</span><span class="n">cum_rewards</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">/</span> <span class="n">nb_tries</span><span class="p">[</span><span class="n">index</span><span class="p">])]</span>
 </code></pre></div></div>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">ucb</span><span class="p">(</span><span class="n">nb_tries</span><span class="p">,</span> <span class="n">cum_rewards</span><span class="p">,</span> <span class="n">param</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">param</span> <span class="o">==</span> <span class="bp">None</span><span class="p">:</span>
         <span class="n">c</span> <span class="o">=</span> <span class="mf">1.</span> 
     <span class="k">else</span><span class="p">:</span>
-        <span class="n">c</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">param</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">np</span><span class="p">.</span><span class="nb">sum</span><span class="p">(</span><span class="n">nb_tries</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="n">index</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">where</span><span class="p">(</span><span class="n">nb_tries</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
-        <span class="k">return</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">choice</span><span class="p">(</span><span class="n">index</span><span class="p">)</span>
+        <span class="n">c</span> <span class="o">=</span> <span class="nf">float</span><span class="p">(</span><span class="n">param</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">np</span><span class="p">.</span><span class="nf">sum</span><span class="p">(</span><span class="n">nb_tries</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">index</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">where</span><span class="p">(</span><span class="n">nb_tries</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="nf">choice</span><span class="p">(</span><span class="n">index</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nb">sum</span><span class="p">(</span><span class="n">nb_tries</span><span class="p">)</span>
-        <span class="n">upper_bounds</span> <span class="o">=</span> <span class="n">cum_rewards</span> <span class="o">/</span> <span class="n">nb_tries</span> <span class="o">+</span> <span class="n">c</span> <span class="o">*</span> <span class="n">np</span><span class="p">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="o">/</span> <span class="n">nb_tries</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">np</span><span class="p">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">upper_bounds</span><span class="p">)</span>
+        <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">sum</span><span class="p">(</span><span class="n">nb_tries</span><span class="p">)</span>
+        <span class="n">upper_bounds</span> <span class="o">=</span> <span class="n">cum_rewards</span> <span class="o">/</span> <span class="n">nb_tries</span> <span class="o">+</span> <span class="n">c</span> <span class="o">*</span> <span class="n">np</span><span class="p">.</span><span class="nf">sqrt</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="o">/</span> <span class="n">nb_tries</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">np</span><span class="p">.</span><span class="nf">argmax</span><span class="p">(</span><span class="n">upper_bounds</span><span class="p">)</span>
 </code></pre></div></div>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">thompson</span><span class="p">(</span><span class="n">nb_tries</span><span class="p">,</span> <span class="n">cum_rewards</span><span class="p">,</span> <span class="n">param</span><span class="p">):</span>
-    <span class="n">k</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">shape</span><span class="p">(</span><span class="n">nb_tries</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
-    <span class="k">if</span> <span class="n">param</span> <span class="o">==</span> <span class="s">"beta"</span><span class="p">:</span>
+    <span class="n">k</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">shape</span><span class="p">(</span><span class="n">nb_tries</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">param</span> <span class="o">==</span> <span class="sh">"</span><span class="s">beta</span><span class="sh">"</span><span class="p">:</span>
         <span class="c1"># Beta prior
 </span>        <span class="k">try</span><span class="p">:</span>
-            <span class="n">samples</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">beta</span><span class="p">(</span><span class="n">cum_rewards</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">nb_tries</span> <span class="o">-</span> <span class="n">cum_rewards</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+            <span class="n">samples</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="nf">beta</span><span class="p">(</span><span class="n">cum_rewards</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">nb_tries</span> <span class="o">-</span> <span class="n">cum_rewards</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
         <span class="k">except</span><span class="p">:</span>
-            <span class="n">samples</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">random</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
+            <span class="n">samples</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="nf">random</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="c1"># Normal prior
-</span>        <span class="n">samples</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">normal</span><span class="p">(</span><span class="n">cum_rewards</span> <span class="o">/</span> <span class="p">(</span><span class="n">nb_tries</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span> <span class="mf">1.</span> <span class="o">/</span> <span class="p">(</span><span class="n">nb_tries</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
-    <span class="k">return</span> <span class="n">np</span><span class="p">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">samples</span><span class="p">)</span>
+</span>        <span class="n">samples</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="nf">normal</span><span class="p">(</span><span class="n">cum_rewards</span> <span class="o">/</span> <span class="p">(</span><span class="n">nb_tries</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span> <span class="mf">1.</span> <span class="o">/</span> <span class="p">(</span><span class="n">nb_tries</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">np</span><span class="p">.</span><span class="nf">argmax</span><span class="p">(</span><span class="n">samples</span><span class="p">)</span>
 </code></pre></div></div>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">get_action</span><span class="p">(</span><span class="n">algo</span><span class="p">,</span> <span class="n">nb_tries</span><span class="p">,</span> <span class="n">cum_rewards</span><span class="p">,</span> <span class="n">param</span> <span class="o">=</span> <span class="bp">None</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">algo</span> <span class="o">==</span> <span class="s">"eps_greedy"</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">eps_greedy</span><span class="p">(</span><span class="n">nb_tries</span><span class="p">,</span> <span class="n">cum_rewards</span><span class="p">,</span> <span class="n">param</span><span class="p">)</span>
-    <span class="k">elif</span> <span class="n">algo</span> <span class="o">==</span> <span class="s">"adaptive_greedy"</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">adaptive_greedy</span><span class="p">(</span><span class="n">nb_tries</span><span class="p">,</span> <span class="n">cum_rewards</span><span class="p">,</span> <span class="n">param</span><span class="p">)</span>
-    <span class="k">elif</span> <span class="n">algo</span> <span class="o">==</span> <span class="s">"ucb"</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">ucb</span><span class="p">(</span><span class="n">nb_tries</span><span class="p">,</span> <span class="n">cum_rewards</span><span class="p">,</span> <span class="n">param</span><span class="p">)</span>
-    <span class="k">elif</span> <span class="n">algo</span> <span class="o">==</span> <span class="s">"thompson"</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">thompson</span><span class="p">(</span><span class="n">nb_tries</span><span class="p">,</span> <span class="n">cum_rewards</span><span class="p">,</span> <span class="n">param</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">algo</span> <span class="o">==</span> <span class="sh">"</span><span class="s">eps_greedy</span><span class="sh">"</span><span class="p">:</span>
+        <span class="k">return</span> <span class="nf">eps_greedy</span><span class="p">(</span><span class="n">nb_tries</span><span class="p">,</span> <span class="n">cum_rewards</span><span class="p">,</span> <span class="n">param</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">algo</span> <span class="o">==</span> <span class="sh">"</span><span class="s">adaptive_greedy</span><span class="sh">"</span><span class="p">:</span>
+        <span class="k">return</span> <span class="nf">adaptive_greedy</span><span class="p">(</span><span class="n">nb_tries</span><span class="p">,</span> <span class="n">cum_rewards</span><span class="p">,</span> <span class="n">param</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">algo</span> <span class="o">==</span> <span class="sh">"</span><span class="s">ucb</span><span class="sh">"</span><span class="p">:</span>
+        <span class="k">return</span> <span class="nf">ucb</span><span class="p">(</span><span class="n">nb_tries</span><span class="p">,</span> <span class="n">cum_rewards</span><span class="p">,</span> <span class="n">param</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">algo</span> <span class="o">==</span> <span class="sh">"</span><span class="s">thompson</span><span class="sh">"</span><span class="p">:</span>
+        <span class="k">return</span> <span class="nf">thompson</span><span class="p">(</span><span class="n">nb_tries</span><span class="p">,</span> <span class="n">cum_rewards</span><span class="p">,</span> <span class="n">param</span><span class="p">)</span>
 </code></pre></div></div>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">get_bernoulli_reward</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">model_param</span><span class="p">):</span>
-    <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">random</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">model_param</span><span class="p">[</span><span class="n">a</span><span class="p">])</span>
+    <span class="k">return</span> <span class="nf">float</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="nf">random</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">model_param</span><span class="p">[</span><span class="n">a</span><span class="p">])</span>
 </code></pre></div></div>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">simple_test</span><span class="p">(</span><span class="n">algo</span><span class="p">,</span> <span class="n">model_param</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">],</span> <span class="n">time_horizon</span> <span class="o">=</span> <span class="mi">20</span><span class="p">,</span> <span class="n">param</span> <span class="o">=</span> <span class="bp">None</span><span class="p">):</span>
-    <span class="n">k</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">model_param</span><span class="p">)</span>
-    <span class="n">nb_tries</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span>
-    <span class="n">cum_rewards</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="nb">float</span><span class="p">)</span>
-    <span class="k">print</span> <span class="p">(</span><span class="s">"action -&gt; reward"</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">time_horizon</span><span class="p">):</span>
-        <span class="n">a</span> <span class="o">=</span> <span class="n">get_action</span><span class="p">(</span><span class="n">algo</span><span class="p">,</span> <span class="n">nb_tries</span><span class="p">,</span> <span class="n">cum_rewards</span><span class="p">,</span> <span class="n">param</span><span class="p">)</span>
-        <span class="n">r</span> <span class="o">=</span> <span class="n">get_bernoulli_reward</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">model_param</span><span class="p">)</span>
-        <span class="k">print</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="o">+</span> <span class="s">" -&gt; "</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">r</span><span class="p">)))</span>
+    <span class="n">k</span> <span class="o">=</span> <span class="nf">len</span><span class="p">(</span><span class="n">model_param</span><span class="p">)</span>
+    <span class="n">nb_tries</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">zeros</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span>
+    <span class="n">cum_rewards</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">zeros</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="nb">float</span><span class="p">)</span>
+    <span class="nf">print </span><span class="p">(</span><span class="sh">"</span><span class="s">action -&gt; reward</span><span class="sh">"</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">time_horizon</span><span class="p">):</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="nf">get_action</span><span class="p">(</span><span class="n">algo</span><span class="p">,</span> <span class="n">nb_tries</span><span class="p">,</span> <span class="n">cum_rewards</span><span class="p">,</span> <span class="n">param</span><span class="p">)</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="nf">get_bernoulli_reward</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">model_param</span><span class="p">)</span>
+        <span class="nf">print</span><span class="p">(</span><span class="nf">str</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="o">+</span> <span class="sh">"</span><span class="s"> -&gt; </span><span class="sh">"</span> <span class="o">+</span> <span class="nf">str</span><span class="p">(</span><span class="nf">int</span><span class="p">(</span><span class="n">r</span><span class="p">)))</span>
         <span class="n">nb_tries</span><span class="p">[</span><span class="n">a</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
         <span class="n">cum_rewards</span><span class="p">[</span><span class="n">a</span><span class="p">]</span> <span class="o">+=</span> <span class="n">r</span>
-    <span class="n">index</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">where</span><span class="p">(</span><span class="n">nb_tries</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
-    <span class="n">best_action</span> <span class="o">=</span> <span class="n">index</span><span class="p">[</span><span class="n">np</span><span class="p">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">cum_rewards</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">/</span> <span class="n">nb_tries</span><span class="p">[</span><span class="n">index</span><span class="p">])]</span>
-    <span class="k">print</span><span class="p">(</span><span class="s">"Best action (estimation) = "</span><span class="p">,</span> <span class="n">best_action</span><span class="p">)</span>
+    <span class="n">index</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">where</span><span class="p">(</span><span class="n">nb_tries</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">best_action</span> <span class="o">=</span> <span class="n">index</span><span class="p">[</span><span class="n">np</span><span class="p">.</span><span class="nf">argmax</span><span class="p">(</span><span class="n">cum_rewards</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">/</span> <span class="n">nb_tries</span><span class="p">[</span><span class="n">index</span><span class="p">])]</span>
+    <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Best action (estimation) = </span><span class="sh">"</span><span class="p">,</span> <span class="n">best_action</span><span class="p">)</span>
 </code></pre></div></div>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">algos</span> <span class="o">=</span> <span class="p">[</span><span class="s">"eps_greedy"</span><span class="p">,</span> <span class="s">"adaptive_greedy"</span><span class="p">,</span> <span class="s">"ucb"</span><span class="p">,</span> <span class="s">"thompson"</span><span class="p">]</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">algos</span> <span class="o">=</span> <span class="p">[</span><span class="sh">"</span><span class="s">eps_greedy</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">adaptive_greedy</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">ucb</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">thompson</span><span class="sh">"</span><span class="p">]</span>
 </code></pre></div></div>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">algo</span> <span class="o">=</span> <span class="n">algos</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
-<span class="n">simple_test</span><span class="p">(</span><span class="n">algo</span><span class="p">)</span>
+<span class="nf">simple_test</span><span class="p">(</span><span class="n">algo</span><span class="p">)</span>
 </code></pre></div></div>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>action -&gt; reward
@@ -298,36 +329,36 @@ Best action (estimation) =  1
 <p>We consider two models: Bernoulli rewards and normal rewards.</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">get_reward</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">model_param</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">model</span> <span class="o">==</span> <span class="s">"bernoulli"</span><span class="p">:</span>
-        <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">random</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">model_param</span><span class="p">[</span><span class="n">a</span><span class="p">])</span>
-    <span class="k">elif</span> <span class="n">model</span> <span class="o">==</span> <span class="s">"normal"</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">normal</span><span class="p">(</span><span class="o">*</span><span class="n">model_param</span><span class="p">[</span><span class="n">a</span><span class="p">])</span>
+    <span class="k">if</span> <span class="n">model</span> <span class="o">==</span> <span class="sh">"</span><span class="s">bernoulli</span><span class="sh">"</span><span class="p">:</span>
+        <span class="k">return</span> <span class="nf">float</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="nf">random</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">model_param</span><span class="p">[</span><span class="n">a</span><span class="p">])</span>
+    <span class="k">elif</span> <span class="n">model</span> <span class="o">==</span> <span class="sh">"</span><span class="s">normal</span><span class="sh">"</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="nf">normal</span><span class="p">(</span><span class="o">*</span><span class="n">model_param</span><span class="p">[</span><span class="n">a</span><span class="p">])</span>
 </code></pre></div></div>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">simulate</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">model_param</span><span class="p">,</span> <span class="n">time_horizon</span><span class="p">,</span> <span class="n">algo</span><span class="p">,</span> <span class="n">param</span> <span class="o">=</span> <span class="bp">None</span><span class="p">):</span>
-    <span class="n">k</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">model_param</span><span class="p">)</span>
-    <span class="n">nb_tries</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span>
-    <span class="n">cum_rewards</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="nb">float</span><span class="p">)</span>
+    <span class="n">k</span> <span class="o">=</span> <span class="nf">len</span><span class="p">(</span><span class="n">model_param</span><span class="p">)</span>
+    <span class="n">nb_tries</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">zeros</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span>
+    <span class="n">cum_rewards</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">zeros</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="nb">float</span><span class="p">)</span>
     <span class="n">action_seq</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="n">reward_seq</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">time_horizon</span><span class="p">):</span>
-        <span class="n">a</span> <span class="o">=</span> <span class="n">get_action</span><span class="p">(</span><span class="n">algo</span><span class="p">,</span> <span class="n">nb_tries</span><span class="p">,</span> <span class="n">cum_rewards</span><span class="p">,</span> <span class="n">param</span><span class="p">)</span>
-        <span class="n">r</span> <span class="o">=</span> <span class="n">get_reward</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">model_param</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">time_horizon</span><span class="p">):</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="nf">get_action</span><span class="p">(</span><span class="n">algo</span><span class="p">,</span> <span class="n">nb_tries</span><span class="p">,</span> <span class="n">cum_rewards</span><span class="p">,</span> <span class="n">param</span><span class="p">)</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="nf">get_reward</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">model_param</span><span class="p">)</span>
         <span class="n">nb_tries</span><span class="p">[</span><span class="n">a</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
         <span class="n">cum_rewards</span><span class="p">[</span><span class="n">a</span><span class="p">]</span> <span class="o">+=</span> <span class="n">r</span>
-        <span class="n">action_seq</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
-        <span class="n">reward_seq</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+        <span class="n">action_seq</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+        <span class="n">reward_seq</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">action_seq</span><span class="p">,</span> <span class="n">reward_seq</span>
 </code></pre></div></div>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Bernoulli rewards
-</span><span class="n">model</span> <span class="o">=</span> <span class="s">"bernoulli"</span>
+</span><span class="n">model</span> <span class="o">=</span> <span class="sh">"</span><span class="s">bernoulli</span><span class="sh">"</span>
 <span class="n">model_param</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">]</span>
 <span class="n">time_horizon</span> <span class="o">=</span> <span class="mi">20</span>
 <span class="n">algo</span> <span class="o">=</span> <span class="n">algos</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-<span class="n">action_seq</span><span class="p">,</span> <span class="n">reward_seq</span> <span class="o">=</span> <span class="n">simulate</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">model_param</span><span class="p">,</span> <span class="n">time_horizon</span><span class="p">,</span> <span class="n">algo</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">action_seq</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">reward_seq</span><span class="p">)</span>
+<span class="n">action_seq</span><span class="p">,</span> <span class="n">reward_seq</span> <span class="o">=</span> <span class="nf">simulate</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">model_param</span><span class="p">,</span> <span class="n">time_horizon</span><span class="p">,</span> <span class="n">algo</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">action_seq</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">reward_seq</span><span class="p">)</span>
 </code></pre></div></div>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
@@ -335,11 +366,11 @@ Best action (estimation) =  1
 </code></pre></div></div>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Normal rewards
-</span><span class="n">model</span> <span class="o">=</span> <span class="s">"normal"</span>
+</span><span class="n">model</span> <span class="o">=</span> <span class="sh">"</span><span class="s">normal</span><span class="sh">"</span>
 <span class="n">model_param</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mf">2.5</span><span class="p">,</span><span class="mi">1</span><span class="p">)]</span>
-<span class="n">action_seq</span><span class="p">,</span> <span class="n">reward_seq</span> <span class="o">=</span> <span class="n">simulate</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">model_param</span><span class="p">,</span> <span class="n">time_horizon</span><span class="p">,</span> <span class="n">algo</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">action_seq</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">reward_seq</span><span class="p">)</span>
+<span class="n">action_seq</span><span class="p">,</span> <span class="n">reward_seq</span> <span class="o">=</span> <span class="nf">simulate</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">model_param</span><span class="p">,</span> <span class="n">time_horizon</span><span class="p">,</span> <span class="n">algo</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">action_seq</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">reward_seq</span><span class="p">)</span>
 </code></pre></div></div>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[0, 1, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
@@ -353,44 +384,44 @@ Best action (estimation) =  1
 <hr />
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">get_best_action</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">model_param</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">model</span> <span class="o">==</span> <span class="s">"bernoulli"</span><span class="p">:</span>
-        <span class="n">best_reward</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nb">max</span><span class="p">(</span><span class="n">model_param</span><span class="p">)</span>
-        <span class="n">best_actions</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">where</span><span class="p">(</span><span class="n">model_param</span> <span class="o">==</span> <span class="n">best_reward</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
-    <span class="k">elif</span> <span class="n">model</span> <span class="o">==</span> <span class="s">"normal"</span><span class="p">:</span>
-        <span class="n">means</span> <span class="o">=</span> <span class="p">[</span><span class="n">model_param</span><span class="p">[</span><span class="n">a</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">model_param</span><span class="p">))]</span>
-        <span class="n">best_reward</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nb">max</span><span class="p">(</span><span class="n">model_param</span><span class="p">)</span>
-        <span class="n">best_actions</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">where</span><span class="p">(</span><span class="n">means</span> <span class="o">==</span> <span class="n">best_reward</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="k">if</span> <span class="n">model</span> <span class="o">==</span> <span class="sh">"</span><span class="s">bernoulli</span><span class="sh">"</span><span class="p">:</span>
+        <span class="n">best_reward</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">max</span><span class="p">(</span><span class="n">model_param</span><span class="p">)</span>
+        <span class="n">best_actions</span> <span class="o">=</span> <span class="nf">list</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="nf">where</span><span class="p">(</span><span class="n">model_param</span> <span class="o">==</span> <span class="n">best_reward</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="k">elif</span> <span class="n">model</span> <span class="o">==</span> <span class="sh">"</span><span class="s">normal</span><span class="sh">"</span><span class="p">:</span>
+        <span class="n">means</span> <span class="o">=</span> <span class="p">[</span><span class="n">model_param</span><span class="p">[</span><span class="n">a</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="nf">len</span><span class="p">(</span><span class="n">model_param</span><span class="p">))]</span>
+        <span class="n">best_reward</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">max</span><span class="p">(</span><span class="n">model_param</span><span class="p">)</span>
+        <span class="n">best_actions</span> <span class="o">=</span> <span class="nf">list</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="nf">where</span><span class="p">(</span><span class="n">means</span> <span class="o">==</span> <span class="n">best_reward</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
     <span class="k">return</span> <span class="n">best_actions</span><span class="p">,</span> <span class="n">best_reward</span>
 </code></pre></div></div>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">get_metrics</span><span class="p">(</span><span class="n">action_seq</span><span class="p">,</span> <span class="n">reward_seq</span><span class="p">,</span> <span class="n">best_actions</span><span class="p">,</span> <span class="n">best_reward</span><span class="p">):</span>
-    <span class="n">time_horizon</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">action_seq</span><span class="p">)</span>
-    <span class="n">regret</span> <span class="o">=</span> <span class="n">best_reward</span> <span class="o">*</span> <span class="n">np</span><span class="p">.</span><span class="n">arange</span><span class="p">(</span><span class="n">time_horizon</span><span class="p">)</span> <span class="o">-</span> <span class="n">np</span><span class="p">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">reward_seq</span><span class="p">)</span>
-    <span class="n">precision</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">cumsum</span><span class="p">([</span><span class="nb">int</span><span class="p">(</span><span class="n">a</span> <span class="ow">in</span> <span class="n">best_actions</span><span class="p">)</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">action_seq</span><span class="p">])</span> <span class="o">/</span> <span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">arange</span><span class="p">(</span><span class="n">time_horizon</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">time_horizon</span> <span class="o">=</span> <span class="nf">len</span><span class="p">(</span><span class="n">action_seq</span><span class="p">)</span>
+    <span class="n">regret</span> <span class="o">=</span> <span class="n">best_reward</span> <span class="o">*</span> <span class="n">np</span><span class="p">.</span><span class="nf">arange</span><span class="p">(</span><span class="n">time_horizon</span><span class="p">)</span> <span class="o">-</span> <span class="n">np</span><span class="p">.</span><span class="nf">cumsum</span><span class="p">(</span><span class="n">reward_seq</span><span class="p">)</span>
+    <span class="n">precision</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">cumsum</span><span class="p">([</span><span class="nf">int</span><span class="p">(</span><span class="n">a</span> <span class="ow">in</span> <span class="n">best_actions</span><span class="p">)</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">action_seq</span><span class="p">])</span> <span class="o">/</span> <span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="nf">arange</span><span class="p">(</span><span class="n">time_horizon</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">regret</span><span class="p">,</span> <span class="n">precision</span>
 </code></pre></div></div>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">show_metrics</span><span class="p">(</span><span class="n">metrics</span><span class="p">):</span>
-    <span class="n">fig</span><span class="p">,</span> <span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
-    <span class="n">ax1</span><span class="p">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s">'Time'</span><span class="p">)</span>
-    <span class="n">ax1</span><span class="p">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s">'Regret'</span><span class="p">)</span>
-    <span class="n">ax1</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">time_horizon</span><span class="p">),</span><span class="n">metrics</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">color</span> <span class="o">=</span> <span class="s">'b'</span><span class="p">)</span>
-    <span class="n">ax2</span><span class="p">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s">'Time'</span><span class="p">)</span>
-    <span class="n">ax2</span><span class="p">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s">'Precision'</span><span class="p">)</span>
-    <span class="n">ax2</span><span class="p">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.02</span><span class="p">,</span><span class="mf">1.02</span><span class="p">)</span>
-    <span class="n">ax2</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">time_horizon</span><span class="p">),</span><span class="n">metrics</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">color</span> <span class="o">=</span> <span class="s">'b'</span><span class="p">)</span>
-    <span class="n">plt</span><span class="p">.</span><span class="n">show</span><span class="p">()</span>
+    <span class="n">fig</span><span class="p">,</span> <span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="nf">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+    <span class="n">ax1</span><span class="p">.</span><span class="nf">set_xlabel</span><span class="p">(</span><span class="sh">'</span><span class="s">Time</span><span class="sh">'</span><span class="p">)</span>
+    <span class="n">ax1</span><span class="p">.</span><span class="nf">set_ylabel</span><span class="p">(</span><span class="sh">'</span><span class="s">Regret</span><span class="sh">'</span><span class="p">)</span>
+    <span class="n">ax1</span><span class="p">.</span><span class="nf">plot</span><span class="p">(</span><span class="nf">range</span><span class="p">(</span><span class="n">time_horizon</span><span class="p">),</span><span class="n">metrics</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">color</span> <span class="o">=</span> <span class="sh">'</span><span class="s">b</span><span class="sh">'</span><span class="p">)</span>
+    <span class="n">ax2</span><span class="p">.</span><span class="nf">set_xlabel</span><span class="p">(</span><span class="sh">'</span><span class="s">Time</span><span class="sh">'</span><span class="p">)</span>
+    <span class="n">ax2</span><span class="p">.</span><span class="nf">set_ylabel</span><span class="p">(</span><span class="sh">'</span><span class="s">Precision</span><span class="sh">'</span><span class="p">)</span>
+    <span class="n">ax2</span><span class="p">.</span><span class="nf">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.02</span><span class="p">,</span><span class="mf">1.02</span><span class="p">)</span>
+    <span class="n">ax2</span><span class="p">.</span><span class="nf">plot</span><span class="p">(</span><span class="nf">range</span><span class="p">(</span><span class="n">time_horizon</span><span class="p">),</span><span class="n">metrics</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">color</span> <span class="o">=</span> <span class="sh">'</span><span class="s">b</span><span class="sh">'</span><span class="p">)</span>
+    <span class="n">plt</span><span class="p">.</span><span class="nf">show</span><span class="p">()</span>
 </code></pre></div></div>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">time_horizon</span> <span class="o">=</span> <span class="mi">10000</span>
-<span class="n">model</span> <span class="o">=</span> <span class="s">"bernoulli"</span>
+<span class="n">model</span> <span class="o">=</span> <span class="sh">"</span><span class="s">bernoulli</span><span class="sh">"</span>
 <span class="n">model_param</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">]</span>
 </code></pre></div></div>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">algo</span> <span class="o">=</span> <span class="n">algos</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
-<span class="n">results</span> <span class="o">=</span> <span class="n">simulate</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">model_param</span><span class="p">,</span> <span class="n">time_horizon</span><span class="p">,</span>  <span class="n">algo</span><span class="p">)</span>
-<span class="n">metrics</span> <span class="o">=</span> <span class="n">get_metrics</span><span class="p">(</span><span class="o">*</span><span class="n">results</span><span class="p">,</span> <span class="o">*</span><span class="n">get_best_action</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">model_param</span><span class="p">))</span>
-<span class="n">show_metrics</span><span class="p">(</span><span class="n">metrics</span><span class="p">)</span>
+<span class="n">results</span> <span class="o">=</span> <span class="nf">simulate</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">model_param</span><span class="p">,</span> <span class="n">time_horizon</span><span class="p">,</span>  <span class="n">algo</span><span class="p">)</span>
+<span class="n">metrics</span> <span class="o">=</span> <span class="nf">get_metrics</span><span class="p">(</span><span class="o">*</span><span class="n">results</span><span class="p">,</span> <span class="o">*</span><span class="nf">get_best_action</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">model_param</span><span class="p">))</span>
+<span class="nf">show_metrics</span><span class="p">(</span><span class="n">metrics</span><span class="p">)</span>
 </code></pre></div></div>
 
 <p><img src="/img/bandit/output_25_0.png" alt="png" /></p>
@@ -404,84 +435,106 @@ Best action (estimation) =  1
 <hr />
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">get_stats</span><span class="p">(</span><span class="n">nb_samples</span><span class="p">,</span> <span class="n">time_periods</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">model_param</span><span class="p">,</span> <span class="n">algo</span><span class="p">,</span> <span class="n">param</span> <span class="o">=</span> <span class="bp">None</span><span class="p">):</span>
-    <span class="n">time_horizon</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">time_periods</span><span class="p">)</span>
+    <span class="n">time_horizon</span> <span class="o">=</span> <span class="nf">max</span><span class="p">(</span><span class="n">time_periods</span><span class="p">)</span>
     <span class="n">norm_regret_samples</span> <span class="o">=</span> <span class="p">[[]</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">time_periods</span><span class="p">]</span>
     <span class="n">precision_samples</span> <span class="o">=</span> <span class="p">[[]</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">time_periods</span><span class="p">]</span>
-    <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nb_samples</span><span class="p">):</span>
-        <span class="n">results</span> <span class="o">=</span> <span class="n">simulate</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">model_param</span><span class="p">,</span> <span class="n">time_horizon</span><span class="p">,</span> <span class="n">algo</span><span class="p">,</span> <span class="n">param</span><span class="p">)</span>
-        <span class="n">regret</span><span class="p">,</span> <span class="n">precision</span> <span class="o">=</span> <span class="n">get_metrics</span><span class="p">(</span><span class="o">*</span><span class="n">results</span><span class="p">,</span> <span class="o">*</span><span class="n">get_best_action</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">model_param</span><span class="p">))</span>
-        <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">t</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">time_periods</span><span class="p">):</span>
-            <span class="n">norm_regret_samples</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">append</span><span class="p">(</span><span class="n">regret</span><span class="p">[</span><span class="n">t</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">/</span> <span class="n">t</span><span class="p">)</span>
-            <span class="n">precision_samples</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">append</span><span class="p">(</span><span class="n">precision</span><span class="p">[</span><span class="n">t</span> <span class="o">-</span> <span class="mi">1</span><span class="p">])</span>
+    <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">nb_samples</span><span class="p">):</span>
+        <span class="n">results</span> <span class="o">=</span> <span class="nf">simulate</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">model_param</span><span class="p">,</span> <span class="n">time_horizon</span><span class="p">,</span> <span class="n">algo</span><span class="p">,</span> <span class="n">param</span><span class="p">)</span>
+        <span class="n">regret</span><span class="p">,</span> <span class="n">precision</span> <span class="o">=</span> <span class="nf">get_metrics</span><span class="p">(</span><span class="o">*</span><span class="n">results</span><span class="p">,</span> <span class="o">*</span><span class="nf">get_best_action</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">model_param</span><span class="p">))</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">t</span> <span class="ow">in</span> <span class="nf">enumerate</span><span class="p">(</span><span class="n">time_periods</span><span class="p">):</span>
+            <span class="n">norm_regret_samples</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="nf">append</span><span class="p">(</span><span class="n">regret</span><span class="p">[</span><span class="n">t</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">/</span> <span class="n">t</span><span class="p">)</span>
+            <span class="n">precision_samples</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="nf">append</span><span class="p">(</span><span class="n">precision</span><span class="p">[</span><span class="n">t</span> <span class="o">-</span> <span class="mi">1</span><span class="p">])</span>
     <span class="k">return</span> <span class="n">norm_regret_samples</span><span class="p">,</span> <span class="n">precision_samples</span>
 </code></pre></div></div>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">show_stats</span><span class="p">(</span><span class="n">time_periods</span><span class="p">,</span> <span class="n">stats</span><span class="p">):</span>
-    <span class="n">meanprops</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">marker</span><span class="o">=</span><span class="s">'o'</span><span class="p">,</span> <span class="n">markeredgecolor</span><span class="o">=</span><span class="s">'black'</span><span class="p">,</span> <span class="n">markerfacecolor</span><span class="o">=</span><span class="s">'r'</span><span class="p">)</span>
-    <span class="n">medianprops</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">linestyle</span><span class="o">=</span><span class="s">'-'</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">2.5</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s">'b'</span><span class="p">)</span>
-    <span class="n">fig</span><span class="p">,</span> <span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
-    <span class="n">ax1</span><span class="p">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">stats</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">positions</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">time_periods</span><span class="p">)),</span> <span class="n">showfliers</span> <span class="o">=</span> <span class="bp">False</span><span class="p">,</span> <span class="n">showmeans</span> <span class="o">=</span> <span class="bp">True</span><span class="p">,</span> <span class="n">meanprops</span> <span class="o">=</span> <span class="n">meanprops</span><span class="p">,</span> <span class="n">medianprops</span> <span class="o">=</span> <span class="n">medianprops</span><span class="p">)</span>
-    <span class="n">ax1</span><span class="p">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">linestyle</span> <span class="o">=</span> <span class="s">'--'</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s">'r'</span><span class="p">)</span>
-    <span class="n">ax1</span><span class="p">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="n">time_periods</span><span class="p">)</span>
-    <span class="n">ax1</span><span class="p">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s">'Time horizon'</span><span class="p">)</span>
-    <span class="n">ax1</span><span class="p">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s">'Normalized regret'</span><span class="p">)</span>
-    <span class="n">ax2</span><span class="p">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">stats</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">positions</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">time_periods</span><span class="p">)),</span> <span class="n">showfliers</span> <span class="o">=</span> <span class="bp">False</span><span class="p">,</span> <span class="n">showmeans</span> <span class="o">=</span> <span class="bp">True</span><span class="p">,</span> <span class="n">meanprops</span> <span class="o">=</span> <span class="n">meanprops</span><span class="p">,</span> <span class="n">medianprops</span> <span class="o">=</span> <span class="n">medianprops</span><span class="p">)</span>
-    <span class="n">ax2</span><span class="p">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.02</span><span class="p">,</span><span class="mf">1.02</span><span class="p">)</span>
-    <span class="n">ax2</span><span class="p">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">linestyle</span> <span class="o">=</span> <span class="s">'--'</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s">'r'</span><span class="p">)</span>
-    <span class="n">ax2</span><span class="p">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="n">time_periods</span><span class="p">)</span>
-    <span class="n">ax2</span><span class="p">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s">'Time horizon'</span><span class="p">)</span>
-    <span class="n">ax2</span><span class="p">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s">'Precision'</span><span class="p">)</span>
-    <span class="n">plt</span><span class="p">.</span><span class="n">show</span><span class="p">()</span>
+    <span class="n">meanprops</span> <span class="o">=</span> <span class="nf">dict</span><span class="p">(</span><span class="n">marker</span><span class="o">=</span><span class="sh">'</span><span class="s">o</span><span class="sh">'</span><span class="p">,</span> <span class="n">markeredgecolor</span><span class="o">=</span><span class="sh">'</span><span class="s">black</span><span class="sh">'</span><span class="p">,</span> <span class="n">markerfacecolor</span><span class="o">=</span><span class="sh">'</span><span class="s">r</span><span class="sh">'</span><span class="p">)</span>
+    <span class="n">medianprops</span> <span class="o">=</span> <span class="nf">dict</span><span class="p">(</span><span class="n">linestyle</span><span class="o">=</span><span class="sh">'</span><span class="s">-</span><span class="sh">'</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">2.5</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="sh">'</span><span class="s">b</span><span class="sh">'</span><span class="p">)</span>
+    <span class="n">fig</span><span class="p">,</span> <span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="nf">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+    <span class="n">ax1</span><span class="p">.</span><span class="nf">boxplot</span><span class="p">(</span><span class="n">stats</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">positions</span> <span class="o">=</span> <span class="nf">range</span><span class="p">(</span><span class="nf">len</span><span class="p">(</span><span class="n">time_periods</span><span class="p">)),</span> <span class="n">showfliers</span> <span class="o">=</span> <span class="bp">False</span><span class="p">,</span> <span class="n">showmeans</span> <span class="o">=</span> <span class="bp">True</span><span class="p">,</span> <span class="n">meanprops</span> <span class="o">=</span> <span class="n">meanprops</span><span class="p">,</span> <span class="n">medianprops</span> <span class="o">=</span> <span class="n">medianprops</span><span class="p">)</span>
+    <span class="n">ax1</span><span class="p">.</span><span class="nf">axhline</span><span class="p">(</span><span class="n">linestyle</span> <span class="o">=</span> <span class="sh">'</span><span class="s">--</span><span class="sh">'</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="sh">'</span><span class="s">r</span><span class="sh">'</span><span class="p">)</span>
+    <span class="n">ax1</span><span class="p">.</span><span class="nf">set_xticklabels</span><span class="p">(</span><span class="n">time_periods</span><span class="p">)</span>
+    <span class="n">ax1</span><span class="p">.</span><span class="nf">set_xlabel</span><span class="p">(</span><span class="sh">'</span><span class="s">Time horizon</span><span class="sh">'</span><span class="p">)</span>
+    <span class="n">ax1</span><span class="p">.</span><span class="nf">set_ylabel</span><span class="p">(</span><span class="sh">'</span><span class="s">Normalized regret</span><span class="sh">'</span><span class="p">)</span>
+    <span class="n">ax2</span><span class="p">.</span><span class="nf">boxplot</span><span class="p">(</span><span class="n">stats</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">positions</span> <span class="o">=</span> <span class="nf">range</span><span class="p">(</span><span class="nf">len</span><span class="p">(</span><span class="n">time_periods</span><span class="p">)),</span> <span class="n">showfliers</span> <span class="o">=</span> <span class="bp">False</span><span class="p">,</span> <span class="n">showmeans</span> <span class="o">=</span> <span class="bp">True</span><span class="p">,</span> <span class="n">meanprops</span> <span class="o">=</span> <span class="n">meanprops</span><span class="p">,</span> <span class="n">medianprops</span> <span class="o">=</span> <span class="n">medianprops</span><span class="p">)</span>
+    <span class="n">ax2</span><span class="p">.</span><span class="nf">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.02</span><span class="p">,</span><span class="mf">1.02</span><span class="p">)</span>
+    <span class="n">ax2</span><span class="p">.</span><span class="nf">axhline</span><span class="p">(</span><span class="n">y</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">linestyle</span> <span class="o">=</span> <span class="sh">'</span><span class="s">--</span><span class="sh">'</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="sh">'</span><span class="s">r</span><span class="sh">'</span><span class="p">)</span>
+    <span class="n">ax2</span><span class="p">.</span><span class="nf">set_xticklabels</span><span class="p">(</span><span class="n">time_periods</span><span class="p">)</span>
+    <span class="n">ax2</span><span class="p">.</span><span class="nf">set_xlabel</span><span class="p">(</span><span class="sh">'</span><span class="s">Time horizon</span><span class="sh">'</span><span class="p">)</span>
+    <span class="n">ax2</span><span class="p">.</span><span class="nf">set_ylabel</span><span class="p">(</span><span class="sh">'</span><span class="s">Precision</span><span class="sh">'</span><span class="p">)</span>
+    <span class="n">plt</span><span class="p">.</span><span class="nf">show</span><span class="p">()</span>
 </code></pre></div></div>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">time_periods</span> <span class="o">=</span> <span class="p">[</span><span class="mi">100</span><span class="p">,</span><span class="mi">1000</span><span class="p">,</span><span class="mi">5000</span><span class="p">]</span>
 <span class="n">nb_samples</span> <span class="o">=</span> <span class="mi">100</span>
-<span class="n">model</span> <span class="o">=</span> <span class="s">"bernoulli"</span>
+<span class="n">model</span> <span class="o">=</span> <span class="sh">"</span><span class="s">bernoulli</span><span class="sh">"</span>
 <span class="n">model_param</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">]</span>
 <span class="n">algo</span> <span class="o">=</span> <span class="n">algos</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
-<span class="n">stats</span> <span class="o">=</span> <span class="n">get_stats</span><span class="p">(</span><span class="n">nb_samples</span><span class="p">,</span> <span class="n">time_periods</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">model_param</span><span class="p">,</span> <span class="n">algo</span><span class="p">)</span>
+<span class="n">stats</span> <span class="o">=</span> <span class="nf">get_stats</span><span class="p">(</span><span class="n">nb_samples</span><span class="p">,</span> <span class="n">time_periods</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">model_param</span><span class="p">,</span> <span class="n">algo</span><span class="p">)</span>
 </code></pre></div></div>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">show_stats</span><span class="p">(</span><span class="n">time_periods</span><span class="p">,</span> <span class="n">stats</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">show_stats</span><span class="p">(</span><span class="n">time_periods</span><span class="p">,</span> <span class="n">stats</span><span class="p">)</span>
 </code></pre></div></div>
 
 <p><img src="/img/bandit/output_30_0.png" alt="png" /></p>
 
 
-           <!-- <hr />
-			<div class="pg-center">
-
-<div class="comments">
-  <h2>Comments</h2>
-  <div id="disqus_thread"></div>
-  <script>
-var disqus_config = function () {
-  this.page.url = '/machine%20learning/2021/02/06/bandit/'; // Replace PAGE_URL with your page's canonical URL variable
-  this.page.identifier = '/machine%20learning/2021/02/06/bandit'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-};
-(function() {
-  var d = document, s = d.createElement('script');
-  s.src = '//thearchitect-page-disqus-com.disqus.com/embed.js';
-  s.setAttribute('data-timestamp', +new Date());
-  (d.head || d.body).appendChild(s);
-})();
-  </script>
-  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
-</div>
-
-</div>
-<style>
-.pg-center{
-background:#ffffff;
-padding-top:2rem;
-padding-bottom:2rem;
-margin-top:2rem;
-}
-</style>
-  
-		<hr /> -->		    
             </div>
-          </article><!-- /.card -->
+          </article>
+
+          <style>
+          .card {
+            border: none;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease;
+          }
+
+          .card:hover {
+            transform: translateY(-5px);
+          }
+
+          .card-header {
+            background: none;
+            border: none;
+            padding: 2rem 1.5rem;
+          }
+
+          .card-meta {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+          }
+
+          .card-meta a {
+            color: #EA950B;
+            margin: 0 0.5rem;
+            transition: color 0.3s ease;
+          }
+
+          .card-title {
+            color: #333;
+            font-size: 2rem;
+            font-weight: 700;
+          }
+
+          .card-img-wrapper {
+            overflow: hidden;
+          }
+
+          .card-img {
+            transition: transform 0.5s ease;
+          }
+
+          .card-img:hover {
+            transform: scale(1.05);
+          }
+
+          .card-body {
+            padding: 2rem;
+            font-size: 1.1rem;
+            line-height: 1.8;
+          }
+          </style>
         </div>
 		<style>
   /* Styles généraux */
@@ -695,50 +748,134 @@ margin-top:2rem;
       </div>
     </div>
   </main>
-<!--   <div class="site-newsletter">
-    <div class="container">
-      <div class="text-center">
-        <h3 class="h4 mb-2">Subscribe to our newsletter</h3>
-        <p class="text-muted">Join our monthly newsletter and never miss out on new stories and promotions.</p>
-
-        <div class="row">
-          <div class="col-xs-12 col-sm-9 col-md-7 col-lg-5 ml-auto mr-auto">
-            <div class="input-group mb-3 mt-3">
-              <input type="text" class="form-control" placeholder="Email address" aria-label="Email address">
-              <span class="input-group-btn">
-                <button class="btn btn-secondary" type="button">Subscribe</button>
-              </span>
-            </div>
-          </div>
+<footer class="site-footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <h3>About</h3>
+        <p>Modern cloud, data, and AI architecture</p>
+        <div class="social-links">
+          <a href="https://github.com/" target="_blank"><i class="fab fa-github"></i></a>
+          <a href="https://twitter.com/" target="_blank"><i class="fab fa-twitter"></i></a>
+          <a href="https://linkedin.com/in/" target="_blank"><i class="fab fa-linkedin"></i></a>
         </div>
+      </div>
+      <div class="col-md-4">
+        <h3>Recent Posts</h3>
+        <ul class="recent-posts">
+          
+          <li><a href="/database%20technology/graph%20databases/neo4j/2023/11/21/neo4j/">Exploring Neo4j in 2023: The Evolution of Graph Databases</a></li>
+          
+          <li><a href="/data%20architecture/data%20engineering/decentralization/2023/10/28/datamesh/">Unveiling Data Mesh: Decentralizing Data at Scale</a></li>
+          
+          <li><a href="/devops/data%20engineering/cloud%20computing/2023/10/27/azuredevops/">Navigating Continuous Data Pipelines: An Extensive Look into CI/CD with Azure DevOps, dbt, Airflow, GCS, and BigQuery</a></li>
+          
+        </ul>
+      </div>
+      <div class="col-md-4">
+        <h3>Newsletter</h3>
+        <form class="newsletter-form">
+          <input type="email" placeholder="Your email" required>
+          <button type="submit">Subscribe</button>
+        </form>
       </div>
     </div>
   </div>
- -->
-<footer class="site-footer bg-darkest" role="contentinfo">
-  <div class="container">
-
-    <!--       <ul class="nav justify-content-center">
-        <li class="nav-item">
-          <a class="nav-link" href="#">Privacy policy</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Feedback</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Contact</a>
-        </li>
-      </ul> -->
-    <div class="copy">
-      &copy; Multi-armed bandits 2021<br />
-      All rights reserved
-      <a href="https://www.linkedin.com/in/ia-ds-bg/" title="Linkedin"><i class="fab fa-linkedin-square"></i></a>
-      <a href="https://github.com/AbdelfattahAbouelaoualim" title="Github"><i class="fab fa-github-square"></i></a>
-      <a href="mailto:abdelfattah.abouelaoualim@gmail.com" title="Email me"><i
-          class="fas fa-envelope-square"></i></a>
-    </div>
+  <div class="footer-bottom">
+    <p>&copy; 2025 The Architect. All rights reserved.</p>
   </div>
 </footer>
+
+<style>
+.site-footer {
+  background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
+  color: #fff;
+  padding: 4rem 0 0;
+  margin-top: 4rem;
+}
+
+.site-footer h3 {
+  color: #EA950B;
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+
+.site-footer h3::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -10px;
+  width: 50px;
+  height: 2px;
+  background: #EA950B;
+}
+
+.social-links a {
+  color: #fff;
+  font-size: 1.5rem;
+  margin-right: 1rem;
+  transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+  color: #EA950B;
+}
+
+.recent-posts {
+  list-style: none;
+  padding: 0;
+}
+
+.recent-posts li {
+  margin-bottom: 1rem;
+}
+
+.recent-posts a {
+  color: #fff;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.recent-posts a:hover {
+  color: #EA950B;
+}
+
+.newsletter-form {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.newsletter-form input {
+  flex: 1;
+  padding: 0.75rem;
+  border: none;
+  border-radius: 4px;
+  background: rgba(255,255,255,0.1);
+  color: #fff;
+}
+
+.newsletter-form button {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 4px;
+  background: #EA950B;
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.newsletter-form button:hover {
+  background: #ff8c00;
+}
+
+.footer-bottom {
+  text-align: center;
+  padding: 1.5rem 0;
+  margin-top: 3rem;
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
+</style>
 
 <script src="/js/bundle.js"></script>
 </body>

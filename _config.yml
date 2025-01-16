@@ -1,4 +1,26 @@
-title: ""
+# Configurations de base
+title: The Architect
+description: Modern cloud, data, and AI architecture
+baseurl: ""
+url: "http://localhost:4000"
+
+# Configuration du serveur
+host: 0.0.0.0
+port: 4000
+livereload: true
+livereload_port: 35729
+
+# Configuration de la compilation
+incremental: true
+strict_front_matter: true
+
+# Exclusions
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor
+  - .git
 
 #about: "Bootstrap theme for jekyll"
 markdown: kramdown
@@ -6,13 +28,13 @@ kramdown:
     math_engine: katex
 #permalink: /:categories/:title/
 permalink: pretty
-url: ""
-baseurl: ""
 disqus_short_name: thearchitect-page-disqus-com
 
 plugins: 
   - jekyll-paginate
   - jemoji
+  - jekyll-feed
+  - jekyll-seo-tag
   
 paginate_path: "/page:num/"
 

@@ -1,0 +1,104 @@
+<div class="search-overlay" id="searchOverlay">
+  <button class="close-search" onclick="toggleSearch()">×</button>
+  <div class="search-content">
+    <input type="text" id="searchInput" placeholder="Rechercher..." autofocus>
+    <div id="searchResults" class="search-results"></div>
+  </div>
+</div>
+
+<style>
+.search-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.95);
+  backdrop-filter: blur(5px);
+  z-index: 1000;
+  display: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.search-overlay.active {
+  display: flex;
+  opacity: 1;
+}
+
+.search-content {
+  width: 80%;
+  max-width: 800px;
+  margin: 100px auto;
+}
+
+#searchInput {
+  width: 100%;
+  padding: 1rem;
+  font-size: 2rem;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid #EA950B;
+  color: white;
+  margin-bottom: 2rem;
+}
+
+#searchInput:focus {
+  outline: none;
+}
+
+.search-results {
+  color: white;
+  max-height: 60vh;
+  overflow-y: auto;
+}
+
+.search-result-item {
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  background: rgba(255,255,255,0.1);
+  transition: all 0.3s ease;
+}
+
+.search-result-item:hover {
+  background: rgba(234,149,11,0.2);
+  transform: translateX(10px);
+}
+
+.close-search {
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 3rem;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.close-search:hover {
+  transform: rotate(90deg);
+}
+</style>
+
+<script>
+function toggleSearch() {
+  const overlay = document.getElementById('searchOverlay');
+  overlay.classList.toggle('active');
+  if (overlay.classList.contains('active')) {
+    document.getElementById('searchInput').focus();
+  }
+}
+
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    document.getElementById('searchOverlay').classList.remove('active');
+  }
+  if (e.key === 'k' && e.metaKey) {
+    e.preventDefault();
+    toggleSearch();
+  }
+});
+</script> 

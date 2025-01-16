@@ -24,36 +24,71 @@
 <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
   <div class="container-fluid">
     <a class="navbar-brand" href="/">
-    <img class="logo" src="/img/logo.png" alt="" style="object-fit:contain;
-            width:200px;
-            height:200px;"> 
+      <img class="logo" src="/img/logo.png" alt="" />
     </a>
-    <button class="navbar-toggler" type="button" style="color:#FFFFFF" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-      Menu
-      <i class="fa fa-bars"></i>
+    <button class="navbar-toggler navbar-dark" type="button" data-toggle="collapse" data-target="#navbarResponsive">
+      <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarResponsive" >
-      <ul class="navbar-nav ml-auto" id="main_nav"> 
-      
-
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
         <li class="nav-item">
-          <a style="color:#FFFFFF" class="nav-link" href="/">Home</a>
+          <a class="nav-link" href="/">Home</a>
         </li>
         <li class="nav-item">
-          <a style="color:#FFFFFF" class="nav-link" href="/about">About</a>
+          <a class="nav-link" href="/about">About</a>
         </li>
         <li class="nav-item">
-          <a style="color:#FFFFFF" class="nav-link" href="/author">Author</a>
+          <a class="nav-link" href="/author">Author</a>
         </li>
-
-        <!--<li class="nav-item">
-           <a style="color:#FFFFFF" class="nav-link" href="/contact">Contact</a> 
-           
-        </li>-->
       </ul>
     </div>
   </div>
 </nav>
+
+<style>
+.navbar {
+  background: rgba(0,0,0,0.8);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+}
+
+.navbar-brand img.logo {
+  width: 150px;
+  height: auto;
+  transition: all 0.3s ease;
+}
+
+.nav-link {
+  color: #fff !important;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  position: relative;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  left: 50%;
+  background: #EA950B;
+  transition: all 0.3s ease;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+  left: 0;
+}
+
+@media (max-width: 991px) {
+  .navbar-collapse {
+    background: rgba(0,0,0,0.9);
+    padding: 1rem;
+    border-radius: 0.5rem;
+  }
+}
+</style>
 
  <!-- Page Header -->
 
@@ -69,6 +104,228 @@
       </div>
     </div>
   </header>
+ 
+<section class="hero">
+  <div class="hero-content">
+    <h1 class="animate-text">The Architect</h1>
+    <p class="animate-text-delay">Modern cloud, data, and AI architecture</p>
+    <a href="#latest-posts" class="cta-button">Discover</a>
+  </div>
+  <div class="hero-overlay"></div>
+</section>
+
+<div id="latest-posts" class="container">
+  <h2 class="section-title">Latest Articles</h2>
+  <div class="row">
+    
+    <div class="col-md-4">
+      <div class="post-card">
+        
+        <div class="post-image" style="background-image: url('/img/neo4j.png')"></div>
+        
+        <div class="post-content">
+          <span class="post-date">November 21, 2023</span>
+          <h3><a href="/database%20technology/graph%20databases/neo4j/2023/11/21/neo4j/">Exploring Neo4j in 2023: The Evolution of Graph Databases</a></h3>
+          <p>
+</p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="col-md-4">
+      <div class="post-card">
+        
+        <div class="post-image" style="background-image: url('/img/datamesh.png')"></div>
+        
+        <div class="post-content">
+          <span class="post-date">October 28, 2023</span>
+          <h3><a href="/data%20architecture/data%20engineering/decentralization/2023/10/28/datamesh/">Unveiling Data Mesh: Decentralizing Data at Scale</a></h3>
+          <p>
+</p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="col-md-4">
+      <div class="post-card">
+        
+        <div class="post-image" style="background-image: url('/img/azuredevops.png')"></div>
+        
+        <div class="post-content">
+          <span class="post-date">October 27, 2023</span>
+          <h3><a href="/devops/data%20engineering/cloud%20computing/2023/10/27/azuredevops/">Navigating Continuous Data Pipelines: An Extensive Look into CI/CD with Azure DevOps, dbt, Airflow, GCS, and BigQuery</a></h3>
+          <p>
+</p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="col-md-4">
+      <div class="post-card">
+        
+        <div class="post-image" style="background-image: url('/img/data_science.png')"></div>
+        
+        <div class="post-content">
+          <span class="post-date">October 27, 2023</span>
+          <h3><a href="/data%20science/technology/innovation/2023/10/27/DS/">Navigating the Data Revolution: The Pinnacle of Data Science in 2023</a></h3>
+          <p>Introduction The realm of Data Science continues to expand with the advent of cutting-edge technologies and methodologies. The year 2023 has seen remarkable growth and evolution in data-driven practices, paving...</p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="col-md-4">
+      <div class="post-card">
+        
+        <div class="post-image" style="background-image: url('/img/AI.jpg')"></div>
+        
+        <div class="post-content">
+          <span class="post-date">October 27, 2023</span>
+          <h3><a href="/artificial%20intelligence/technology/innovation/2023/10/27/AI/">Exploring the Horizon: AI Advancements in 2023</a></h3>
+          <p>Introduction Artificial Intelligence (AI) continues to evolve, opening new realms of possibilities across various sectors. 2023 has witnessed some groundbreaking advancements in AI, shaping a future where machines not only...</p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="col-md-4">
+      <div class="post-card">
+        
+        <div class="post-image" style="background-image: url('/img/terraform_docker.png')"></div>
+        
+        <div class="post-content">
+          <span class="post-date">October 25, 2023</span>
+          <h3><a href="/devops/cloud%20computing/2023/10/25/terraform-docker/">Sailing the Clouds: Docker, GKE, and Terraform</a></h3>
+          <p>
+</p>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+</div>
+
+<style>
+.hero {
+  height: 100vh;
+  position: relative;
+  background: url('/img/hero-bg.jpg') center/cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #fff;
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  padding: 2rem;
+}
+
+.animate-text {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.8s ease forwards;
+}
+
+.animate-text-delay {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.8s ease forwards 0.3s;
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.cta-button {
+  display: inline-block;
+  padding: 1rem 2rem;
+  margin-top: 2rem;
+  background: #EA950B;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 50px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.cta-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(234,149,11,0.4);
+}
+
+.section-title {
+  text-align: center;
+  margin: 4rem 0;
+  position: relative;
+}
+
+.section-title::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 3px;
+  background: #EA950B;
+}
+
+.post-card {
+  margin-bottom: 2rem;
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+}
+
+.post-card:hover {
+  transform: translateY(-5px);
+}
+
+.post-image {
+  height: 200px;
+  background-size: cover;
+  background-position: center;
+}
+
+.post-content {
+  padding: 1.5rem;
+}
+
+.post-date {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.post-content h3 {
+  margin: 1rem 0;
+}
+
+.post-content h3 a {
+  color: #333;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.post-content h3 a:hover {
+  color: #EA950B;
+}
+</style>
  
    <main class="main pt-4" role="main">
 
@@ -99,7 +356,7 @@
               <img class="card-img" src="/img/pton.png" alt="" />
             </a>
             <div class="card-body">
-              <p class="card-text">Data concerning publications found on the data.world website Data concerning the Olympic winter sport competitions found in the data.world website Music data found in kaggle website The objective here is to generate the csv files which will represent the corpus...</p>
+              <p class="card-text">- Data concerning publications found on the data.world website - Data concerning the Olympic winter sport competitions found in the data.world website - Music data found in kaggle website The objective here is to generate the csv files which will...</p>
             </div>
           </article>
 
@@ -125,7 +382,7 @@
               <img class="card-img" src="/img/ntop.png" alt="" />
             </a>
             <div class="card-body">
-              <p class="card-text">Neo4j contains libraries such as GDS and APOC which allow the use of already existing advanced methods and algorithms. But if that’s not enough, in this jupyter notebook, I want to show that we can get the results of Cypher...</p>
+              <p class="card-text">Neo4j contains libraries such as GDS and APOC which allow the use of already existing advanced methods and algorithms. But if that's not enough, in this jupyter notebook, I want to show that we can get the results of Cypher...</p>
             </div>
           </article>
 
@@ -151,7 +408,7 @@
               <img class="card-img" src="/img/NodeClassification.jpg" alt="" />
             </a>
             <div class="card-body">
-              <p class="card-text">import networkx as nx import numpy as np import pandas as pd import os import stellargraph as sg from stellargraph.mapper import GraphSAGENodeGenerator from stellargraph.layer import GraphSAGE from tensorflow.keras import layers, optimizers, losses, metrics, Model from sklearn import model_selection from sklearn.utils...</p>
+              <p class="card-text">```python import networkx as nx import numpy as np import pandas as pd import os import stellargraph as sg from stellargraph.mapper import GraphSAGENodeGenerator from stellargraph.layer import GraphSAGE from tensorflow.keras import layers, optimizers, losses, metrics, Model from sklearn import model_selection from...</p>
             </div>
           </article>
 
@@ -177,7 +434,7 @@
               <img class="card-img" src="/img/multi_armed_bandit.jpg" alt="" />
             </a>
             <div class="card-body">
-              <p class="card-text">Introduction The objective of this lab session is to test the performance of some usual bandit algorithms. import numpy as np import matplotlib.pyplot as plt Algorithms There are kkk possible actions, a∈{0,1,...,k−1}a \in \{ 0, 1,...,k - 1\}a∈{0,1,...,k−1}. We consider...</p>
+              <p class="card-text">### Introduction The objective of this lab session is to test the performance of some usual bandit algorithms. ```python import numpy as np import matplotlib.pyplot as plt ``` ### Algorithms There are $$k$$ possible actions, $$a \in \{ 0, 1,...,k...</p>
             </div>
           </article>
 
@@ -435,50 +692,134 @@
       }
 </style>
 		</main>
-<!--   <div class="site-newsletter">
-    <div class="container">
-      <div class="text-center">
-        <h3 class="h4 mb-2">Subscribe to our newsletter</h3>
-        <p class="text-muted">Join our monthly newsletter and never miss out on new stories and promotions.</p>
-
-        <div class="row">
-          <div class="col-xs-12 col-sm-9 col-md-7 col-lg-5 ml-auto mr-auto">
-            <div class="input-group mb-3 mt-3">
-              <input type="text" class="form-control" placeholder="Email address" aria-label="Email address">
-              <span class="input-group-btn">
-                <button class="btn btn-secondary" type="button">Subscribe</button>
-              </span>
-            </div>
-          </div>
+<footer class="site-footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <h3>About</h3>
+        <p>Modern cloud, data, and AI architecture</p>
+        <div class="social-links">
+          <a href="https://github.com/" target="_blank"><i class="fab fa-github"></i></a>
+          <a href="https://twitter.com/" target="_blank"><i class="fab fa-twitter"></i></a>
+          <a href="https://linkedin.com/in/" target="_blank"><i class="fab fa-linkedin"></i></a>
         </div>
+      </div>
+      <div class="col-md-4">
+        <h3>Recent Posts</h3>
+        <ul class="recent-posts">
+          
+          <li><a href="/database%20technology/graph%20databases/neo4j/2023/11/21/neo4j/">Exploring Neo4j in 2023: The Evolution of Graph Databases</a></li>
+          
+          <li><a href="/data%20architecture/data%20engineering/decentralization/2023/10/28/datamesh/">Unveiling Data Mesh: Decentralizing Data at Scale</a></li>
+          
+          <li><a href="/devops/data%20engineering/cloud%20computing/2023/10/27/azuredevops/">Navigating Continuous Data Pipelines: An Extensive Look into CI/CD with Azure DevOps, dbt, Airflow, GCS, and BigQuery</a></li>
+          
+        </ul>
+      </div>
+      <div class="col-md-4">
+        <h3>Newsletter</h3>
+        <form class="newsletter-form">
+          <input type="email" placeholder="Your email" required>
+          <button type="submit">Subscribe</button>
+        </form>
       </div>
     </div>
   </div>
- -->
-<footer class="site-footer bg-darkest" role="contentinfo">
-  <div class="container">
-
-    <!--       <ul class="nav justify-content-center">
-        <li class="nav-item">
-          <a class="nav-link" href="#">Privacy policy</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Feedback</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Contact</a>
-        </li>
-      </ul> -->
-    <div class="copy">
-      &copy; Thearchitect 2021<br />
-      All rights reserved
-      <a href="https://www.linkedin.com/in/ia-ds-bg/" title="Linkedin"><i class="fab fa-linkedin-square"></i></a>
-      <a href="https://github.com/AbdelfattahAbouelaoualim" title="Github"><i class="fab fa-github-square"></i></a>
-      <a href="mailto:abdelfattah.abouelaoualim@gmail.com" title="Email me"><i
-          class="fas fa-envelope-square"></i></a>
-    </div>
+  <div class="footer-bottom">
+    <p>&copy; 2025 The Architect. All rights reserved.</p>
   </div>
 </footer>
+
+<style>
+.site-footer {
+  background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
+  color: #fff;
+  padding: 4rem 0 0;
+  margin-top: 4rem;
+}
+
+.site-footer h3 {
+  color: #EA950B;
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+
+.site-footer h3::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -10px;
+  width: 50px;
+  height: 2px;
+  background: #EA950B;
+}
+
+.social-links a {
+  color: #fff;
+  font-size: 1.5rem;
+  margin-right: 1rem;
+  transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+  color: #EA950B;
+}
+
+.recent-posts {
+  list-style: none;
+  padding: 0;
+}
+
+.recent-posts li {
+  margin-bottom: 1rem;
+}
+
+.recent-posts a {
+  color: #fff;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.recent-posts a:hover {
+  color: #EA950B;
+}
+
+.newsletter-form {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.newsletter-form input {
+  flex: 1;
+  padding: 0.75rem;
+  border: none;
+  border-radius: 4px;
+  background: rgba(255,255,255,0.1);
+  color: #fff;
+}
+
+.newsletter-form button {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 4px;
+  background: #EA950B;
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.newsletter-form button:hover {
+  background: #ff8c00;
+}
+
+.footer-bottom {
+  text-align: center;
+  padding: 1.5rem 0;
+  margin-top: 3rem;
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
+</style>
 
 <script src="/js/bundle.js"></script>
 

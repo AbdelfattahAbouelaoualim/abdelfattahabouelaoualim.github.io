@@ -1,0 +1,136 @@
+<div class="toc-wrapper">
+  <div class="toc-header">
+    <h4>Table des matières</h4>
+    <button class="toc-toggle" onclick="toggleToc()">
+      <span class="toggle-icon"></span>
+    </button>
+  </div>
+  <div class="toc-content">
+    <div id="toc"></div>
+  </div>
+</div>
+
+<style>
+.toc-wrapper {
+  position: sticky;
+  top: 100px;
+  max-width: 300px;
+  margin: 2rem 0;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+  transition: all 0.3s ease;
+}
+
+.toc-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  border-bottom: 1px solid #eee;
+}
+
+.toc-header h4 {
+  margin: 0;
+  color: #333;
+}
+
+.toc-content {
+  padding: 1rem;
+  max-height: calc(100vh - 200px);
+  overflow-y: auto;
+}
+
+.toc-content ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.toc-content ul ul {
+  padding-left: 1.5rem;
+}
+
+.toc-content a {
+  display: block;
+  padding: 0.5rem 0;
+  color: #666;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  border-left: 2px solid transparent;
+  padding-left: 1rem;
+}
+
+.toc-content a:hover {
+  color: #EA950B;
+  border-left-color: #EA950B;
+  background: rgba(234,149,11,0.1);
+}
+
+.toc-content a.active {
+  color: #EA950B;
+  border-left-color: #EA950B;
+  font-weight: bold;
+}
+
+@media (max-width: 768px) {
+  .toc-wrapper {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: auto;
+    max-width: 100%;
+    margin: 0;
+    border-radius: 10px 10px 0 0;
+    z-index: 100;
+    transform: translateY(calc(100% - 60px));
+  }
+
+  .toc-wrapper.expanded {
+    transform: translateY(0);
+  }
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const headings = document.querySelectorAll('h2, h3');
+  const toc = document.getElementById('toc');
+  const tocItems = [];
+
+  headings.forEach((heading, index) => {
+    const id = `heading-${index}`;
+    heading.id = id;
+    
+    const link = document.createElement('a');
+    link.href = `#${id}`;
+    link.textContent = heading.textContent;
+    link.style.paddingLeft = `${(heading.tagName === 'H3' ? 2 : 1)}rem`;
+    
+    const li = document.createElement('div');
+    li.appendChild(link);
+    toc.appendChild(li);
+    tocItems.push(link);
+  });
+
+  // Intersection Observer pour suivre les titres visibles
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      const id = entry.target.id;
+      const link = tocItems.find(item => item.getAttribute('href') === `#${id}`);
+      
+      if (entry.isIntersecting) {
+        link?.classList.add('active');
+      } else {
+        link?.classList.remove('active');
+      }
+    });
+  }, { threshold: 0.5 });
+
+  headings.forEach(heading => observer.observe(heading));
+});
+
+function toggleToc() {
+  document.querySelector('.toc-wrapper').classList.toggle('expanded');
+}
+</script> 

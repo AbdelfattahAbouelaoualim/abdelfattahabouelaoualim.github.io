@@ -20,6 +20,159 @@
     </div>
   </header>
  
+<section class="hero">
+  <div class="hero-content">
+    <h1 class="animate-text">{{ site.title }}</h1>
+    <p class="animate-text-delay">{{ site.description }}</p>
+    <a href="#latest-posts" class="cta-button">Discover</a>
+  </div>
+  <div class="hero-overlay"></div>
+</section>
+
+<div id="latest-posts" class="container">
+  <h2 class="section-title">Latest Articles</h2>
+  <div class="row">
+    {% for post in site.posts limit:6 %}
+    <div class="col-md-4">
+      <div class="post-card">
+        {% if post.image %}
+        <div class="post-image" style="background-image: url('{{ site.baseurl }}/img/{{ post.image }}')"></div>
+        {% endif %}
+        <div class="post-content">
+          <span class="post-date">{{ post.date | date: "%B %-d, %Y" }}</span>
+          <h3><a href="{{ post.url }}">{{ post.title }}</a></h3>
+          <p>{{ post.excerpt | strip_html | truncatewords: 30 }}</p>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+<style>
+.hero {
+  height: 100vh;
+  position: relative;
+  background: url('/img/hero-bg.jpg') center/cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #fff;
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  padding: 2rem;
+}
+
+.animate-text {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.8s ease forwards;
+}
+
+.animate-text-delay {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.8s ease forwards 0.3s;
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.cta-button {
+  display: inline-block;
+  padding: 1rem 2rem;
+  margin-top: 2rem;
+  background: #EA950B;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 50px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.cta-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(234,149,11,0.4);
+}
+
+.section-title {
+  text-align: center;
+  margin: 4rem 0;
+  position: relative;
+}
+
+.section-title::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 3px;
+  background: #EA950B;
+}
+
+.post-card {
+  margin-bottom: 2rem;
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+}
+
+.post-card:hover {
+  transform: translateY(-5px);
+}
+
+.post-image {
+  height: 200px;
+  background-size: cover;
+  background-position: center;
+}
+
+.post-content {
+  padding: 1.5rem;
+}
+
+.post-date {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.post-content h3 {
+  margin: 1rem 0;
+}
+
+.post-content h3 a {
+  color: #333;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.post-content h3 a:hover {
+  color: #EA950B;
+}
+</style>
+ 
    {{ content }}
  
  

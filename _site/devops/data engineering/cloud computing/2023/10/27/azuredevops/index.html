@@ -24,36 +24,71 @@
 <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
   <div class="container-fluid">
     <a class="navbar-brand" href="/">
-    <img class="logo" src="/img/logo.png" alt="" style="object-fit:contain;
-            width:200px;
-            height:200px;"> 
+      <img class="logo" src="/img/logo.png" alt="" />
     </a>
-    <button class="navbar-toggler" type="button" style="color:#FFFFFF" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-      Menu
-      <i class="fa fa-bars"></i>
+    <button class="navbar-toggler navbar-dark" type="button" data-toggle="collapse" data-target="#navbarResponsive">
+      <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarResponsive" >
-      <ul class="navbar-nav ml-auto" id="main_nav"> 
-      
-
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
         <li class="nav-item">
-          <a style="color:#FFFFFF" class="nav-link" href="/">Home</a>
+          <a class="nav-link" href="/">Home</a>
         </li>
         <li class="nav-item">
-          <a style="color:#FFFFFF" class="nav-link" href="/about">About</a>
+          <a class="nav-link" href="/about">About</a>
         </li>
         <li class="nav-item">
-          <a style="color:#FFFFFF" class="nav-link" href="/author">Author</a>
+          <a class="nav-link" href="/author">Author</a>
         </li>
-
-        <!--<li class="nav-item">
-           <a style="color:#FFFFFF" class="nav-link" href="/contact">Contact</a> 
-           
-        </li>-->
       </ul>
     </div>
   </div>
 </nav>
+
+<style>
+.navbar {
+  background: rgba(0,0,0,0.8);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+}
+
+.navbar-brand img.logo {
+  width: 150px;
+  height: auto;
+  transition: all 0.3s ease;
+}
+
+.nav-link {
+  color: #fff !important;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  position: relative;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  left: 50%;
+  background: #EA950B;
+  transition: all 0.3s ease;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+  left: 0;
+}
+
+@media (max-width: 991px) {
+  .navbar-collapse {
+    background: rgba(0,0,0,0.9);
+    padding: 1rem;
+    border-radius: 0.5rem;
+  }
+}
+</style>
 
 
   <main class="main pt-4" role="main">
@@ -64,36 +99,30 @@
         <div class="col-md-9">
 
           <article class="card mb-4">
-		  
             <header class="card-header text-center">
-			
               <div class="card-meta">
-                <span>Published on 27 Oct 2023</time></span> in
+                <span class="date">27 October 2023</span>
+                <span class="categories">
                   
+                    <a href="/categories/#DevOps">#DevOps</a>
                   
-                  <a href="/categories/#DevOps">DevOps</a>
-                  &nbsp;
+                    <a href="/categories/#Data Engineering">#Data Engineering</a>
                   
-                  <a href="/categories/#Data Engineering">Data Engineering</a>
-                  &nbsp;
+                    <a href="/categories/#Cloud Computing">#Cloud Computing</a>
                   
-                  <a href="/categories/#Cloud Computing">Cloud Computing</a>
-                  
-                  
-              <div>
-			
-                <h1 class="card-title">Navigating Continuous Data Pipelines: An Extensive Look into CI/CD with Azure DevOps, dbt, Airflow, GCS, and BigQuery</h1>
-
+                </span>
+              </div>
+              <h1 class="card-title">Navigating Continuous Data Pipelines: An Extensive Look into CI/CD with Azure DevOps, dbt, Airflow, GCS, and BigQuery</h1>
             </header>
-			
-			
-            <a style="cursor:pointer;">
-              <img class="card-img" src="/img/azuredevops.png" alt="" />
-            </a>
+
             
+            <div class="card-img-wrapper">
+              <img class="card-img" src="/img/azuredevops.png" alt="Navigating Continuous Data Pipelines: An Extensive Look into CI/CD with Azure DevOps, dbt, Airflow, GCS, and BigQuery" />
+            </div>
             
+
             <div class="card-body">
-			<style>
+              <style>
   @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
   
   body {
@@ -172,25 +201,25 @@
 <p>Cloud Composer, leveraging Apache Airflow, orchestrates complex data workflows, scheduling, monitoring, and managing workflows in a cloud environment.</p>
 
 <h4 id="sculpting-an-airflow-dag">Sculpting an Airflow DAG</h4>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">airflow</span> <span class="kn">import</span> <span class="n">DAG</span>
-<span class="kn">from</span> <span class="nn">airflow.operators.dummy_operator</span> <span class="kn">import</span> <span class="n">DummyOperator</span>
-<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">airflow</span> <span class="kn">import</span> <span class="n">DAG</span>
+<span class="kn">from</span> <span class="n">airflow.operators.dummy_operator</span> <span class="kn">import</span> <span class="n">DummyOperator</span>
+<span class="kn">from</span> <span class="n">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
 
 <span class="n">default_args</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s">'owner'</span><span class="p">:</span> <span class="s">'airflow'</span><span class="p">,</span>
-    <span class="s">'depends_on_past'</span><span class="p">:</span> <span class="bp">False</span><span class="p">,</span>
-    <span class="s">'start_date'</span><span class="p">:</span> <span class="n">datetime</span><span class="p">(</span><span class="mi">2022</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+    <span class="sh">'</span><span class="s">owner</span><span class="sh">'</span><span class="p">:</span> <span class="sh">'</span><span class="s">airflow</span><span class="sh">'</span><span class="p">,</span>
+    <span class="sh">'</span><span class="s">depends_on_past</span><span class="sh">'</span><span class="p">:</span> <span class="bp">False</span><span class="p">,</span>
+    <span class="sh">'</span><span class="s">start_date</span><span class="sh">'</span><span class="p">:</span> <span class="nf">datetime</span><span class="p">(</span><span class="mi">2022</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
 <span class="p">}</span>
 
-<span class="n">dag</span> <span class="o">=</span> <span class="n">DAG</span><span class="p">(</span>
-    <span class="s">'example_dag'</span><span class="p">,</span>
+<span class="n">dag</span> <span class="o">=</span> <span class="nc">DAG</span><span class="p">(</span>
+    <span class="sh">'</span><span class="s">example_dag</span><span class="sh">'</span><span class="p">,</span>
     <span class="n">default_args</span><span class="o">=</span><span class="n">default_args</span><span class="p">,</span>
-    <span class="n">description</span><span class="o">=</span><span class="s">'An example DAG'</span><span class="p">,</span>
-    <span class="n">schedule_interval</span><span class="o">=</span><span class="s">'@daily'</span><span class="p">,</span>
+    <span class="n">description</span><span class="o">=</span><span class="sh">'</span><span class="s">An example DAG</span><span class="sh">'</span><span class="p">,</span>
+    <span class="n">schedule_interval</span><span class="o">=</span><span class="sh">'</span><span class="s">@daily</span><span class="sh">'</span><span class="p">,</span>
 <span class="p">)</span>
 
-<span class="n">start</span> <span class="o">=</span> <span class="n">DummyOperator</span><span class="p">(</span>
-    <span class="n">task_id</span><span class="o">=</span><span class="s">'start'</span><span class="p">,</span>
+<span class="n">start</span> <span class="o">=</span> <span class="nc">DummyOperator</span><span class="p">(</span>
+    <span class="n">task_id</span><span class="o">=</span><span class="sh">'</span><span class="s">start</span><span class="sh">'</span><span class="p">,</span>
     <span class="n">dag</span><span class="o">=</span><span class="n">dag</span><span class="p">,</span>
 <span class="p">)</span>
 </code></pre></div></div>
@@ -213,40 +242,62 @@ bq load <span class="nt">--autodetect</span> <span class="nt">--source_format</s
 <h3 id="conclusion">Conclusion</h3>
 <p>The amalgamation of Azure DevOps, dbt, Cloud Composer, GCS, and BigQuery under the umbrella of CI/CD fosters a streamlined, reliable, and robust data engineering infrastructure. This detailed walkthrough delineates how these tools can be orchestrated to accelerate the development cycle, fortify data pipelines, and propel organizations towards a data-driven epoch with assurance.</p>
 
-           <!-- <hr />
-			<div class="pg-center">
-
-<div class="comments">
-  <h2>Comments</h2>
-  <div id="disqus_thread"></div>
-  <script>
-var disqus_config = function () {
-  this.page.url = '/devops/data%20engineering/cloud%20computing/2023/10/27/azuredevops/'; // Replace PAGE_URL with your page's canonical URL variable
-  this.page.identifier = '/devops/data%20engineering/cloud%20computing/2023/10/27/azuredevops'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-};
-(function() {
-  var d = document, s = d.createElement('script');
-  s.src = '//thearchitect-page-disqus-com.disqus.com/embed.js';
-  s.setAttribute('data-timestamp', +new Date());
-  (d.head || d.body).appendChild(s);
-})();
-  </script>
-  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
-</div>
-
-</div>
-<style>
-.pg-center{
-background:#ffffff;
-padding-top:2rem;
-padding-bottom:2rem;
-margin-top:2rem;
-}
-</style>
-  
-		<hr /> -->		    
             </div>
-          </article><!-- /.card -->
+          </article>
+
+          <style>
+          .card {
+            border: none;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease;
+          }
+
+          .card:hover {
+            transform: translateY(-5px);
+          }
+
+          .card-header {
+            background: none;
+            border: none;
+            padding: 2rem 1.5rem;
+          }
+
+          .card-meta {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+          }
+
+          .card-meta a {
+            color: #EA950B;
+            margin: 0 0.5rem;
+            transition: color 0.3s ease;
+          }
+
+          .card-title {
+            color: #333;
+            font-size: 2rem;
+            font-weight: 700;
+          }
+
+          .card-img-wrapper {
+            overflow: hidden;
+          }
+
+          .card-img {
+            transition: transform 0.5s ease;
+          }
+
+          .card-img:hover {
+            transform: scale(1.05);
+          }
+
+          .card-body {
+            padding: 2rem;
+            font-size: 1.1rem;
+            line-height: 1.8;
+          }
+          </style>
         </div>
 		<style>
   /* Styles généraux */
@@ -460,50 +511,134 @@ margin-top:2rem;
       </div>
     </div>
   </main>
-<!--   <div class="site-newsletter">
-    <div class="container">
-      <div class="text-center">
-        <h3 class="h4 mb-2">Subscribe to our newsletter</h3>
-        <p class="text-muted">Join our monthly newsletter and never miss out on new stories and promotions.</p>
-
-        <div class="row">
-          <div class="col-xs-12 col-sm-9 col-md-7 col-lg-5 ml-auto mr-auto">
-            <div class="input-group mb-3 mt-3">
-              <input type="text" class="form-control" placeholder="Email address" aria-label="Email address">
-              <span class="input-group-btn">
-                <button class="btn btn-secondary" type="button">Subscribe</button>
-              </span>
-            </div>
-          </div>
+<footer class="site-footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <h3>About</h3>
+        <p>Modern cloud, data, and AI architecture</p>
+        <div class="social-links">
+          <a href="https://github.com/" target="_blank"><i class="fab fa-github"></i></a>
+          <a href="https://twitter.com/" target="_blank"><i class="fab fa-twitter"></i></a>
+          <a href="https://linkedin.com/in/" target="_blank"><i class="fab fa-linkedin"></i></a>
         </div>
+      </div>
+      <div class="col-md-4">
+        <h3>Recent Posts</h3>
+        <ul class="recent-posts">
+          
+          <li><a href="/database%20technology/graph%20databases/neo4j/2023/11/21/neo4j/">Exploring Neo4j in 2023: The Evolution of Graph Databases</a></li>
+          
+          <li><a href="/data%20architecture/data%20engineering/decentralization/2023/10/28/datamesh/">Unveiling Data Mesh: Decentralizing Data at Scale</a></li>
+          
+          <li><a href="/devops/data%20engineering/cloud%20computing/2023/10/27/azuredevops/">Navigating Continuous Data Pipelines: An Extensive Look into CI/CD with Azure DevOps, dbt, Airflow, GCS, and BigQuery</a></li>
+          
+        </ul>
+      </div>
+      <div class="col-md-4">
+        <h3>Newsletter</h3>
+        <form class="newsletter-form">
+          <input type="email" placeholder="Your email" required>
+          <button type="submit">Subscribe</button>
+        </form>
       </div>
     </div>
   </div>
- -->
-<footer class="site-footer bg-darkest" role="contentinfo">
-  <div class="container">
-
-    <!--       <ul class="nav justify-content-center">
-        <li class="nav-item">
-          <a class="nav-link" href="#">Privacy policy</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Feedback</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Contact</a>
-        </li>
-      </ul> -->
-    <div class="copy">
-      &copy; Navigating Continuous Data Pipelines: An Extensive Look into CI/CD with Azure DevOps, dbt, Airflow, GCS, and BigQuery 2021<br />
-      All rights reserved
-      <a href="https://www.linkedin.com/in/ia-ds-bg/" title="Linkedin"><i class="fab fa-linkedin-square"></i></a>
-      <a href="https://github.com/AbdelfattahAbouelaoualim" title="Github"><i class="fab fa-github-square"></i></a>
-      <a href="mailto:abdelfattah.abouelaoualim@gmail.com" title="Email me"><i
-          class="fas fa-envelope-square"></i></a>
-    </div>
+  <div class="footer-bottom">
+    <p>&copy; 2025 The Architect. All rights reserved.</p>
   </div>
 </footer>
+
+<style>
+.site-footer {
+  background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
+  color: #fff;
+  padding: 4rem 0 0;
+  margin-top: 4rem;
+}
+
+.site-footer h3 {
+  color: #EA950B;
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+
+.site-footer h3::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -10px;
+  width: 50px;
+  height: 2px;
+  background: #EA950B;
+}
+
+.social-links a {
+  color: #fff;
+  font-size: 1.5rem;
+  margin-right: 1rem;
+  transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+  color: #EA950B;
+}
+
+.recent-posts {
+  list-style: none;
+  padding: 0;
+}
+
+.recent-posts li {
+  margin-bottom: 1rem;
+}
+
+.recent-posts a {
+  color: #fff;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.recent-posts a:hover {
+  color: #EA950B;
+}
+
+.newsletter-form {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.newsletter-form input {
+  flex: 1;
+  padding: 0.75rem;
+  border: none;
+  border-radius: 4px;
+  background: rgba(255,255,255,0.1);
+  color: #fff;
+}
+
+.newsletter-form button {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 4px;
+  background: #EA950B;
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.newsletter-form button:hover {
+  background: #ff8c00;
+}
+
+.footer-bottom {
+  text-align: center;
+  padding: 1.5rem 0;
+  margin-top: 3rem;
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
+</style>
 
 <script src="/js/bundle.js"></script>
 </body>

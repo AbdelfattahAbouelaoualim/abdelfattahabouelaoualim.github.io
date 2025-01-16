@@ -24,36 +24,71 @@
 <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
   <div class="container-fluid">
     <a class="navbar-brand" href="/">
-    <img class="logo" src="/img/logo.png" alt="" style="object-fit:contain;
-            width:200px;
-            height:200px;"> 
+      <img class="logo" src="/img/logo.png" alt="" />
     </a>
-    <button class="navbar-toggler" type="button" style="color:#FFFFFF" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-      Menu
-      <i class="fa fa-bars"></i>
+    <button class="navbar-toggler navbar-dark" type="button" data-toggle="collapse" data-target="#navbarResponsive">
+      <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarResponsive" >
-      <ul class="navbar-nav ml-auto" id="main_nav"> 
-      
-
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
         <li class="nav-item">
-          <a style="color:#FFFFFF" class="nav-link" href="/">Home</a>
+          <a class="nav-link" href="/">Home</a>
         </li>
         <li class="nav-item">
-          <a style="color:#FFFFFF" class="nav-link" href="/about">About</a>
+          <a class="nav-link" href="/about">About</a>
         </li>
         <li class="nav-item">
-          <a style="color:#FFFFFF" class="nav-link" href="/author">Author</a>
+          <a class="nav-link" href="/author">Author</a>
         </li>
-
-        <!--<li class="nav-item">
-           <a style="color:#FFFFFF" class="nav-link" href="/contact">Contact</a> 
-           
-        </li>-->
       </ul>
     </div>
   </div>
 </nav>
+
+<style>
+.navbar {
+  background: rgba(0,0,0,0.8);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+}
+
+.navbar-brand img.logo {
+  width: 150px;
+  height: auto;
+  transition: all 0.3s ease;
+}
+
+.nav-link {
+  color: #fff !important;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  position: relative;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  left: 50%;
+  background: #EA950B;
+  transition: all 0.3s ease;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+  left: 0;
+}
+
+@media (max-width: 991px) {
+  .navbar-collapse {
+    background: rgba(0,0,0,0.9);
+    padding: 1rem;
+    border-radius: 0.5rem;
+  }
+}
+</style>
 
 
   <main class="main pt-4" role="main">
@@ -64,30 +99,26 @@
         <div class="col-md-9">
 
           <article class="card mb-4">
-		  
             <header class="card-header text-center">
-			
               <div class="card-meta">
-                <span>Published on 26 Apr 2021</time></span> in
+                <span class="date">26 April 2021</span>
+                <span class="categories">
                   
+                    <a href="/categories/#Data Science">#Data Science</a>
                   
-                  <a href="/categories/#Data Science">Data Science</a>
-                  
-                  
-              <div>
-			
-                <h1 class="card-title">How to transfer a Python graph to a Neo4j graph</h1>
-
+                </span>
+              </div>
+              <h1 class="card-title">How to transfer a Python graph to a Neo4j graph</h1>
             </header>
-			
-			
-            <a style="cursor:pointer;">
-              <img class="card-img" src="/img/pton.png" alt="" />
-            </a>
+
             
+            <div class="card-img-wrapper">
+              <img class="card-img" src="/img/pton.png" alt="How to transfer a Python graph to a Neo4j graph" />
+            </div>
             
+
             <div class="card-body">
-			<style>
+              <style>
   @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
   
   body {
@@ -127,9 +158,9 @@
 
 <p>The objective here is to generate the csv files which will represent the corpus (that will be treated in Corpus_pre_processing.ipynb) and the graphs that I will imported into <strong>neo4j</strong>.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="n">pd</span>
-<span class="kn">from</span> <span class="nn">pandarallel</span> <span class="kn">import</span> <span class="n">pandarallel</span>
-<span class="n">pandarallel</span><span class="p">.</span><span class="n">initialize</span><span class="p">()</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">pandas</span> <span class="k">as</span> <span class="n">pd</span>
+<span class="kn">from</span> <span class="n">pandarallel</span> <span class="kn">import</span> <span class="n">pandarallel</span>
+<span class="n">pandarallel</span><span class="p">.</span><span class="nf">initialize</span><span class="p">()</span>
 </code></pre></div></div>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>New pandarallel memory created - Size: 2000 MB
@@ -139,13 +170,13 @@ Pandarallel will run on 8 workers
 <p>Data about publications:
 These data come from <strong><em>roswell park cancer institute</em></strong> that I found in the data.world website <a href="https://data.world/data-ny-gov/cafv-pqiz/workspace/file?filename=publications-from-roswell-park-cancer-institute-beginning-2006-1.csv">here</a></p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">articles</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s">"data/publications-from-roswell-park-cancer-institute-beginning-2006-1.csv"</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">articles</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="nf">read_csv</span><span class="p">(</span><span class="sh">"</span><span class="s">data/publications-from-roswell-park-cancer-institute-beginning-2006-1.csv</span><span class="sh">"</span><span class="p">)</span>
 </code></pre></div></div>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">articles</span><span class="p">.</span><span class="n">head</span><span class="p">()</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">articles</span><span class="p">.</span><span class="nf">head</span><span class="p">()</span>
 </code></pre></div></div>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">articles</span><span class="p">.</span><span class="n">info</span><span class="p">()</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">articles</span><span class="p">.</span><span class="nf">info</span><span class="p">()</span>
 </code></pre></div></div>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
@@ -168,7 +199,7 @@ memory usage: 872.1+ KB
 
 <p>Check if there are any problems in the data!</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">articles</span><span class="p">[</span><span class="s">"Peer Reviewed"</span><span class="p">].</span><span class="n">value_counts</span><span class="p">()</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">articles</span><span class="p">[</span><span class="sh">"</span><span class="s">Peer Reviewed</span><span class="sh">"</span><span class="p">].</span><span class="nf">value_counts</span><span class="p">()</span>
 </code></pre></div></div>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>TRUE     7118
@@ -190,66 +221,66 @@ Name: Peer Reviewed, dtype: int64
 
 <p>I will choose the columns that will be used to create the <strong>ontology</strong>.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">articles</span> <span class="o">=</span> <span class="n">articles</span><span class="p">[[</span><span class="s">'Journal Name'</span><span class="p">,</span> <span class="s">'Publication Title'</span><span class="p">,</span> <span class="s">'Author List'</span><span class="p">,</span> <span class="s">'Peer Reviewed'</span><span class="p">]]</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">articles</span> <span class="o">=</span> <span class="n">articles</span><span class="p">[[</span><span class="sh">'</span><span class="s">Journal Name</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">Publication Title</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">Author List</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">Peer Reviewed</span><span class="sh">'</span><span class="p">]]</span>
 </code></pre></div></div>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">articles</span><span class="p">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">articles</span><span class="p">.</span><span class="nf">dropna</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 </code></pre></div></div>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">articles</span><span class="p">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">inplace</span> <span class="o">=</span> <span class="bp">True</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">articles</span><span class="p">.</span><span class="nf">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">inplace</span> <span class="o">=</span> <span class="bp">True</span><span class="p">)</span>
 </code></pre></div></div>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">articles</span><span class="p">.</span><span class="n">head</span><span class="p">()</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">articles</span><span class="p">.</span><span class="nf">head</span><span class="p">()</span>
 </code></pre></div></div>
 
 <p>Put <strong><em>peer reviewed</em></strong> or <strong><em>not peer reviewed</em></strong> in the column <strong>Peer Reviewed</strong></p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">peer</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="s">'1'</span> <span class="ow">or</span> <span class="n">x</span> <span class="o">==</span> <span class="s">'TRUE'</span> <span class="ow">or</span> <span class="n">x</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-        <span class="k">return</span> <span class="s">"peer reviewed"</span>
-    <span class="k">elif</span> <span class="n">x</span> <span class="o">==</span> <span class="s">'0'</span> <span class="ow">or</span> <span class="n">x</span> <span class="o">==</span> <span class="s">'FALSE'</span> <span class="ow">or</span> <span class="n">x</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="k">return</span> <span class="s">"not peer reviewed"</span>
+    <span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="sh">'</span><span class="s">1</span><span class="sh">'</span> <span class="ow">or</span> <span class="n">x</span> <span class="o">==</span> <span class="sh">'</span><span class="s">TRUE</span><span class="sh">'</span> <span class="ow">or</span> <span class="n">x</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">return</span> <span class="sh">"</span><span class="s">peer reviewed</span><span class="sh">"</span>
+    <span class="k">elif</span> <span class="n">x</span> <span class="o">==</span> <span class="sh">'</span><span class="s">0</span><span class="sh">'</span> <span class="ow">or</span> <span class="n">x</span> <span class="o">==</span> <span class="sh">'</span><span class="s">FALSE</span><span class="sh">'</span> <span class="ow">or</span> <span class="n">x</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="sh">"</span><span class="s">not peer reviewed</span><span class="sh">"</span>
 </code></pre></div></div>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">articles</span><span class="p">[</span><span class="s">'Peer Reviewed'</span><span class="p">]</span> <span class="o">=</span> <span class="n">articles</span><span class="p">[</span><span class="s">'Peer Reviewed'</span><span class="p">].</span><span class="n">parallel_apply</span><span class="p">(</span><span class="n">peer</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">articles</span><span class="p">[</span><span class="sh">'</span><span class="s">Peer Reviewed</span><span class="sh">'</span><span class="p">]</span> <span class="o">=</span> <span class="n">articles</span><span class="p">[</span><span class="sh">'</span><span class="s">Peer Reviewed</span><span class="sh">'</span><span class="p">].</span><span class="nf">parallel_apply</span><span class="p">(</span><span class="n">peer</span><span class="p">)</span>
 </code></pre></div></div>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">articles</span><span class="p">.</span><span class="n">head</span><span class="p">()</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">articles</span><span class="p">.</span><span class="nf">head</span><span class="p">()</span>
 </code></pre></div></div>
 
 <p>Add a column <strong>Topic</strong>
 The <strong>topic</strong> will be an attribute of the authors and also of the articles in the ontology.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">preprocessing</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">result</span> <span class="o">=</span> <span class="s">'str'</span><span class="p">):</span>
-    <span class="kn">from</span> <span class="nn">string</span> <span class="kn">import</span> <span class="n">punctuation</span>
-    <span class="kn">from</span> <span class="nn">nltk.tokenize</span> <span class="kn">import</span> <span class="n">word_tokenize</span>
-    <span class="kn">from</span> <span class="nn">nltk.corpus</span> <span class="kn">import</span> <span class="n">stopwords</span>
-    <span class="kn">import</span> <span class="nn">slugify</span>
-    <span class="n">remove_terms</span> <span class="o">=</span> <span class="n">punctuation</span> <span class="o">+</span> <span class="s">'0123456789'</span>
-    <span class="n">words</span> <span class="o">=</span> <span class="n">word_tokenize</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
-    <span class="n">tokens</span> <span class="o">=</span> <span class="p">[</span><span class="n">w</span> <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">words</span> <span class="k">if</span> <span class="n">w</span><span class="p">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">remove_terms</span><span class="p">]</span>
-    <span class="n">stopw</span> <span class="o">=</span> <span class="n">stopwords</span><span class="p">.</span><span class="n">words</span><span class="p">(</span><span class="s">'english'</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">preprocessing</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">result</span> <span class="o">=</span> <span class="sh">'</span><span class="s">str</span><span class="sh">'</span><span class="p">):</span>
+    <span class="kn">from</span> <span class="n">string</span> <span class="kn">import</span> <span class="n">punctuation</span>
+    <span class="kn">from</span> <span class="n">nltk.tokenize</span> <span class="kn">import</span> <span class="n">word_tokenize</span>
+    <span class="kn">from</span> <span class="n">nltk.corpus</span> <span class="kn">import</span> <span class="n">stopwords</span>
+    <span class="kn">import</span> <span class="n">slugify</span>
+    <span class="n">remove_terms</span> <span class="o">=</span> <span class="n">punctuation</span> <span class="o">+</span> <span class="sh">'</span><span class="s">0123456789</span><span class="sh">'</span>
+    <span class="n">words</span> <span class="o">=</span> <span class="nf">word_tokenize</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+    <span class="n">tokens</span> <span class="o">=</span> <span class="p">[</span><span class="n">w</span> <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">words</span> <span class="k">if</span> <span class="n">w</span><span class="p">.</span><span class="nf">lower</span><span class="p">()</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">remove_terms</span><span class="p">]</span>
+    <span class="n">stopw</span> <span class="o">=</span> <span class="n">stopwords</span><span class="p">.</span><span class="nf">words</span><span class="p">(</span><span class="sh">'</span><span class="s">english</span><span class="sh">'</span><span class="p">)</span>
     <span class="n">tokens</span> <span class="o">=</span> <span class="p">[</span><span class="n">token</span> <span class="k">for</span> <span class="n">token</span> <span class="ow">in</span> <span class="n">tokens</span> <span class="k">if</span> <span class="n">token</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">stopw</span><span class="p">]</span>
     <span class="c1"># remove words less than one letters
-</span>    <span class="n">tokens</span> <span class="o">=</span> <span class="p">[</span><span class="n">word</span> <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">tokens</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">word</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">2</span><span class="p">]</span>
+</span>    <span class="n">tokens</span> <span class="o">=</span> <span class="p">[</span><span class="n">word</span> <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">tokens</span> <span class="k">if</span> <span class="nf">len</span><span class="p">(</span><span class="n">word</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">2</span><span class="p">]</span>
     <span class="c1"># remove remaining tokens that are not alphabetic
-</span>    <span class="n">tokens</span> <span class="o">=</span> <span class="p">[</span><span class="n">word</span> <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">tokens</span> <span class="k">if</span> <span class="n">word</span><span class="p">.</span><span class="n">isalpha</span><span class="p">()]</span>
-    <span class="n">tokens</span> <span class="o">=</span> <span class="p">[</span><span class="n">slugify</span><span class="p">.</span><span class="n">slugify</span><span class="p">(</span><span class="n">word</span><span class="p">)</span> <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">tokens</span><span class="p">]</span>
-    <span class="k">if</span> <span class="n">result</span> <span class="o">==</span> <span class="s">'str'</span><span class="p">:</span>
-        <span class="n">tokens</span> <span class="o">=</span> <span class="s">' '</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="n">tokens</span><span class="p">)</span>
+</span>    <span class="n">tokens</span> <span class="o">=</span> <span class="p">[</span><span class="n">word</span> <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">tokens</span> <span class="k">if</span> <span class="n">word</span><span class="p">.</span><span class="nf">isalpha</span><span class="p">()]</span>
+    <span class="n">tokens</span> <span class="o">=</span> <span class="p">[</span><span class="n">slugify</span><span class="p">.</span><span class="nf">slugify</span><span class="p">(</span><span class="n">word</span><span class="p">)</span> <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">tokens</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">result</span> <span class="o">==</span> <span class="sh">'</span><span class="s">str</span><span class="sh">'</span><span class="p">:</span>
+        <span class="n">tokens</span> <span class="o">=</span> <span class="sh">'</span><span class="s"> </span><span class="sh">'</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="n">tokens</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">tokens</span>
 </code></pre></div></div>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">articles</span><span class="p">[</span><span class="s">'title_topic'</span><span class="p">]</span> <span class="o">=</span> <span class="n">articles</span><span class="p">[</span><span class="s">'Publication Title'</span><span class="p">].</span><span class="n">parallel_apply</span><span class="p">(</span><span class="n">preprocessing</span><span class="p">)</span>
-<span class="n">articles</span><span class="p">.</span><span class="n">head</span><span class="p">()</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">articles</span><span class="p">[</span><span class="sh">'</span><span class="s">title_topic</span><span class="sh">'</span><span class="p">]</span> <span class="o">=</span> <span class="n">articles</span><span class="p">[</span><span class="sh">'</span><span class="s">Publication Title</span><span class="sh">'</span><span class="p">].</span><span class="nf">parallel_apply</span><span class="p">(</span><span class="n">preprocessing</span><span class="p">)</span>
+<span class="n">articles</span><span class="p">.</span><span class="nf">head</span><span class="p">()</span>
 </code></pre></div></div>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">all_unique_words_in_titles</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">all_unique_words_in_titles</span> <span class="o">=</span> <span class="nf">set</span><span class="p">()</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">articles</span><span class="p">.</span><span class="n">index</span><span class="p">:</span>
-    <span class="n">all_unique_words_in_titles</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">articles</span><span class="p">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="s">"title_topic"</span><span class="p">])</span>
+    <span class="n">all_unique_words_in_titles</span><span class="p">.</span><span class="nf">add</span><span class="p">(</span><span class="n">articles</span><span class="p">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="sh">"</span><span class="s">title_topic</span><span class="sh">"</span><span class="p">])</span>
    
-<span class="n">all_unique_words_in_titles</span> <span class="o">=</span> <span class="n">preprocessing</span><span class="p">(</span><span class="s">' '</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">all_unique_words_in_titles</span><span class="p">)),</span> <span class="nb">list</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="s">"Number of unique words in titles:"</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">all_unique_words_in_titles</span><span class="p">))</span>
+<span class="n">all_unique_words_in_titles</span> <span class="o">=</span> <span class="nf">preprocessing</span><span class="p">(</span><span class="sh">'</span><span class="s"> </span><span class="sh">'</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="nf">list</span><span class="p">(</span><span class="n">all_unique_words_in_titles</span><span class="p">)),</span> <span class="nb">list</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Number of unique words in titles:</span><span class="sh">"</span><span class="p">,</span> <span class="nf">len</span><span class="p">(</span><span class="n">all_unique_words_in_titles</span><span class="p">))</span>
 </code></pre></div></div>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Number of unique words in titles: 94650
@@ -257,10 +288,10 @@ The <strong>topic</strong> will be an attribute of the authors and also of the a
 
 <p>To extract topics from a text, normally we use the techniques of <strong><em>Named Entity Recognition</em></strong> or <strong><em>Latent Dirichlet Allocation</em></strong> using libraries such as <strong>NLTK</strong> or <strong>spaCy</strong> or transfer learning based on pre-trained models like <strong>Bert</strong>… But due to lack of time, I will use the <strong>FastText</strong> library and using the similarity, I will create my <strong>Topic</strong> column</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">gensim.models.fasttext</span> <span class="kn">import</span> <span class="n">FastText</span>
-<span class="kn">from</span> <span class="nn">nltk</span> <span class="kn">import</span> <span class="n">WordPunctTokenizer</span>
-<span class="n">wpt</span> <span class="o">=</span> <span class="n">WordPunctTokenizer</span><span class="p">()</span>
-<span class="n">tokenized_corpus</span> <span class="o">=</span> <span class="p">[</span><span class="n">wpt</span><span class="p">.</span><span class="n">tokenize</span><span class="p">(</span><span class="n">doc</span><span class="p">)</span> <span class="k">for</span> <span class="n">doc</span> <span class="ow">in</span> <span class="n">all_unique_words_in_titles</span><span class="p">]</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">gensim.models.fasttext</span> <span class="kn">import</span> <span class="n">FastText</span>
+<span class="kn">from</span> <span class="n">nltk</span> <span class="kn">import</span> <span class="n">WordPunctTokenizer</span>
+<span class="n">wpt</span> <span class="o">=</span> <span class="nc">WordPunctTokenizer</span><span class="p">()</span>
+<span class="n">tokenized_corpus</span> <span class="o">=</span> <span class="p">[</span><span class="n">wpt</span><span class="p">.</span><span class="nf">tokenize</span><span class="p">(</span><span class="n">doc</span><span class="p">)</span> <span class="k">for</span> <span class="n">doc</span> <span class="ow">in</span> <span class="n">all_unique_words_in_titles</span><span class="p">]</span>
 </code></pre></div></div>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">feature_size</span> <span class="o">=</span> <span class="mi">500</span>   <span class="c1"># Word embedding vector dimensionality  
@@ -269,7 +300,7 @@ The <strong>topic</strong> will be an attribute of the authors and also of the a
 </span><span class="n">sample</span> <span class="o">=</span> <span class="mf">1e-3</span>   <span class="c1"># Downsample setting for frequent words
 </span></code></pre></div></div>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">fasttext_model_sg</span> <span class="o">=</span> <span class="n">FastText</span><span class="p">(</span><span class="n">tokenized_corpus</span><span class="p">,</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">fasttext_model_sg</span> <span class="o">=</span> <span class="nc">FastText</span><span class="p">(</span><span class="n">tokenized_corpus</span><span class="p">,</span>
                           <span class="n">size</span><span class="o">=</span><span class="n">feature_size</span><span class="p">,</span>
                           <span class="n">window</span><span class="o">=</span><span class="n">window_context</span><span class="p">,</span>
                           <span class="n">min_count</span><span class="o">=</span><span class="n">min_word_count</span><span class="p">,</span>
@@ -279,36 +310,36 @@ The <strong>topic</strong> will be an attribute of the authors and also of the a
 </code></pre></div></div>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">title_topic</span><span class="p">(</span><span class="n">title</span><span class="p">):</span>
-    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">title</span><span class="p">.</span><span class="n">split</span><span class="p">(</span><span class="s">" "</span><span class="p">))</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">fasttext_model_sg</span><span class="p">.</span><span class="n">wv</span><span class="p">.</span><span class="n">most_similar</span><span class="p">(</span><span class="n">title</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
-    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">title</span><span class="p">.</span><span class="n">split</span><span class="p">(</span><span class="s">" "</span><span class="p">))</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+    <span class="k">if</span> <span class="nf">len</span><span class="p">(</span><span class="n">title</span><span class="p">.</span><span class="nf">split</span><span class="p">(</span><span class="sh">"</span><span class="s"> </span><span class="sh">"</span><span class="p">))</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">fasttext_model_sg</span><span class="p">.</span><span class="n">wv</span><span class="p">.</span><span class="nf">most_similar</span><span class="p">(</span><span class="n">title</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">if</span> <span class="nf">len</span><span class="p">(</span><span class="n">title</span><span class="p">.</span><span class="nf">split</span><span class="p">(</span><span class="sh">"</span><span class="s"> </span><span class="sh">"</span><span class="p">))</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">title</span>
 </code></pre></div></div>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
 </code></pre></div></div>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">title_dict</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">title_dict</span> <span class="o">=</span> <span class="nf">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">articles</span><span class="p">.</span><span class="n">index</span><span class="p">:</span>
     <span class="k">try</span><span class="p">:</span>
-        <span class="n">title_dict</span><span class="p">[</span><span class="s">"title_topic"</span><span class="p">].</span><span class="n">append</span><span class="p">(</span><span class="n">title_topic</span><span class="p">(</span><span class="n">articles</span><span class="p">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="s">"title_topic"</span><span class="p">]))</span>
+        <span class="n">title_dict</span><span class="p">[</span><span class="sh">"</span><span class="s">title_topic</span><span class="sh">"</span><span class="p">].</span><span class="nf">append</span><span class="p">(</span><span class="nf">title_topic</span><span class="p">(</span><span class="n">articles</span><span class="p">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="sh">"</span><span class="s">title_topic</span><span class="sh">"</span><span class="p">]))</span>
     <span class="k">except</span><span class="p">:</span>
-        <span class="n">title_dict</span><span class="p">[</span><span class="s">"title_topic"</span><span class="p">].</span><span class="n">append</span><span class="p">(</span><span class="s">""</span><span class="p">)</span>
+        <span class="n">title_dict</span><span class="p">[</span><span class="sh">"</span><span class="s">title_topic</span><span class="sh">"</span><span class="p">].</span><span class="nf">append</span><span class="p">(</span><span class="sh">""</span><span class="p">)</span>
 </code></pre></div></div>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">articles</span><span class="p">[</span><span class="s">"Topic"</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">Series</span><span class="p">(</span><span class="n">title_dict</span><span class="p">)[</span><span class="s">"title_topic"</span><span class="p">]</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">articles</span><span class="p">[</span><span class="sh">"</span><span class="s">Topic</span><span class="sh">"</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="nc">Series</span><span class="p">(</span><span class="n">title_dict</span><span class="p">)[</span><span class="sh">"</span><span class="s">title_topic</span><span class="sh">"</span><span class="p">]</span>
 </code></pre></div></div>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">articles</span> <span class="o">=</span> <span class="n">articles</span><span class="p">[</span><span class="n">articles</span><span class="p">[</span><span class="s">"title_topic"</span><span class="p">]</span> <span class="o">!=</span> <span class="s">''</span><span class="p">]</span>
-<span class="n">articles</span> <span class="o">=</span> <span class="n">articles</span><span class="p">[</span><span class="n">articles</span><span class="p">[</span><span class="s">"Topic"</span><span class="p">]</span> <span class="o">!=</span> <span class="s">''</span><span class="p">]</span>
-<span class="n">articles</span> <span class="o">=</span> <span class="n">articles</span><span class="p">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">articles</span> <span class="o">=</span> <span class="n">articles</span><span class="p">[</span><span class="n">articles</span><span class="p">[</span><span class="sh">"</span><span class="s">title_topic</span><span class="sh">"</span><span class="p">]</span> <span class="o">!=</span> <span class="sh">''</span><span class="p">]</span>
+<span class="n">articles</span> <span class="o">=</span> <span class="n">articles</span><span class="p">[</span><span class="n">articles</span><span class="p">[</span><span class="sh">"</span><span class="s">Topic</span><span class="sh">"</span><span class="p">]</span> <span class="o">!=</span> <span class="sh">''</span><span class="p">]</span>
+<span class="n">articles</span> <span class="o">=</span> <span class="n">articles</span><span class="p">.</span><span class="nf">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 </code></pre></div></div>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">articles</span><span class="p">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s">'title_topic'</span><span class="p">],</span> <span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-<span class="n">articles</span><span class="p">.</span><span class="n">head</span><span class="p">()</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">articles</span><span class="p">.</span><span class="nf">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="sh">'</span><span class="s">title_topic</span><span class="sh">'</span><span class="p">],</span> <span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">articles</span><span class="p">.</span><span class="nf">head</span><span class="p">()</span>
 </code></pre></div></div>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">articles</span><span class="p">.</span><span class="n">drop_duplicates</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">articles</span><span class="p">.</span><span class="nf">drop_duplicates</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 </code></pre></div></div>
 
 <p>Normally I have to create my ‘knwoldege Graph’ from the corpus that I will generate at the end of this jupyter notebook, but for reasons that I will explain in a second jupyter notebook <strong>Corpus_pre_processing.ipynb</strong>, I will generate csv files that will be used to create the publications part of my graph on neo4j.</p>
@@ -323,23 +354,23 @@ The attribues of an author are:</p>
   <li>article title</li>
 </ul>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">author</span> <span class="o">=</span> <span class="n">articles</span><span class="p">[[</span><span class="s">'Author List'</span><span class="p">,</span> <span class="s">'Topic'</span><span class="p">,</span> <span class="s">'Publication Title'</span><span class="p">]].</span><span class="n">head</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">author</span> <span class="o">=</span> <span class="n">articles</span><span class="p">[[</span><span class="sh">'</span><span class="s">Author List</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">Topic</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">Publication Title</span><span class="sh">'</span><span class="p">]].</span><span class="nf">head</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
 </code></pre></div></div>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">author</span><span class="p">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s">'Author List'</span><span class="p">:</span> <span class="s">"name"</span><span class="p">,</span> <span class="s">'Topic'</span><span class="p">:</span> <span class="s">"topic"</span><span class="p">,</span> <span class="s">'Publication Title'</span><span class="p">:</span> <span class="s">'article title'</span><span class="p">},</span> <span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">author</span><span class="p">.</span><span class="nf">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="sh">'</span><span class="s">Author List</span><span class="sh">'</span><span class="p">:</span> <span class="sh">"</span><span class="s">name</span><span class="sh">"</span><span class="p">,</span> <span class="sh">'</span><span class="s">Topic</span><span class="sh">'</span><span class="p">:</span> <span class="sh">"</span><span class="s">topic</span><span class="sh">"</span><span class="p">,</span> <span class="sh">'</span><span class="s">Publication Title</span><span class="sh">'</span><span class="p">:</span> <span class="sh">'</span><span class="s">article title</span><span class="sh">'</span><span class="p">},</span> <span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 </code></pre></div></div>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">string_to_list</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">x</span><span class="p">.</span><span class="n">split</span><span class="p">(</span><span class="s">';'</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">x</span><span class="p">.</span><span class="nf">split</span><span class="p">(</span><span class="sh">'</span><span class="s">;</span><span class="sh">'</span><span class="p">)</span>
 </code></pre></div></div>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">author</span><span class="p">[</span><span class="s">'name'</span><span class="p">]</span> <span class="o">=</span> <span class="n">author</span><span class="p">[</span><span class="s">'name'</span><span class="p">].</span><span class="n">parallel_apply</span><span class="p">(</span><span class="n">string_to_list</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">author</span><span class="p">[</span><span class="sh">'</span><span class="s">name</span><span class="sh">'</span><span class="p">]</span> <span class="o">=</span> <span class="n">author</span><span class="p">[</span><span class="sh">'</span><span class="s">name</span><span class="sh">'</span><span class="p">].</span><span class="nf">parallel_apply</span><span class="p">(</span><span class="n">string_to_list</span><span class="p">)</span>
 </code></pre></div></div>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">author</span><span class="p">.</span><span class="n">head</span><span class="p">()</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">author</span><span class="p">.</span><span class="nf">head</span><span class="p">()</span>
 </code></pre></div></div>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">author</span><span class="p">.</span><span class="n">info</span><span class="p">()</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">author</span><span class="p">.</span><span class="nf">info</span><span class="p">()</span>
 </code></pre></div></div>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
@@ -352,21 +383,21 @@ dtypes: object(3)
 memory usage: 2.5+ KB
 </code></pre></div></div>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span> 
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">numpy</span> <span class="k">as</span> <span class="n">np</span> 
 </code></pre></div></div>
 
 <p>Convert author to long form</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">author</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">DataFrame</span><span class="p">({</span>
-      <span class="n">col</span><span class="p">:</span><span class="n">np</span><span class="p">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">author</span><span class="p">[</span><span class="n">col</span><span class="p">].</span><span class="n">values</span><span class="p">,</span> <span class="n">author</span><span class="p">[</span><span class="s">'name'</span><span class="p">].</span><span class="nb">str</span><span class="p">.</span><span class="nb">len</span><span class="p">())</span>
-      <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">author</span><span class="p">.</span><span class="n">columns</span><span class="p">.</span><span class="n">drop</span><span class="p">(</span><span class="s">'name'</span><span class="p">)}</span>
-    <span class="p">).</span><span class="n">assign</span><span class="p">(</span><span class="o">**</span><span class="p">{</span><span class="s">'name'</span><span class="p">:</span><span class="n">np</span><span class="p">.</span><span class="n">concatenate</span><span class="p">(</span><span class="n">author</span><span class="p">[</span><span class="s">'name'</span><span class="p">].</span><span class="n">values</span><span class="p">)})[</span><span class="n">author</span><span class="p">.</span><span class="n">columns</span><span class="p">]</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">author</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="nc">DataFrame</span><span class="p">({</span>
+      <span class="n">col</span><span class="p">:</span><span class="n">np</span><span class="p">.</span><span class="nf">repeat</span><span class="p">(</span><span class="n">author</span><span class="p">[</span><span class="n">col</span><span class="p">].</span><span class="n">values</span><span class="p">,</span> <span class="n">author</span><span class="p">[</span><span class="sh">'</span><span class="s">name</span><span class="sh">'</span><span class="p">].</span><span class="nb">str</span><span class="p">.</span><span class="nf">len</span><span class="p">())</span>
+      <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">author</span><span class="p">.</span><span class="n">columns</span><span class="p">.</span><span class="nf">drop</span><span class="p">(</span><span class="sh">'</span><span class="s">name</span><span class="sh">'</span><span class="p">)}</span>
+    <span class="p">).</span><span class="nf">assign</span><span class="p">(</span><span class="o">**</span><span class="p">{</span><span class="sh">'</span><span class="s">name</span><span class="sh">'</span><span class="p">:</span><span class="n">np</span><span class="p">.</span><span class="nf">concatenate</span><span class="p">(</span><span class="n">author</span><span class="p">[</span><span class="sh">'</span><span class="s">name</span><span class="sh">'</span><span class="p">].</span><span class="n">values</span><span class="p">)})[</span><span class="n">author</span><span class="p">.</span><span class="n">columns</span><span class="p">]</span>
 </code></pre></div></div>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">author</span><span class="p">.</span><span class="n">head</span><span class="p">()</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">author</span><span class="p">.</span><span class="nf">head</span><span class="p">()</span>
 </code></pre></div></div>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">author</span><span class="p">.</span><span class="n">info</span><span class="p">()</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">author</span><span class="p">.</span><span class="nf">info</span><span class="p">()</span>
 </code></pre></div></div>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
@@ -379,10 +410,10 @@ dtypes: object(3)
 memory usage: 29.2+ KB
 </code></pre></div></div>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">author</span> <span class="o">=</span> <span class="n">author</span><span class="p">[[</span><span class="s">'name'</span><span class="p">,</span> <span class="s">'topic'</span><span class="p">]]</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">author</span> <span class="o">=</span> <span class="n">author</span><span class="p">[[</span><span class="sh">'</span><span class="s">name</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">topic</span><span class="sh">'</span><span class="p">]]</span>
 </code></pre></div></div>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">author</span><span class="p">.</span><span class="n">drop_duplicates</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">author</span><span class="p">.</span><span class="nf">drop_duplicates</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 </code></pre></div></div>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/home/arij/anaconda3/lib/python3.6/site-packages/ipykernel_launcher.py:1: SettingWithCopyWarning: 
@@ -392,7 +423,7 @@ See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stabl
   """Entry point for launching an IPython kernel.
 </code></pre></div></div>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">author</span><span class="p">.</span><span class="n">info</span><span class="p">()</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">author</span><span class="p">.</span><span class="nf">info</span><span class="p">()</span>
 </code></pre></div></div>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
@@ -413,16 +444,16 @@ The attribues of an article are:</p>
   <li>authors</li>
 </ul>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">article</span> <span class="o">=</span> <span class="n">articles</span><span class="p">[[</span><span class="s">'Publication Title'</span><span class="p">,</span> <span class="s">'Topic'</span><span class="p">,</span> <span class="s">'Journal Name'</span><span class="p">,</span> <span class="s">'Author List'</span><span class="p">]].</span><span class="n">head</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">article</span> <span class="o">=</span> <span class="n">articles</span><span class="p">[[</span><span class="sh">'</span><span class="s">Publication Title</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">Topic</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">Journal Name</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">Author List</span><span class="sh">'</span><span class="p">]].</span><span class="nf">head</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
 </code></pre></div></div>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">article</span><span class="p">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s">'Publication Title'</span><span class="p">:</span> <span class="s">'article title'</span><span class="p">,</span> <span class="s">'Topic'</span><span class="p">:</span> <span class="s">"topic"</span><span class="p">,</span> <span class="s">'Journal Name'</span><span class="p">:</span> <span class="s">'published in'</span><span class="p">,</span> <span class="s">'Author List'</span><span class="p">:</span> <span class="s">'authors'</span><span class="p">},</span> <span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">article</span><span class="p">.</span><span class="nf">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="sh">'</span><span class="s">Publication Title</span><span class="sh">'</span><span class="p">:</span> <span class="sh">'</span><span class="s">article title</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">Topic</span><span class="sh">'</span><span class="p">:</span> <span class="sh">"</span><span class="s">topic</span><span class="sh">"</span><span class="p">,</span> <span class="sh">'</span><span class="s">Journal Name</span><span class="sh">'</span><span class="p">:</span> <span class="sh">'</span><span class="s">published in</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">Author List</span><span class="sh">'</span><span class="p">:</span> <span class="sh">'</span><span class="s">authors</span><span class="sh">'</span><span class="p">},</span> <span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 </code></pre></div></div>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">article</span><span class="p">.</span><span class="n">head</span><span class="p">()</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">article</span><span class="p">.</span><span class="nf">head</span><span class="p">()</span>
 </code></pre></div></div>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">article</span><span class="p">.</span><span class="n">info</span><span class="p">()</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">article</span><span class="p">.</span><span class="nf">info</span><span class="p">()</span>
 </code></pre></div></div>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
@@ -436,7 +467,7 @@ dtypes: object(4)
 memory usage: 3.9+ KB
 </code></pre></div></div>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">article</span><span class="p">.</span><span class="n">drop_duplicates</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">article</span><span class="p">.</span><span class="nf">drop_duplicates</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 </code></pre></div></div>
 
 <p>Nodes that represent the journals and their attributes
@@ -446,16 +477,16 @@ The attribues of a journal are:</p>
   <li>evaluation</li>
 </ul>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">journal</span> <span class="o">=</span> <span class="n">articles</span><span class="p">[[</span><span class="s">'Journal Name'</span><span class="p">,</span> <span class="s">'Peer Reviewed'</span><span class="p">]].</span><span class="n">head</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">journal</span> <span class="o">=</span> <span class="n">articles</span><span class="p">[[</span><span class="sh">'</span><span class="s">Journal Name</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">Peer Reviewed</span><span class="sh">'</span><span class="p">]].</span><span class="nf">head</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
 </code></pre></div></div>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">journal</span><span class="p">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s">'Journal Name'</span><span class="p">:</span> <span class="s">'name'</span><span class="p">,</span> <span class="s">'Peer Reviewed'</span><span class="p">:</span> <span class="s">'evaluation'</span><span class="p">},</span> <span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">journal</span><span class="p">.</span><span class="nf">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="sh">'</span><span class="s">Journal Name</span><span class="sh">'</span><span class="p">:</span> <span class="sh">'</span><span class="s">name</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">Peer Reviewed</span><span class="sh">'</span><span class="p">:</span> <span class="sh">'</span><span class="s">evaluation</span><span class="sh">'</span><span class="p">},</span> <span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 </code></pre></div></div>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">journal</span><span class="p">.</span><span class="n">head</span><span class="p">()</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">journal</span><span class="p">.</span><span class="nf">head</span><span class="p">()</span>
 </code></pre></div></div>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">journal</span><span class="p">.</span><span class="n">info</span><span class="p">()</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">journal</span><span class="p">.</span><span class="nf">info</span><span class="p">()</span>
 </code></pre></div></div>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
@@ -467,10 +498,10 @@ dtypes: object(2)
 memory usage: 1.7+ KB
 </code></pre></div></div>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">journal</span><span class="p">.</span><span class="n">drop_duplicates</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">journal</span><span class="p">.</span><span class="nf">drop_duplicates</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 </code></pre></div></div>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">journal</span><span class="p">.</span><span class="n">info</span><span class="p">()</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">journal</span><span class="p">.</span><span class="nf">info</span><span class="p">()</span>
 </code></pre></div></div>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
@@ -482,21 +513,21 @@ dtypes: object(2)
 memory usage: 1.8+ KB
 </code></pre></div></div>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">journal</span><span class="p">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s">"journal.csv"</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s">'utf-8'</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
-<span class="n">article</span><span class="p">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s">"article.csv"</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s">'utf-8'</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
-<span class="n">author</span><span class="p">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s">"author.csv"</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s">'utf-8'</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">journal</span><span class="p">.</span><span class="nf">to_csv</span><span class="p">(</span><span class="sh">"</span><span class="s">journal.csv</span><span class="sh">"</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="sh">'</span><span class="s">utf-8</span><span class="sh">'</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+<span class="n">article</span><span class="p">.</span><span class="nf">to_csv</span><span class="p">(</span><span class="sh">"</span><span class="s">article.csv</span><span class="sh">"</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="sh">'</span><span class="s">utf-8</span><span class="sh">'</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+<span class="n">author</span><span class="p">.</span><span class="nf">to_csv</span><span class="p">(</span><span class="sh">"</span><span class="s">author.csv</span><span class="sh">"</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="sh">'</span><span class="s">utf-8</span><span class="sh">'</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
 </code></pre></div></div>
 
 <p>Data about music:
 These data come from <strong><em>kaggle</em></strong> website <a href="https://www.kaggle.com/leonardopena/top50spotify2019">here</a></p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">music</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s">"data/top50.csv"</span><span class="p">,</span> <span class="n">engine</span><span class="o">=</span><span class="s">'python'</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">music</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="nf">read_csv</span><span class="p">(</span><span class="sh">"</span><span class="s">data/top50.csv</span><span class="sh">"</span><span class="p">,</span> <span class="n">engine</span><span class="o">=</span><span class="sh">'</span><span class="s">python</span><span class="sh">'</span><span class="p">)</span>
 </code></pre></div></div>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">music</span><span class="p">.</span><span class="n">head</span><span class="p">()</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">music</span><span class="p">.</span><span class="nf">head</span><span class="p">()</span>
 </code></pre></div></div>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">music</span><span class="p">.</span><span class="n">info</span><span class="p">()</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">music</span><span class="p">.</span><span class="nf">info</span><span class="p">()</span>
 </code></pre></div></div>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
@@ -522,54 +553,54 @@ memory usage: 5.6+ KB
 
 <p><strong>Warning:</strong> <font color="red">This data only contains **50** rows! Once in the corpus will make it **unbalanced**. This means that to **clustering** on the corpus for **sharding** purposes, you have to ***increase the data*** or at least ***add weights*** in the training set (but with 50 rows, adding weights in the training set will not be enough, it is necessary to add music data).</font></p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">music</span><span class="p">[</span><span class="s">"Danceability"</span><span class="p">].</span><span class="n">value_counts</span><span class="p">()</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">music</span><span class="p">[</span><span class="sh">"</span><span class="s">Danceability</span><span class="sh">"</span><span class="p">].</span><span class="nf">value_counts</span><span class="p">()</span>
 </code></pre></div></div>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">music</span><span class="p">[</span><span class="s">"Liveness"</span><span class="p">].</span><span class="n">value_counts</span><span class="p">()</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">music</span><span class="p">[</span><span class="sh">"</span><span class="s">Liveness</span><span class="sh">"</span><span class="p">].</span><span class="nf">value_counts</span><span class="p">()</span>
 </code></pre></div></div>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">music</span><span class="p">[</span><span class="s">"Valence."</span><span class="p">].</span><span class="n">value_counts</span><span class="p">()</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">music</span><span class="p">[</span><span class="sh">"</span><span class="s">Valence.</span><span class="sh">"</span><span class="p">].</span><span class="nf">value_counts</span><span class="p">()</span>
 </code></pre></div></div>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">music</span><span class="p">.</span><span class="n">columns</span>
 </code></pre></div></div>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">music</span> <span class="o">=</span> <span class="n">music</span><span class="p">[[</span><span class="s">'Track.Name'</span><span class="p">,</span> <span class="s">'Artist.Name'</span><span class="p">,</span> <span class="s">'Genre'</span><span class="p">,</span> <span class="s">'Liveness'</span><span class="p">,</span> <span class="s">'Valence.'</span><span class="p">]]</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">music</span> <span class="o">=</span> <span class="n">music</span><span class="p">[[</span><span class="sh">'</span><span class="s">Track.Name</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">Artist.Name</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">Genre</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">Liveness</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">Valence.</span><span class="sh">'</span><span class="p">]]</span>
 </code></pre></div></div>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">music</span><span class="p">.</span><span class="n">drop_duplicates</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">music</span><span class="p">.</span><span class="nf">drop_duplicates</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 </code></pre></div></div>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">music</span><span class="p">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">music</span><span class="p">.</span><span class="nf">dropna</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 </code></pre></div></div>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">music</span><span class="p">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">inplace</span> <span class="o">=</span> <span class="bp">True</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">music</span><span class="p">.</span><span class="nf">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">inplace</span> <span class="o">=</span> <span class="bp">True</span><span class="p">)</span>
 </code></pre></div></div>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">music</span><span class="p">.</span><span class="n">head</span><span class="p">()</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">music</span><span class="p">.</span><span class="nf">head</span><span class="p">()</span>
 </code></pre></div></div>
 
 <p>I do some suitable transformations.</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">mood</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">x</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">:</span>
-        <span class="k">return</span> <span class="s">"negative"</span>
+        <span class="k">return</span> <span class="sh">"</span><span class="s">negative</span><span class="sh">"</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="k">return</span> <span class="s">"positive"</span>
+        <span class="k">return</span> <span class="sh">"</span><span class="s">positive</span><span class="sh">"</span>
 </code></pre></div></div>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">live</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">x</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">:</span>
-        <span class="k">return</span> <span class="s">"no"</span>
+        <span class="k">return</span> <span class="sh">"</span><span class="s">no</span><span class="sh">"</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="k">return</span> <span class="s">"yes"</span>
+        <span class="k">return</span> <span class="sh">"</span><span class="s">yes</span><span class="sh">"</span>
 </code></pre></div></div>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">music</span><span class="p">[</span><span class="s">'Valence.'</span><span class="p">]</span> <span class="o">=</span> <span class="n">music</span><span class="p">[</span><span class="s">'Valence.'</span><span class="p">].</span><span class="n">parallel_apply</span><span class="p">(</span><span class="n">mood</span><span class="p">)</span>
-<span class="n">music</span><span class="p">[</span><span class="s">'Liveness'</span><span class="p">]</span> <span class="o">=</span> <span class="n">music</span><span class="p">[</span><span class="s">'Liveness'</span><span class="p">].</span><span class="n">parallel_apply</span><span class="p">(</span><span class="n">live</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">music</span><span class="p">[</span><span class="sh">'</span><span class="s">Valence.</span><span class="sh">'</span><span class="p">]</span> <span class="o">=</span> <span class="n">music</span><span class="p">[</span><span class="sh">'</span><span class="s">Valence.</span><span class="sh">'</span><span class="p">].</span><span class="nf">parallel_apply</span><span class="p">(</span><span class="n">mood</span><span class="p">)</span>
+<span class="n">music</span><span class="p">[</span><span class="sh">'</span><span class="s">Liveness</span><span class="sh">'</span><span class="p">]</span> <span class="o">=</span> <span class="n">music</span><span class="p">[</span><span class="sh">'</span><span class="s">Liveness</span><span class="sh">'</span><span class="p">].</span><span class="nf">parallel_apply</span><span class="p">(</span><span class="n">live</span><span class="p">)</span>
 </code></pre></div></div>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">music</span><span class="p">.</span><span class="n">head</span><span class="p">()</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">music</span><span class="p">.</span><span class="nf">head</span><span class="p">()</span>
 </code></pre></div></div>
 
 <p>Nodes that represent the artist and their attributes
@@ -580,13 +611,13 @@ The attribues of an artist are:</p>
   <li>genre</li>
 </ul>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">artist</span> <span class="o">=</span> <span class="n">music</span><span class="p">[[</span><span class="s">'Artist.Name'</span><span class="p">,</span> <span class="s">'Track.Name'</span><span class="p">,</span> <span class="s">'Genre'</span><span class="p">]]</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">artist</span> <span class="o">=</span> <span class="n">music</span><span class="p">[[</span><span class="sh">'</span><span class="s">Artist.Name</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">Track.Name</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">Genre</span><span class="sh">'</span><span class="p">]]</span>
 </code></pre></div></div>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">artist</span><span class="p">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s">'Artist.Name'</span><span class="p">:</span> <span class="s">'name'</span><span class="p">,</span> <span class="s">'Track.Name'</span><span class="p">:</span> <span class="s">'track'</span><span class="p">,</span> <span class="s">'Genre'</span><span class="p">:</span> <span class="s">'genre'</span><span class="p">},</span> <span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">artist</span><span class="p">.</span><span class="nf">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="sh">'</span><span class="s">Artist.Name</span><span class="sh">'</span><span class="p">:</span> <span class="sh">'</span><span class="s">name</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">Track.Name</span><span class="sh">'</span><span class="p">:</span> <span class="sh">'</span><span class="s">track</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">Genre</span><span class="sh">'</span><span class="p">:</span> <span class="sh">'</span><span class="s">genre</span><span class="sh">'</span><span class="p">},</span> <span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 </code></pre></div></div>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">artist</span><span class="p">.</span><span class="n">head</span><span class="p">()</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">artist</span><span class="p">.</span><span class="nf">head</span><span class="p">()</span>
 </code></pre></div></div>
 
 <p>Nodes that represent the song and their attributes
@@ -597,29 +628,29 @@ The attribues of a song are:</p>
   <li>mood</li>
 </ul>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">song</span> <span class="o">=</span> <span class="n">music</span><span class="p">[[</span><span class="s">'Track.Name'</span><span class="p">,</span> <span class="s">'Genre'</span><span class="p">,</span> <span class="s">'Valence.'</span><span class="p">]]</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">song</span> <span class="o">=</span> <span class="n">music</span><span class="p">[[</span><span class="sh">'</span><span class="s">Track.Name</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">Genre</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">Valence.</span><span class="sh">'</span><span class="p">]]</span>
 </code></pre></div></div>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">song</span><span class="p">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s">'Track.Name'</span><span class="p">:</span> <span class="s">'track'</span><span class="p">,</span> <span class="s">'Genre'</span><span class="p">:</span> <span class="s">'genre'</span><span class="p">,</span> <span class="s">'Valence.'</span><span class="p">:</span> <span class="s">'mood'</span><span class="p">},</span> <span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">song</span><span class="p">.</span><span class="nf">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="sh">'</span><span class="s">Track.Name</span><span class="sh">'</span><span class="p">:</span> <span class="sh">'</span><span class="s">track</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">Genre</span><span class="sh">'</span><span class="p">:</span> <span class="sh">'</span><span class="s">genre</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">Valence.</span><span class="sh">'</span><span class="p">:</span> <span class="sh">'</span><span class="s">mood</span><span class="sh">'</span><span class="p">},</span> <span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 </code></pre></div></div>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">song</span><span class="p">.</span><span class="n">head</span><span class="p">()</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">song</span><span class="p">.</span><span class="nf">head</span><span class="p">()</span>
 </code></pre></div></div>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">artist</span><span class="p">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s">"artist.csv"</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s">'utf-8'</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
-<span class="n">song</span><span class="p">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s">"song.csv"</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s">'utf-8'</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">artist</span><span class="p">.</span><span class="nf">to_csv</span><span class="p">(</span><span class="sh">"</span><span class="s">artist.csv</span><span class="sh">"</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="sh">'</span><span class="s">utf-8</span><span class="sh">'</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+<span class="n">song</span><span class="p">.</span><span class="nf">to_csv</span><span class="p">(</span><span class="sh">"</span><span class="s">song.csv</span><span class="sh">"</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="sh">'</span><span class="s">utf-8</span><span class="sh">'</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
 </code></pre></div></div>
 
 <p>Data about athletes:
 These data come from <strong><em>athletes in winter olympics</em></strong> that I found in the data.world website <a href="https://data.world/kabilan/athletes-in-winter-olympics/workspace/file?filename=Winer+Olympic+Medals.xlsx">here</a></p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">olympics</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s">"data/Winer Olympic Medals.xlsx"</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">olympics</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="nf">read_excel</span><span class="p">(</span><span class="sh">"</span><span class="s">data/Winer Olympic Medals.xlsx</span><span class="sh">"</span><span class="p">)</span>
 </code></pre></div></div>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">olympics</span><span class="p">.</span><span class="n">head</span><span class="p">()</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">olympics</span><span class="p">.</span><span class="nf">head</span><span class="p">()</span>
 </code></pre></div></div>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">olympics</span><span class="p">.</span><span class="n">info</span><span class="p">()</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">olympics</span><span class="p">.</span><span class="nf">info</span><span class="p">()</span>
 </code></pre></div></div>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">olympics</span><span class="p">.</span><span class="n">columns</span>
@@ -630,22 +661,22 @@ These data come from <strong><em>athletes in winter olympics</em></strong> that 
       dtype='object')
 </code></pre></div></div>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">olympics</span> <span class="o">=</span> <span class="n">olympics</span><span class="p">[[</span><span class="s">'Year'</span><span class="p">,</span> <span class="s">'Sport'</span><span class="p">,</span> <span class="s">'Country'</span><span class="p">,</span> <span class="s">'Gender'</span><span class="p">,</span> <span class="s">'Medal'</span><span class="p">,</span> <span class="s">'Name of Athlete or Team'</span><span class="p">,</span> <span class="s">'Age of Athlete'</span><span class="p">]]</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">olympics</span> <span class="o">=</span> <span class="n">olympics</span><span class="p">[[</span><span class="sh">'</span><span class="s">Year</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">Sport</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">Country</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">Gender</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">Medal</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">Name of Athlete or Team</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">Age of Athlete</span><span class="sh">'</span><span class="p">]]</span>
 </code></pre></div></div>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">olympics</span><span class="p">.</span><span class="n">drop_duplicates</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">olympics</span><span class="p">.</span><span class="nf">drop_duplicates</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 </code></pre></div></div>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">olympics</span><span class="p">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">olympics</span><span class="p">.</span><span class="nf">dropna</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 </code></pre></div></div>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">olympics</span><span class="p">.</span><span class="n">info</span><span class="p">()</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">olympics</span><span class="p">.</span><span class="nf">info</span><span class="p">()</span>
 </code></pre></div></div>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">olympics</span><span class="p">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">inplace</span> <span class="o">=</span> <span class="bp">True</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">olympics</span><span class="p">.</span><span class="nf">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">inplace</span> <span class="o">=</span> <span class="bp">True</span><span class="p">)</span>
 </code></pre></div></div>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">olympics</span><span class="p">.</span><span class="n">head</span><span class="p">()</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">olympics</span><span class="p">.</span><span class="nf">head</span><span class="p">()</span>
 </code></pre></div></div>
 
 <p><strong>Warning:</strong> <font color="red">On my laptop the Cypher queries crash if I take all the data. To give you a live demonstration without any problem, I will only take the first 50 rows of the DataFrame **olympics**.</font></p>
@@ -662,22 +693,22 @@ The attribues of an athlete are:</p>
   <li>year</li>
 </ul>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">athlete</span> <span class="o">=</span> <span class="n">olympics</span><span class="p">[[</span><span class="s">'Name of Athlete or Team'</span><span class="p">,</span> <span class="s">'Gender'</span><span class="p">,</span> <span class="s">'Age of Athlete'</span><span class="p">,</span> <span class="s">'Sport'</span><span class="p">,</span> <span class="s">'Country'</span><span class="p">,</span> <span class="s">'Medal'</span><span class="p">,</span> <span class="s">'Year'</span><span class="p">]].</span><span class="n">head</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">athlete</span> <span class="o">=</span> <span class="n">olympics</span><span class="p">[[</span><span class="sh">'</span><span class="s">Name of Athlete or Team</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">Gender</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">Age of Athlete</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">Sport</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">Country</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">Medal</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">Year</span><span class="sh">'</span><span class="p">]].</span><span class="nf">head</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span>
 </code></pre></div></div>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">athlete</span><span class="p">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s">'Name of Athlete or Team'</span><span class="p">:</span> <span class="s">'name'</span><span class="p">,</span> <span class="s">'Gender'</span><span class="p">:</span> <span class="s">'gender'</span><span class="p">,</span> <span class="s">'Age of Athlete'</span><span class="p">:</span> <span class="s">'age'</span><span class="p">,</span> <span class="s">'Sport'</span><span class="p">:</span> <span class="s">'sport'</span><span class="p">,</span><span class="s">'Country'</span><span class="p">:</span> <span class="s">'country'</span><span class="p">,</span> <span class="s">'Medal'</span><span class="p">:</span> <span class="s">'medal'</span><span class="p">,</span> <span class="s">'Year'</span><span class="p">:</span> <span class="s">'year'</span><span class="p">},</span> <span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">athlete</span><span class="p">.</span><span class="nf">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="sh">'</span><span class="s">Name of Athlete or Team</span><span class="sh">'</span><span class="p">:</span> <span class="sh">'</span><span class="s">name</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">Gender</span><span class="sh">'</span><span class="p">:</span> <span class="sh">'</span><span class="s">gender</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">Age of Athlete</span><span class="sh">'</span><span class="p">:</span> <span class="sh">'</span><span class="s">age</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">Sport</span><span class="sh">'</span><span class="p">:</span> <span class="sh">'</span><span class="s">sport</span><span class="sh">'</span><span class="p">,</span><span class="sh">'</span><span class="s">Country</span><span class="sh">'</span><span class="p">:</span> <span class="sh">'</span><span class="s">country</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">Medal</span><span class="sh">'</span><span class="p">:</span> <span class="sh">'</span><span class="s">medal</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">Year</span><span class="sh">'</span><span class="p">:</span> <span class="sh">'</span><span class="s">year</span><span class="sh">'</span><span class="p">},</span> <span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 </code></pre></div></div>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">athlete</span><span class="p">.</span><span class="n">drop_duplicates</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">athlete</span><span class="p">.</span><span class="nf">drop_duplicates</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 </code></pre></div></div>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">athlete</span><span class="p">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">inplace</span> <span class="o">=</span> <span class="bp">True</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">athlete</span><span class="p">.</span><span class="nf">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">inplace</span> <span class="o">=</span> <span class="bp">True</span><span class="p">)</span>
 </code></pre></div></div>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">athlete</span><span class="p">.</span><span class="n">head</span><span class="p">()</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">athlete</span><span class="p">.</span><span class="nf">head</span><span class="p">()</span>
 </code></pre></div></div>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">athlete</span><span class="p">.</span><span class="n">info</span><span class="p">()</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">athlete</span><span class="p">.</span><span class="nf">info</span><span class="p">()</span>
 </code></pre></div></div>
 
 <p>Nodes that represent the sport and their attributes
@@ -686,25 +717,25 @@ The attribues of a sport are:</p>
   <li>sport</li>
 </ul>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">sport</span> <span class="o">=</span> <span class="n">olympics</span><span class="p">[[</span><span class="s">'Sport'</span><span class="p">]].</span><span class="n">head</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">sport</span> <span class="o">=</span> <span class="n">olympics</span><span class="p">[[</span><span class="sh">'</span><span class="s">Sport</span><span class="sh">'</span><span class="p">]].</span><span class="nf">head</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span>
 </code></pre></div></div>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">sport</span><span class="p">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s">'Sport'</span><span class="p">:</span> <span class="s">'sport'</span><span class="p">},</span> <span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">sport</span><span class="p">.</span><span class="nf">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="sh">'</span><span class="s">Sport</span><span class="sh">'</span><span class="p">:</span> <span class="sh">'</span><span class="s">sport</span><span class="sh">'</span><span class="p">},</span> <span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 </code></pre></div></div>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">sport</span><span class="p">.</span><span class="n">drop_duplicates</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">sport</span><span class="p">.</span><span class="nf">drop_duplicates</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 </code></pre></div></div>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">sport</span><span class="p">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">sport</span><span class="p">.</span><span class="nf">dropna</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 </code></pre></div></div>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">sport</span><span class="p">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">inplace</span> <span class="o">=</span> <span class="bp">True</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">sport</span><span class="p">.</span><span class="nf">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">inplace</span> <span class="o">=</span> <span class="bp">True</span><span class="p">)</span>
 </code></pre></div></div>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">sport</span><span class="p">.</span><span class="n">info</span><span class="p">()</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">sport</span><span class="p">.</span><span class="nf">info</span><span class="p">()</span>
 </code></pre></div></div>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">sport</span><span class="p">.</span><span class="n">head</span><span class="p">()</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">sport</span><span class="p">.</span><span class="nf">head</span><span class="p">()</span>
 </code></pre></div></div>
 
 <p>Nodes that represent the medal and their attributes
@@ -713,22 +744,22 @@ The attribues of a medal are:</p>
   <li>medal</li>
 </ul>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">medal</span> <span class="o">=</span> <span class="n">olympics</span><span class="p">[[</span><span class="s">'Medal'</span><span class="p">]].</span><span class="n">head</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">medal</span> <span class="o">=</span> <span class="n">olympics</span><span class="p">[[</span><span class="sh">'</span><span class="s">Medal</span><span class="sh">'</span><span class="p">]].</span><span class="nf">head</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span>
 </code></pre></div></div>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">medal</span><span class="p">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s">'Medal'</span><span class="p">:</span> <span class="s">'medal'</span><span class="p">},</span> <span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">medal</span><span class="p">.</span><span class="nf">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="sh">'</span><span class="s">Medal</span><span class="sh">'</span><span class="p">:</span> <span class="sh">'</span><span class="s">medal</span><span class="sh">'</span><span class="p">},</span> <span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 </code></pre></div></div>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">medal</span><span class="p">.</span><span class="n">drop_duplicates</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">medal</span><span class="p">.</span><span class="nf">drop_duplicates</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 </code></pre></div></div>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">medal</span><span class="p">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">medal</span><span class="p">.</span><span class="nf">dropna</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 </code></pre></div></div>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">medal</span><span class="p">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">inplace</span> <span class="o">=</span> <span class="bp">True</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">medal</span><span class="p">.</span><span class="nf">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">inplace</span> <span class="o">=</span> <span class="bp">True</span><span class="p">)</span>
 </code></pre></div></div>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">medal</span><span class="p">.</span><span class="n">info</span><span class="p">()</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">medal</span><span class="p">.</span><span class="nf">info</span><span class="p">()</span>
 </code></pre></div></div>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
@@ -739,48 +770,70 @@ dtypes: object(1)
 memory usage: 152.0+ bytes
 </code></pre></div></div>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">medal</span><span class="p">.</span><span class="n">head</span><span class="p">()</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">medal</span><span class="p">.</span><span class="nf">head</span><span class="p">()</span>
 </code></pre></div></div>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">athlete</span><span class="p">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s">"athlete.csv"</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s">'utf-8'</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
-<span class="n">sport</span><span class="p">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s">"sport.csv"</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s">'utf-8'</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
-<span class="n">medal</span><span class="p">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s">"medal.csv"</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s">'utf-8'</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">athlete</span><span class="p">.</span><span class="nf">to_csv</span><span class="p">(</span><span class="sh">"</span><span class="s">athlete.csv</span><span class="sh">"</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="sh">'</span><span class="s">utf-8</span><span class="sh">'</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+<span class="n">sport</span><span class="p">.</span><span class="nf">to_csv</span><span class="p">(</span><span class="sh">"</span><span class="s">sport.csv</span><span class="sh">"</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="sh">'</span><span class="s">utf-8</span><span class="sh">'</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+<span class="n">medal</span><span class="p">.</span><span class="nf">to_csv</span><span class="p">(</span><span class="sh">"</span><span class="s">medal.csv</span><span class="sh">"</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="sh">'</span><span class="s">utf-8</span><span class="sh">'</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
 </code></pre></div></div>
 
-           <!-- <hr />
-			<div class="pg-center">
-
-<div class="comments">
-  <h2>Comments</h2>
-  <div id="disqus_thread"></div>
-  <script>
-var disqus_config = function () {
-  this.page.url = '/data%20science/2021/04/26/PN/'; // Replace PAGE_URL with your page's canonical URL variable
-  this.page.identifier = '/data%20science/2021/04/26/PN'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-};
-(function() {
-  var d = document, s = d.createElement('script');
-  s.src = '//thearchitect-page-disqus-com.disqus.com/embed.js';
-  s.setAttribute('data-timestamp', +new Date());
-  (d.head || d.body).appendChild(s);
-})();
-  </script>
-  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
-</div>
-
-</div>
-<style>
-.pg-center{
-background:#ffffff;
-padding-top:2rem;
-padding-bottom:2rem;
-margin-top:2rem;
-}
-</style>
-  
-		<hr /> -->		    
             </div>
-          </article><!-- /.card -->
+          </article>
+
+          <style>
+          .card {
+            border: none;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease;
+          }
+
+          .card:hover {
+            transform: translateY(-5px);
+          }
+
+          .card-header {
+            background: none;
+            border: none;
+            padding: 2rem 1.5rem;
+          }
+
+          .card-meta {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+          }
+
+          .card-meta a {
+            color: #EA950B;
+            margin: 0 0.5rem;
+            transition: color 0.3s ease;
+          }
+
+          .card-title {
+            color: #333;
+            font-size: 2rem;
+            font-weight: 700;
+          }
+
+          .card-img-wrapper {
+            overflow: hidden;
+          }
+
+          .card-img {
+            transition: transform 0.5s ease;
+          }
+
+          .card-img:hover {
+            transform: scale(1.05);
+          }
+
+          .card-body {
+            padding: 2rem;
+            font-size: 1.1rem;
+            line-height: 1.8;
+          }
+          </style>
         </div>
 		<style>
   /* Styles généraux */
@@ -994,50 +1047,134 @@ margin-top:2rem;
       </div>
     </div>
   </main>
-<!--   <div class="site-newsletter">
-    <div class="container">
-      <div class="text-center">
-        <h3 class="h4 mb-2">Subscribe to our newsletter</h3>
-        <p class="text-muted">Join our monthly newsletter and never miss out on new stories and promotions.</p>
-
-        <div class="row">
-          <div class="col-xs-12 col-sm-9 col-md-7 col-lg-5 ml-auto mr-auto">
-            <div class="input-group mb-3 mt-3">
-              <input type="text" class="form-control" placeholder="Email address" aria-label="Email address">
-              <span class="input-group-btn">
-                <button class="btn btn-secondary" type="button">Subscribe</button>
-              </span>
-            </div>
-          </div>
+<footer class="site-footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <h3>About</h3>
+        <p>Modern cloud, data, and AI architecture</p>
+        <div class="social-links">
+          <a href="https://github.com/" target="_blank"><i class="fab fa-github"></i></a>
+          <a href="https://twitter.com/" target="_blank"><i class="fab fa-twitter"></i></a>
+          <a href="https://linkedin.com/in/" target="_blank"><i class="fab fa-linkedin"></i></a>
         </div>
+      </div>
+      <div class="col-md-4">
+        <h3>Recent Posts</h3>
+        <ul class="recent-posts">
+          
+          <li><a href="/database%20technology/graph%20databases/neo4j/2023/11/21/neo4j/">Exploring Neo4j in 2023: The Evolution of Graph Databases</a></li>
+          
+          <li><a href="/data%20architecture/data%20engineering/decentralization/2023/10/28/datamesh/">Unveiling Data Mesh: Decentralizing Data at Scale</a></li>
+          
+          <li><a href="/devops/data%20engineering/cloud%20computing/2023/10/27/azuredevops/">Navigating Continuous Data Pipelines: An Extensive Look into CI/CD with Azure DevOps, dbt, Airflow, GCS, and BigQuery</a></li>
+          
+        </ul>
+      </div>
+      <div class="col-md-4">
+        <h3>Newsletter</h3>
+        <form class="newsletter-form">
+          <input type="email" placeholder="Your email" required>
+          <button type="submit">Subscribe</button>
+        </form>
       </div>
     </div>
   </div>
- -->
-<footer class="site-footer bg-darkest" role="contentinfo">
-  <div class="container">
-
-    <!--       <ul class="nav justify-content-center">
-        <li class="nav-item">
-          <a class="nav-link" href="#">Privacy policy</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Feedback</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Contact</a>
-        </li>
-      </ul> -->
-    <div class="copy">
-      &copy; How to transfer a Python graph to a Neo4j graph 2021<br />
-      All rights reserved
-      <a href="https://www.linkedin.com/in/ia-ds-bg/" title="Linkedin"><i class="fab fa-linkedin-square"></i></a>
-      <a href="https://github.com/AbdelfattahAbouelaoualim" title="Github"><i class="fab fa-github-square"></i></a>
-      <a href="mailto:abdelfattah.abouelaoualim@gmail.com" title="Email me"><i
-          class="fas fa-envelope-square"></i></a>
-    </div>
+  <div class="footer-bottom">
+    <p>&copy; 2025 The Architect. All rights reserved.</p>
   </div>
 </footer>
+
+<style>
+.site-footer {
+  background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
+  color: #fff;
+  padding: 4rem 0 0;
+  margin-top: 4rem;
+}
+
+.site-footer h3 {
+  color: #EA950B;
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+
+.site-footer h3::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -10px;
+  width: 50px;
+  height: 2px;
+  background: #EA950B;
+}
+
+.social-links a {
+  color: #fff;
+  font-size: 1.5rem;
+  margin-right: 1rem;
+  transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+  color: #EA950B;
+}
+
+.recent-posts {
+  list-style: none;
+  padding: 0;
+}
+
+.recent-posts li {
+  margin-bottom: 1rem;
+}
+
+.recent-posts a {
+  color: #fff;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.recent-posts a:hover {
+  color: #EA950B;
+}
+
+.newsletter-form {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.newsletter-form input {
+  flex: 1;
+  padding: 0.75rem;
+  border: none;
+  border-radius: 4px;
+  background: rgba(255,255,255,0.1);
+  color: #fff;
+}
+
+.newsletter-form button {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 4px;
+  background: #EA950B;
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.newsletter-form button:hover {
+  background: #ff8c00;
+}
+
+.footer-bottom {
+  text-align: center;
+  padding: 1.5rem 0;
+  margin-top: 3rem;
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
+</style>
 
 <script src="/js/bundle.js"></script>
 </body>
