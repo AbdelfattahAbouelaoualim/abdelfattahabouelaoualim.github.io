@@ -20,34 +20,7 @@
     </div>
   </header>
  
-<section class="hero">
-  <div class="hero-content">
-    <h1 class="animate-text">{{ site.title }}</h1>
-    <p class="animate-text-delay">{{ site.description }}</p>
-    <a href="#latest-posts" class="cta-button">Discover</a>
-  </div>
-  <div class="hero-overlay"></div>
-</section>
 
-<div id="latest-posts" class="container">
-  <h2 class="section-title">Latest Articles</h2>
-  <div class="row">
-    {% for post in site.posts limit:6 %}
-    <div class="col-md-4">
-      <div class="post-card">
-        {% if post.image %}
-        <div class="post-image" style="background-image: url('{{ site.baseurl }}/img/{{ post.image }}')"></div>
-        {% endif %}
-        <div class="post-content">
-          <span class="post-date">{{ post.date | date: "%B %-d, %Y" }}</span>
-          <h3><a href="{{ post.url }}">{{ post.title }}</a></h3>
-          <p>{{ post.excerpt | strip_html | truncatewords: 30 }}</p>
-        </div>
-      </div>
-    </div>
-    {% endfor %}
-  </div>
-</div>
 
 <style>
 .hero {

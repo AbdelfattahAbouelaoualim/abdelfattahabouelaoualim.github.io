@@ -32,8 +32,17 @@ title: Thearchitect
                 <h4 class="card-title">{{ post.title }}</h4>
               </a>
             </header>
-            <a href="{{site.baseurl}}{{ post.url }}">
-              <img class="card-img" src="{{site.baseurl}}/img/{{ post.image }}" alt="" />
+            <a href="{{site.baseurl}}{{ post.url }}" class="image-wrapper">
+              <img 
+                class="card-img hover-zoom" 
+                src="{{site.baseurl}}/img/{{ post.image }}" 
+                alt="{{ post.title }}"
+                loading="lazy"
+                width="800"
+                height="450">
+              <div class="image-overlay">
+                <i class="fas fa-search-plus"></i>
+              </div>
             </a>
             <div class="card-body">
               <p class="card-text">{{ post.content | strip_html | truncatewords:40 }}</p>

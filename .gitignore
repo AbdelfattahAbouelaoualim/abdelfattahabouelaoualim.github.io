@@ -43,3 +43,11 @@ tmp/
 
 # Node modules if you use any JavaScript tools
 node_modules/
+
+# Cache des assets
+.asset-cache/
+.jekyll-assets-cache/
+
+# Fichiers de build spécifiques
+.netlify/
+_deploy/

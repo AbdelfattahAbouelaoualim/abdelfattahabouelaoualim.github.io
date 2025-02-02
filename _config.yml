@@ -27,7 +27,7 @@ markdown: kramdown
 kramdown:
     math_engine: katex
 #permalink: /:categories/:title/
-permalink: pretty
+permalink: /:categories/:title/
 disqus_short_name: thearchitect-page-disqus-com
 
 plugins: 
@@ -35,6 +35,8 @@ plugins:
   - jemoji
   - jekyll-feed
   - jekyll-seo-tag
+  - jekyll-sitemap
+
   
 paginate_path: "/page:num/"
 
@@ -43,11 +45,11 @@ paginate: 4
 
 main_toc:
   - title: Home
-    url: ""
+    url: "/"
   - title: About
-    url: "about"
+    url: "/about/"
   - title: Author
-    url: "author"
+    url: "/author/"
 
 defaults:
   -
