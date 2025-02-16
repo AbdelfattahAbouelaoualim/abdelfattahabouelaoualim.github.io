@@ -27,7 +27,7 @@ markdown: kramdown
 kramdown:
     math_engine: katex
 #permalink: /:categories/:title/
-permalink: /:categories/:title/
+permalink: /:categories/:year/:month/:day/:title/
 disqus_short_name: thearchitect-page-disqus-com
 
 plugins: 
