@@ -19,5 +19,5 @@ group :jekyll_plugins do
   gem "kramdown-parser-gfm"
   gem "kramdown-math-katex"
   gem "csv"
+  gem "jekyll-include-cache", "~> 0.2"
 end
-

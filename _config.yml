@@ -2,17 +2,13 @@
 title: The Architect
 description: Modern cloud, data, and AI architecture
 baseurl: ""
-url: "http://localhost:4000"
+url: "https://www.thearchitect.page/"
 
-# Configuration du serveur
-host: 0.0.0.0
-port: 4000
-livereload: true
-livereload_port: 35729
 
 # Configuration de la compilation
 incremental: true
 strict_front_matter: true
+verbose: true
 
 # Exclusions
 exclude:
@@ -21,12 +17,20 @@ exclude:
   - node_modules
   - vendor
   - .git
+  - .sass-cache
+  - .jekyll-cache
+  - .idea
+  - .vscode
+  - .env*
+  - package*.json
+  - yarn.lock
+  - Rakefile
+  - netlify.toml
 
 #about: "Bootstrap theme for jekyll"
 markdown: kramdown
 kramdown:
     math_engine: katex
-#permalink: /:categories/:title/
 permalink: /:categories/:year/:month/:day/:title/
 disqus_short_name: thearchitect-page-disqus-com
 
@@ -36,8 +40,25 @@ plugins:
   - jekyll-feed
   - jekyll-seo-tag
   - jekyll-sitemap
+  - jekyll-include-cache
 
-  
+# Supprimer la section compress_html existante
+compress_html:
+  clippings:    all
+  comments:     all
+  endings:      all
+  blanklines:   false
+  profile:      true
+  ignore:
+    envs:       [development]
+
+# ========================
+#  INTERNATIONALIZATION
+# ========================
+lang: en-US
+direction: ltr
+currency: USD
+
 paginate_path: "/page:num/"
 
 paginate: 4
@@ -57,3 +78,49 @@ defaults:
       path: "_posts"
     values:
       layout: "post"
+
+# ========================
+#  PERFORMANCE & SECURITY
+# ========================
+compress_html:
+  clippings: all
+  comments: all
+  endings: all
+  blanklines: false
+
+minify:
+  css: true
+  js: true
+  html: true
+  ignore:
+    - "*.min.js"
+    - "*.min.css"
+
+security:
+  headers:
+    Content-Security-Policy: "default-src 'self' https: 'unsafe-inline' 'unsafe-eval'"
+    X-Frame-Options: DENY
+    X-Content-Type-Options: nosniff
+    Permissions-Policy: geolocation=(), microphone=()
+
+# ========================
+#  SEO & SOCIAL
+# ========================
+seo:
+  title_separator: "|"
+  social:
+    name: The Architect
+    links:
+      - "https://github.com/AbdelfattahAbouelaoualim"
+      - "https://www.linkedin.com/in/ia-ds-bg/"
+
+feed:
+  path: "/feed.xml"
+  categories: false
+
+sitemap:
+  domain: "thearchitect.page"
+  exclude:
+    - "404.html"
+    - "/private/*"
+    - "/drafts/*"
